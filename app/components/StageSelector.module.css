@@ -1,0 +1,247 @@
+.container {
+  height: 226px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+ 
+}
+
+.innerContainer {
+  max-width: 1520px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  
+}
+
+.introSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.emoji {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  flex-shrink: 0;
+
+}
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.question {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: 0.875rem;
+  margin: 0;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+.buttonsSection {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 0.5rem;
+  width: 100%;
+  padding-right: 67px;
+}
+
+.buttonWrapper:last-child {
+  padding-right: 0;
+}
+
+.stageButton {
+  width: 160px;
+  height: 64px;
+  border-radius: 32px;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  min-width: 120px;
+  position: relative;
+}
+
+.speechBubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 30px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-size : 22px;
+}
+
+.speechBubble:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid;
+}
+
+.buttonWrapper:hover .speechBubble {
+  opacity: 1;
+}
+
+.buttonDescription {
+  font-size: 22px;
+  margin: 0;
+  margin-top: 0.5rem;
+  text-align: center;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+.connector {
+  position: absolute;
+  left: 160px;
+  top: 32px;
+  right: -1000px;
+  height: 1px;
+  border-top: 2px dotted;
+  opacity: 0.3;
+}
+
+
+/* Light Theme */
+.light {
+  background-color: #f5f5f5;
+}
+
+.light .question {
+  color: #000000;
+}
+
+.light .description {
+  color: #000000;
+}
+
+.light .stageButton {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.light .stageButton:hover {
+  background-color: #333333;
+}
+
+.light .speechBubble {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.light .speechBubble:after {
+  border-top-color: #000000;
+}
+
+.light .buttonDescription {
+  color: #000000;
+}
+
+.light .connector {
+  border-color: #000000;
+}
+
+/* Dark Theme */
+.dark {
+  background-color: #2a2a2a;
+}
+
+.dark .question {
+  color: #ffffff;
+}
+
+.dark .description {
+  color: #ffffff;
+}
+
+.dark .stageButton {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark .stageButton:hover {
+  background-color: #e0e0e0;
+}
+
+.dark .speechBubble {
+  background-color: #000;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.dark .speechBubble:after {
+  border-top-color: #000;
+}
+
+.dark .buttonDescription {
+  color: #ffffff;
+}
+
+.dark .connector {
+  border-color: #ffffff;
+}
+
+@media (max-width: 64rem) {
+  .innerContainer {
+    padding: 0 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .container {
+    height: auto;
+  }
+
+  .buttonsSection {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .connector {
+    display: none;
+  }
+}
+
