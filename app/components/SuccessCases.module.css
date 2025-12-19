@@ -1,13 +1,13 @@
 .container {
   width: 100%;
-  max-width: 1520px;
+  max-width: 1920px;
   height: auto;
   background-color: #ffffff;
   padding: 160px 200px;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-  gap: 2rem;
+  gap: 38px;
 }
 
 .header {

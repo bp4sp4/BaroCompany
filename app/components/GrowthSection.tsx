@@ -41,5 +41,6 @@ export default function GrowthSection() {
         </div>
       </div>
     </section>
+    
   );
 }

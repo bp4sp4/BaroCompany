@@ -2,6 +2,9 @@ import Header from "./components/Header";
 import StageSelector from "./components/StageSelector";
 import SuccessCases from "./components/SuccessCases";
 import GrowthSection from "./components/GrowthSection";
+import RecruitmentBanner from "./components/RecruitmentBanner";
+import CompanyShowcase from "./components/CompanyShowcase";
+import Footer from "./components/Footer";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -32,7 +35,12 @@ export default function Home() {
         <StageSelector theme="dark" />
       </section>
       <SuccessCases />
+
       <GrowthSection />
+      <GrowthSection />
+      <RecruitmentBanner />
+      <CompanyShowcase />
+      <Footer />
     </>
   );
 }
