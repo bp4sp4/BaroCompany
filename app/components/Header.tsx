@@ -1,14 +1,36 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Header.module.css";
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    // 초기 스크롤 위치 확인
+    handleScroll();
+
+    // 스크롤 이벤트 리스너
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
         <div className={styles.logoSection}>
           <Image
-            src="/main/logo.png"
+            src={isScrolled ? "/main/logo_black.png" : "/main/logo_white.png"}
             alt="한평생 바로기업"
             width={280}
             height={65}
