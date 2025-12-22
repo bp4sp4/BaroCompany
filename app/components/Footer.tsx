@@ -1,10 +1,20 @@
+import Image from "next/image";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <p className={styles.companyName}>한평생 바로기업</p>
+        <div className={styles.companyNameWrapper}>
+          <Image
+            src="/main/logo_white.png"
+            alt="한평생 바로기업"
+            width={200}
+            height={47}
+            className={styles.logo}
+          />
+          <p className={styles.companyName}>한평생 바로기업</p>
+        </div>
         <p className={styles.info}>
           대표 양병웅 | 사업자등록번호 227-88-03196
         </p>
@@ -23,3 +33,6 @@ export default function Footer() {
     </footer>
   );
 }
+
+
+

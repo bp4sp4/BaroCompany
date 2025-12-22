@@ -1,15 +1,30 @@
+"use client";
+
+import { useState } from "react";
 import Header from "./components/Header";
 import StageSelector from "./components/StageSelector";
 import SuccessCases from "./components/SuccessCases";
 import GrowthSection from "./components/GrowthSection";
 import RecruitmentBanner from "./components/RecruitmentBanner";
 import CompanyShowcase from "./components/CompanyShowcase";
+import AchievementSection from "./components/AchievementSection";
 import Footer from "./components/Footer";
+import Loader from "./components/Loader";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <>
+      {isLoading && (
+        <Loader
+          topLogo="/main/logo_white.png"
+          bottomLogo="/main/logo_white.png"
+          centerLogo="/main/logo_black.png"
+          onComplete={() => setIsLoading(false)}
+        />
+      )}
       <Header />
       <main className={styles.main}>
         <video
@@ -37,9 +52,10 @@ export default function Home() {
       <SuccessCases />
 
       <GrowthSection />
-      <GrowthSection />
+      
       <RecruitmentBanner />
       <CompanyShowcase />
+      <AchievementSection />
       <Footer />
     </>
   );

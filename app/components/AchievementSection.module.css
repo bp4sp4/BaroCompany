@@ -1,0 +1,189 @@
+.container {
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 160px 200px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 42px;
+  color: #000;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.marqueeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 130px;
+}
+
+.marqueeWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.marqueeWrapper:hover .marqueeLeft {
+  animation-play-state: paused;
+}
+
+.marqueeWrapper:hover .marqueeRight {
+  animation-play-state: paused;
+}
+
+.marquee {
+  display: flex;
+  gap: 16px;
+  width: fit-content;
+}
+
+.marqueeLeft {
+  animation: scrollLeft 30s linear infinite;
+}
+
+.marqueeRight {
+  animation: scrollRight 30s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  min-width: 300px;
+}
+
+.logoContainer {
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.companyName {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 9px;
+  
+}
+
+.subtitleText {
+  font-size: 18px;
+  color: #727272;
+  margin: 0;
+  
+}
+
+.cta {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.ctaText {
+  font-size: 56px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media (max-width: 1440px) {
+  .container {
+    padding: 120px 160px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 80px 40px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .ctaText {
+    font-size: 28px;
+  }
+
+  .card {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 60px 24px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .ctaText {
+    font-size: 24px;
+  }
+
+  .card {
+    min-width: 250px;
+    padding: 20px;
+  }
+}
