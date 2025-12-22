@@ -13,8 +13,9 @@ export default function Footer() {
             height={47}
             className={styles.logo}
           />
-          <p className={styles.companyName}>한평생 바로기업</p>
+          <button className={styles.companyNameButton}>패밀리 사이트</button>
         </div>
+     
         <p className={styles.info}>
           대표 양병웅 | 사업자등록번호 227-88-03196
         </p>

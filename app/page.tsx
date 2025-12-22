@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Header from "./components/Header";
 import StageSelector from "./components/StageSelector";
 import SuccessCases from "./components/SuccessCases";
@@ -14,6 +14,17 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!isLoading && videoRef.current) {
+      // 로더 완료 후 비디오만 재생
+      videoRef.current.play().catch((error) => {
+        console.log("Video play error:", error);
+      });
+    }
+  }, [isLoading]);
 
   return (
     <>
@@ -23,9 +34,10 @@ export default function Home() {
         centerLogo="/main/logo_black.png"
         onComplete={() => setIsLoading(false)}
       />
-      <Header />
+      <Header ref={headerRef as React.RefObject<HTMLElement>} />
       <main className={styles.main}>
         <video
+          ref={videoRef}
           className={styles.backgroundVideo}
           autoPlay
           loop

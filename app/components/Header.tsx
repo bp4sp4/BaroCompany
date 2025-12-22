@@ -1,11 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Header.module.css";
 
-export default function Header() {
+interface HeaderProps {
+  isVideoVisible?: boolean;
+}
+
+const Header = forwardRef<HTMLElement, HeaderProps>(({ isVideoVisible = false }, ref) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -26,7 +30,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
+    <header ref={ref} className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
         <div className={styles.logoSection}>
           <Image
@@ -62,5 +66,9 @@ export default function Header() {
       </div>
     </header>
   );
-}
+});
+
+Header.displayName = "Header";
+
+export default Header;
 
