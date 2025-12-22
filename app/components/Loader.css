@@ -2,10 +2,14 @@
 .loader {
   overflow-x: hidden;
   position: fixed;
-  z-index: 10000;
+  top: 0;
+  left: 0;
+  z-index: 99999;
   width: 100vw;
   height: 100vh;
   background-color: #fff;
+  opacity: 1;
+  visibility: visible;
 }
 
 .loader-clip {

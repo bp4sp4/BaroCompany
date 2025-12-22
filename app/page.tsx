@@ -17,14 +17,12 @@ export default function Home() {
 
   return (
     <>
-      {isLoading && (
-        <Loader
-          topLogo="/main/logo_white.png"
-          bottomLogo="/main/logo_white.png"
-          centerLogo="/main/logo_black.png"
-          onComplete={() => setIsLoading(false)}
-        />
-      )}
+      <Loader
+        topLogo="/main/logo_white.png"
+        bottomLogo="/main/logo_white.png"
+        centerLogo="/main/logo_black.png"
+        onComplete={() => setIsLoading(false)}
+      />
       <Header />
       <main className={styles.main}>
         <video
