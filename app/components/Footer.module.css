@@ -125,9 +125,10 @@
 .familySiteButton {
   background-color: #fff ;  
   color: #333333;
-  padding: 12px 16px;
-  
-  border-radius: 12px;
+  width: 160px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
@@ -135,7 +136,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  height: fit-content;
   text-align: left;
 }
 
@@ -149,7 +149,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   flex: 1;
-  text-align: left;
+  
 }
 
 .chevronDown,
@@ -212,7 +212,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;

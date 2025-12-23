@@ -28,7 +28,7 @@ export default function Footer() {
                 className={styles.familySiteButton}
                 onClick={() => setIsFamilySiteOpen(!isFamilySiteOpen)}
               >
-                <span>패밀리사이트 및 유관기관</span>
+                <span>패밀리 사이트</span>
                 <svg 
                   width="12" 
                   height="12" 
