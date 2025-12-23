@@ -119,19 +119,37 @@ const Loader: React.FC<LoaderProps> = ({
     ));
   };
 
+  const renderTopTexts = (): React.ReactNode[] => {
+    const text = '기업 가치를 높이는 선택';
+    // marquee 효과를 위해 텍스트를 여러 번 반복
+    const repeatedTexts = Array.from({ length: 10 }, () => text);
+    return repeatedTexts.map((text, i) => (
+      <span key={i}>{text}</span>
+    ));
+  };
+
+  const renderBottomTexts = (): React.ReactNode[] => {
+    const text = '기업 성장 파트너';
+    // marquee 효과를 위해 텍스트를 여러 번 반복
+    const repeatedTexts = Array.from({ length: 10 }, () => text);
+    return repeatedTexts.map((text, i) => (
+      <span key={i}>{text}</span>
+    ));
+  };
+
   return (
     <div className="loader" ref={loaderRef}>
       <div className="loader-clip clip-top">
         <div className="marquee">
           <div className="marquee-container">
-            {renderLogos(topLogo, logoCount)}
+            {renderTopTexts()}
           </div>
         </div>
       </div>
       <div className="loader-clip clip-bottom">
         <div className="marquee">
           <div className="marquee-container">
-            {renderLogos(bottomLogo, logoCount)}
+            {renderBottomTexts()}
           </div>
         </div>
       </div>

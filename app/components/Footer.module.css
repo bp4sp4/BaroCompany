@@ -15,12 +15,36 @@
 .companyNameWrapper {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
   margin-bottom: 0.5rem;
 }
 
 .logo {
   object-fit: contain;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.companyNameButton {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.companyNameButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .companyName {
@@ -78,6 +102,143 @@
   opacity: 0.8;
 }
 
+.bottomButtons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.rightButtons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.familySiteWrapper {
+  position: relative;
+  
+  
+}
+
+.familySiteButton {
+  background-color: #fff ;  
+  color: #333333;
+  padding: 12px 16px;
+  
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: fit-content;
+  text-align: left;
+}
+
+.familySiteButton:hover {
+  background-color: #f5f5f5;
+  
+}
+
+.familySiteButton span {
+  color: #333333;
+  font-size: 0.875rem;
+  font-weight: 500;
+  flex: 1;
+  text-align: left;
+}
+
+.chevronDown,
+.chevronUp {
+  color: #333;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.familySiteDropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.dropdownOpen {
+  opacity: 1;
+  max-height: 400px;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdownClosed {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #333333;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+}
+
+.dropdownItem:last-child {
+  border-bottom: none;
+}
+
+.dropdownItem:hover {
+  background-color: #f5f5f5;
+}
+
+.topButton {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.topButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.topButton span {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.topButton svg {
+  color: #ffffff;
+}
+
 @media (max-width: 768px) {
   .footer {
     padding: 40px 1rem;
@@ -91,6 +252,24 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+
+  .rightButtons {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .companyNameButton {
+    width: 100%;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .logo {
@@ -107,6 +286,24 @@
   .link,
   .copyright {
     font-size: 0.75rem;
+  }
+
+  .bottomButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .familySiteButton {
+    max-width: 100%;
+  }
+
+  .familySiteDropdown {
+    max-width: 100%;
+  }
+
+  .topButton {
+    width: 100%;
+    justify-content: center;
   }
 }
 

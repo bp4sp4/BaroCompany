@@ -59,7 +59,7 @@
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 200vw;
+  width: 400vw;
   color: #fff;
 }
 
@@ -68,9 +68,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -87,6 +87,16 @@
   color: white;
   font-family: Inter, sans-serif;
   font-weight: 900;
+  font-size: 8rem;
+  white-space: nowrap;
+  padding: 0 3rem;
+}
+
+@media (max-width: 768px) {
+  .marquee-container span {
+    font-size: 1.2rem;
+    padding: 0 1.5rem;
+  }
 }
 
 .marquee-container img {
