@@ -17,10 +17,14 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+  width: 100%;
 }
 
 .logo {
   object-fit: contain;
+  display: block;
+  height: auto;
+  flex-shrink: 0;
 }
 
 .buttonGroup {
