@@ -10,6 +10,8 @@ import CompanyShowcase from "./components/CompanyShowcase";
 import AchievementSection from "./components/AchievementSection";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
+import FloatingButton from "./components/FloatingButton";
+import { ConsultationProvider } from "./components/ConsultationContext";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -27,7 +29,7 @@ export default function Home() {
   }, [isLoading]);
 
   return (
-    <>
+    <ConsultationProvider>
       <Loader
         topLogo="/main/logo_white.png"
         bottomLogo="/main/logo_white.png"
@@ -68,6 +70,7 @@ export default function Home() {
       <CompanyShowcase />
       <AchievementSection />
       <Footer />
-    </>
+      <FloatingButton />
+    </ConsultationProvider>
   );
 }

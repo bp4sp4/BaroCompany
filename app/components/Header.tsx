@@ -3,6 +3,7 @@
 import { useState, useEffect, forwardRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useConsultation } from "./ConsultationContext";
 import styles from "./Header.module.css";
 
 interface HeaderProps {
@@ -11,6 +12,7 @@ interface HeaderProps {
 
 const Header = forwardRef<HTMLElement, HeaderProps>(({ isVideoVisible = false }, ref) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { openModal } = useConsultation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +60,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(({ isVideoVisible = false },
           <Link href="/support" className={styles.navLink}>
             경영지원
           </Link>
-          <button className={styles.consultButton}>
+          <button className={styles.consultButton} onClick={openModal}>
           1:1 전문가 상담신청
         </button>
         </nav>

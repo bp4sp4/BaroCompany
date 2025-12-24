@@ -184,7 +184,7 @@ export default function SuccessCases() {
           modules={[Navigation, Pagination]}
           spaceBetween={16}
           slidesPerView="auto"
-          navigation
+          
           pagination={{ clickable: true }}
           className={styles.swiper}
         >
