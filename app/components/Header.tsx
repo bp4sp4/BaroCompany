@@ -36,7 +36,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(({ isVideoVisible = false },
           <Image
             src={isScrolled ? "/main/logo_black.png" : "/main/logo_white.png"}
             alt="한평생 바로기업"
-            width={isScrolled ? 200 : 200}
+            width={200}
             height={isScrolled ? 46 : 64}
             className={styles.logo}
           />
