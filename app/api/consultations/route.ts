@@ -4,6 +4,14 @@ import { supabaseAdmin } from "@/lib/supabase/server";
 // GET: 상담 신청 목록 조회
 export async function GET() {
   try {
+    // 환경 변수 확인
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return NextResponse.json(
+        { error: "Supabase configuration missing" },
+        { status: 500 }
+      );
+    }
+
     const { data, error } = await supabaseAdmin
       .from("consultations")
       .select("*")
@@ -30,6 +38,14 @@ export async function GET() {
 // POST: 상담 신청 저장
 export async function POST(request: NextRequest) {
   try {
+    // 환경 변수 확인
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return NextResponse.json(
+        { error: "Supabase configuration missing" },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { name, contact, industry } = body;
 
@@ -78,6 +94,14 @@ export async function POST(request: NextRequest) {
 // PATCH: 상담 완료 상태 업데이트
 export async function PATCH(request: NextRequest) {
   try {
+    // 환경 변수 확인
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      return NextResponse.json(
+        { error: "Supabase configuration missing" },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { id, is_completed } = body;
 
