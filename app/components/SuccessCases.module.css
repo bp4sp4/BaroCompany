@@ -147,9 +147,7 @@
   transition: background-color 0.2s;
 }
 
-.investmentButton:hover {
-  background-color: #333333;
-}
+
 
 @media (max-width: 768px) {
   .container {

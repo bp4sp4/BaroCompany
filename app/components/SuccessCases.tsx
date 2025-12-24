@@ -24,28 +24,28 @@ export default function SuccessCases() {
       companyName: "'A'카페",
       description: "회사 정보, 어떤 솔루션으로 어떤 성과",
       tags: ["요식업", "사업계획서", "벤처인증"],
-      investment: "8억+α투자 완료",
+      investment: "연매출 0000만원",
     },
     {
       id: 2,
       companyName: "회사명",
       description: "회사 정보, 어떤 솔루션으로 어떤 성과",
       tags: ["요식업", "사업계획서", "벤처인증"],
-      investment: "8억+α투자 완료",
+      investment: "연매출 0000만원",
     },
     {
       id: 3,
       companyName: "회사명",
       description: "회사 정보, 어떤 솔루션으로 어떤 성과",
       tags: ["교육", "예비창업", "투자유치"],
-      investment: "8억+α투자 완료",
+      investment: "연매출 0000만원",
     },
     {
       id: 4,
       companyName: "회사명",
       description: "회사 정보, 어떤 솔루션으로 어떤 성과",
       tags: ["교육", "예비창업", "투자유치"],
-      investment: "8억+α투자 완료",
+      investment: "연매출 0000만원",
     },
   ];
 
