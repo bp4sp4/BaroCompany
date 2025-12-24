@@ -18,6 +18,8 @@ export default function AdminPage() {
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [loading, setLoading] = useState(true);
   const [authLoading, setAuthLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const router = useRouter();
 
   useEffect(() => {
@@ -51,7 +53,16 @@ export default function AdminPage() {
       const response = await fetch("/api/consultations");
       if (response.ok) {
         const data = await response.json();
-        setConsultations(data);
+        // 상담완료 안된 것(is_completed = false)이 먼저 오도록 정렬
+        const sorted = data.sort((a: Consultation, b: Consultation) => {
+          // 먼저 is_completed로 정렬 (false가 먼저)
+          if (a.is_completed !== b.is_completed) {
+            return a.is_completed ? 1 : -1;
+          }
+          // 같은 상태면 created_at 내림차순 (최신순)
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        });
+        setConsultations(sorted);
       }
     } catch (error) {
       console.error("Error fetching consultations:", error);
@@ -95,6 +106,17 @@ export default function AdminPage() {
     });
   };
 
+  // 페이지네이션 계산
+  const totalPages = Math.ceil(consultations.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentConsultations = consultations.slice(startIndex, endIndex);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   if (authLoading || loading) {
     return (
       <div className={styles.container}>
@@ -127,19 +149,19 @@ export default function AdminPage() {
             </tr>
           </thead>
           <tbody>
-            {consultations.length === 0 ? (
+            {currentConsultations.length === 0 ? (
               <tr>
                 <td colSpan={6} className={styles.empty}>
                   상담 신청이 없습니다.
                 </td>
               </tr>
             ) : (
-              consultations.map((consultation, index) => (
+              currentConsultations.map((consultation, index) => (
                 <tr
                   key={consultation.id}
                   className={consultation.is_completed ? styles.completedRow : ""}
                 >
-                  <td>{index + 1}</td>
+                  <td>{startIndex + index + 1}</td>
                   <td>{consultation.name}</td>
                   <td>{consultation.contact}</td>
                   <td>{consultation.industry}</td>
@@ -158,6 +180,35 @@ export default function AdminPage() {
           </tbody>
         </table>
       </div>
+
+      {/* 페이지네이션 */}
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            className={styles.pageButton}
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            이전
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              className={`${styles.pageButton} ${currentPage === page ? styles.activePage : ""}`}
+              onClick={() => goToPage(page)}
+            >
+              {page}
+            </button>
+          ))}
+          <button
+            className={styles.pageButton}
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            다음
+          </button>
+        </div>
+      )}
     </div>
   );
 }
