@@ -17,43 +17,39 @@ export default function AchievementSection() {
   const achievements = [
     {
       id: 1,
-      companyName: "에듀바이저스",
-      subtitle: "교육플랫폼",
+      quote: '"바로기업 덕분에<br/>정부지원사업 어렵지 않았어요"',
+      name: "한*생 대표님",
+      company: "A 카페",
     },
     {
       id: 2,
-      companyName: "에듀바이저스",
-      subtitle: "2022",
+      quote: '"잠자고 있던 돈을<br/>찾은 기분입니다."',
+      name: "한*생 대표님",
+      company: "A 카페",
     },
     {
       id: 3,
-      companyName: "에듀바이저스",
-      subtitle: "교육플랫폼",
+      quote: "막막했던 서류 작성부터 대면<br/> 상담까지 함께해주어 확장에만<br/> 전념할 수 있었습니다.",
+      name: "한*생 대표님",
+      company: "A 카페",
     },
     {
       id: 4,
-      companyName: "에듀바이저스",
-      subtitle: "교육플랫폼",
+      quote: '"바로기업 덕분에<br/>정부지원사업 어렵지 않았어요"',
+      name: "한*생 대표님",
+      company: "A 카페",
     },
     {
       id: 5,
-      companyName: "에듀바이저스",
-      subtitle: "2022",
+      quote: '"잠자고 있던 돈을<br/>찾은 기분입니다."',
+      name: "한*생 대표님",
+      company: "A 카페",
     },
     {
       id: 6,
-      companyName: "에듀바이저스",
-      subtitle: "교육플랫폼",
-    },
-    {
-      id: 7,
-      companyName: "에듀바이저스",
-      subtitle: "교육플랫폼",
-    },
-    {
-      id: 8,
-      companyName: "에듀바이저스",
-      subtitle: "교육플랫폼",
+      quote: "막막했던 서류 작성부터 대면<br/> 상담까지 함께해주어 확장에만<br/> 전념할 수 있었습니다.",
+      name: "한*생 대표님",
+      company: "A 카페",
     },
   ];
 
@@ -149,48 +145,31 @@ export default function AchievementSection() {
           <div className={`${styles.marquee} ${styles.marqueeLeft}`}>
             {duplicatedAchievements.map((achievement, index) => (
               <div key={`left-${achievement.id}-${index}`} className={styles.card}>
-                <div className={styles.logoContainer}>
-                  <Image
-                    src="/main/symbol.png"
-                    alt="Logo"
-                    width={60}
-                    height={60}
-                    className={styles.logo}
-                  />
-                </div>
-                <div className={styles.content}>
-                  <h3 className={styles.companyName}>{achievement.companyName}</h3>
-                  <p className={styles.subtitleText}>{achievement.subtitle}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className={styles.marqueeWrapper}>
-          <div className={`${styles.marquee} ${styles.marqueeRight}`}>
-            {duplicatedAchievements.map((achievement, index) => (
-              <div key={`right-${achievement.id}-${index}`} className={styles.card}>
-                <div className={styles.logoContainer}>
-                  <Image
-                    src="/main/symbol.png"
-                    alt="Logo"
-                    width={60}
-                    height={60}
-                    className={styles.logo}
-                  />
-                </div>
-                <div className={styles.content}>
-                  <h3 className={styles.companyName}>{achievement.companyName}</h3>
-                  <p className={styles.subtitleText}>{achievement.subtitle}</p>
+                <p 
+                  className={styles.quote}
+                  dangerouslySetInnerHTML={{ __html: achievement.quote }}
+                />
+                <div className={styles.userInfo}>
+                  <div className={styles.avatar}>
+                    <Image
+                      src="/main/human.png"
+                      alt="Avatar"
+                      width={60}
+                      height={60}
+                      className={styles.avatarImage}
+                    />
+                  </div>
+                  <div className={styles.userDetails}>
+                    <p className={styles.name}>{achievement.name}</p>
+                    <p className={styles.company}>{achievement.company}</p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className={styles.cta}>
-        <p ref={ctaRef} className={styles.ctaText}>지금 바로기업으로 시작하세요!</p>
-      </div>
+
     </section>
   );
 }

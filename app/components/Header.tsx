@@ -36,8 +36,8 @@ const Header = forwardRef<HTMLElement, HeaderProps>(({ isVideoVisible = false },
           <Image
             src={isScrolled ? "/main/logo_black.png" : "/main/logo_white.png"}
             alt="한평생 바로기업"
-            width={280}
-            height={65}
+            width={isScrolled ? 200 : 200}
+            height={isScrolled ? 46 : 64}
             className={styles.logo}
           />
           
@@ -60,7 +60,6 @@ const Header = forwardRef<HTMLElement, HeaderProps>(({ isVideoVisible = false },
           </Link>
           <button className={styles.consultButton}>
           1:1 전문가 상담신청
-          <span className={styles.arrowIcon}>💫</span>
         </button>
         </nav>
       </div>

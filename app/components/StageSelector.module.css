@@ -15,15 +15,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  
 
 }
 
 .introSection {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  flex-shrink: 0;
+
+margin-right: 130px;
 }
 
 .emoji {
@@ -41,14 +41,14 @@
 }
 
 .question {
-  font-size: 1.5rem;
+  font-size: 36px;
   font-weight: 700;
   margin: 0;
   line-height: 1.2;
 }
 
 .description {
-  font-size: 0.875rem;
+  font-size: 18px;
   margin: 0;
   opacity: 0.7;
   line-height: 1.4;
@@ -136,7 +136,7 @@
 
 .connector {
   position: absolute;
-  left: 160px;
+  left: 190px;
   top: 32px;
   right: -1000px;
   height: 1px;
@@ -186,7 +186,7 @@
 
 /* Dark Theme */
 .dark {
-  background-color: #2a2a2a;
+  background-color: #4C85FF;
 }
 
 .dark .question {

@@ -47,15 +47,16 @@ export default function Home() {
           <source src="/main/background.mp4" type="video/mp4" />
         </video>
         <div className={styles.heroContent}>
+  
           <h1 className={styles.heroTitle}>
-            스타트업 빌드업부터,<br />
-            투자유치 성공까지!
+          <p className={styles.heroSubtitle}>
+           한평생 바로기업과 함께하는 가장 확실한 성장<br />
+          </p>
+            <strong className={styles.heroSubtitleStrong}>정책자금 신청</strong>부터,<br />
+            <strong className={styles.heroSubtitleStrong}>기업성장 지원</strong>까지!
           </h1>
         </div>
       </main>
-      <section className={styles.stageSection}>
-        <StageSelector theme="light" />
-      </section>
       <section className={styles.stageSection}>
         <StageSelector theme="dark" />
       </section>

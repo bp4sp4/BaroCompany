@@ -19,7 +19,7 @@ export default function Footer() {
             src="/main/logo_white.png"
             alt="한평생 바로기업"
             width={200}
-            height={47}
+            height={64}
             className={styles.logo}
           />
           <div className={styles.rightButtons}>

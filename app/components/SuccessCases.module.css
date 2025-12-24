@@ -3,7 +3,7 @@
   max-width: 1920px;
   height: auto;
   background-color: #ffffff;
-  padding: 160px 200px;
+  padding: 160px  200px;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
@@ -24,17 +24,17 @@
 }
 
 .title {
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 700;
-  color: #000000;
+  color: #010101;
   margin: 0;
 }
 
 .subtitle {
-  font-size: 28px;
-  color: #000000;
-  margin: 0;
-  opacity: 0.7;
+  font-size: 18px;
+  color: #0051FF;
+  margin-bottom: 8px;
+  font-weight: 400;
 }
 
 .moreLink {
@@ -93,27 +93,27 @@
 .card {
   width: 100%;
   height: 100%;
-  background-color: #f5f5f5;
+  border: 1px solid #E4E4E4;
   border-radius: 8px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 8px;
 }
 
 .companyName {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #000000;
-  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: #010101;
+  
 }
 
 .description {
-  font-size: 0.875rem;
-  color: #000000;
+  font-size: 18px;
+  color: #656565;
   margin: 0;
-  opacity: 0.8;
-  line-height: 1.5;
+  font-weight: 400;
+  margin-bottom: 8px;
 }
 
 .tags {
@@ -124,23 +124,25 @@
 
 .tag {
   padding: 0.375rem 0.75rem;
-  background-color: #4a4a4a;
-  color: #ffffff;
+  background-color: #F2F2F2;
+  color: #919191;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 18px;
+  font-weight: 600;
   white-space: nowrap;
 }
 
 .investmentButton {
   margin-top: auto;
   width: 100%;
+  height: 58px;
   padding: 0.875rem;
-  background-color: #4a4a4a;
+  background-color: #0051FF;
   color: #ffffff;
   border: none;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 600;
+  border-radius: 8px;
+  font-size: 28px;
+  font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s;
 }

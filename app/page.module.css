@@ -29,11 +29,21 @@
 
 .heroTitle {
   color: #ffffff;
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 72px;
+  font-weight: 400;
   line-height: 1.2;
   margin: 0;
   text-align: left;
+}
+
+.heroSubtitleStrong {
+  font-weight: 700;
+}
+.heroSubtitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
 }
 
 @media (max-width: 64rem) {

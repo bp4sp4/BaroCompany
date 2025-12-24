@@ -21,16 +21,16 @@ export default function SuccessCases() {
   const cards = [
     {
       id: 1,
-      companyName: "회사명",
+      companyName: "'A'카페",
       description: "회사 정보, 어떤 솔루션으로 어떤 성과",
-      tags: ["교육", "예비창업", "투자유치"],
+      tags: ["요식업", "사업계획서", "벤처인증"],
       investment: "8억+α투자 완료",
     },
     {
       id: 2,
       companyName: "회사명",
       description: "회사 정보, 어떤 솔루션으로 어떤 성과",
-      tags: ["교육", "예비창업", "투자유치"],
+      tags: ["요식업", "사업계획서", "벤처인증"],
       investment: "8억+α투자 완료",
     },
     {
@@ -171,14 +171,13 @@ export default function SuccessCases() {
     <section ref={containerRef} className={styles.container}>
       <div className={styles.header}>
         <div className={styles.titleSection}>
-          <h2 ref={titleRef} className={styles.title}>바로기업 투자유치 성공사례</h2>
-          <p ref={subtitleRef} className={styles.subtitle}>
+        <p ref={subtitleRef} className={styles.subtitle}>
             플랫폼 정보, 어떤 투자, 어떤 프로그램 이용 등
           </p>
+          <h2 ref={titleRef} className={styles.title}>바로기업 투자유치 성공사례</h2>
+         
         </div>
-        <a ref={moreLinkRef} href="#" className={styles.moreLink}>
-          더 알아보기 &gt;
-        </a>
+     
       </div>
       <div ref={swiperRef} className={styles.swiperContainer}>
         <Swiper
