@@ -88,9 +88,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
               정책자금
             </Link>
             <Link
-              href="/education"
+              href="/ented"
               className={`${styles.navLink} ${
-                pathname !== "/" && pathname === "/education"
+                pathname !== "/" && pathname === "/ented"
                   ? styles.active
                   : ""
               }`}
@@ -98,9 +98,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
               창업교육
             </Link>
             <Link
-              href="/support"
+              href="/bizsupport"
               className={`${styles.navLink} ${
-                pathname !== "/" && pathname === "/support" ? styles.active : ""
+                pathname !== "/" && pathname === "/bizsupport" ? styles.active : ""
               }`}
             >
               경영지원

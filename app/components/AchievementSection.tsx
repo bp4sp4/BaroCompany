@@ -1,12 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import Image from "next/image";
 import styles from "./AchievementSection.module.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function AchievementSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -56,81 +52,6 @@ export default function AchievementSection() {
   // 무한 반복을 위해 배열을 복제
   const duplicatedAchievements = [...achievements, ...achievements, ...achievements];
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    // 제목이 먼저 나타남
-    if (titleRef.current) {
-      gsap.from(titleRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: "sine.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    // 서브타이틀이 제목 다음에 나타남
-    if (subtitleRef.current) {
-      gsap.from(subtitleRef.current, {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        ease: "sine.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    // marquee 컨테이너가 나타남
-    if (marqueeContainerRef.current) {
-      gsap.from(marqueeContainerRef.current, {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: "sine.out",
-        delay: 0.4,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    // CTA 텍스트가 마지막에 나타남
-    if (ctaRef.current) {
-      gsap.from(ctaRef.current, {
-        opacity: 0,
-        y: 30,
-        scale: 0.95,
-        duration: 0.8,
-        ease: "back.out(1.4)",
-        delay: 0.6,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === containerRef.current) {
-          trigger.kill();
-        }
-      });
-    };
-  }, []);
 
   return (
     <section ref={containerRef} className={styles.container}>

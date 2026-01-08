@@ -21,16 +21,8 @@ export default function Home() {
       <Header ref={headerRef as React.RefObject<HTMLElement>} />
       <div className={styles.mainWrapper}>
         <main className={styles.main}>
-          <video
-            className={styles.backgroundVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="/images/main/background.mp4" type="video/mp4" />
-          </video>
-          <div className={styles.gradientOverlay} />
+          <div className={styles.banner_image_wrapper}></div>
+          <div className={styles.banner_overlay} />
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
               START UP,

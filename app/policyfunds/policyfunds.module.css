@@ -22,10 +22,12 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-}
-
-.banner_image {
-  object-fit: cover;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    ),
+    url("/images/policyfunds/policy_banner.jpg") lightgray 50% / cover no-repeat;
 }
 
 .banner_overlay {
@@ -34,8 +36,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(36, 105, 255, 0.5);
-  backdrop-filter: blur(2px);
+  background: transparent;
   z-index: 2;
 }
 
@@ -666,7 +667,7 @@
 
 .cta_button {
   display: flex;
-  width: 390px;
+
   padding: var(--unit-7, 24px) var(--unit-9, 40px);
   justify-content: center;
   align-items: center;
@@ -678,7 +679,7 @@
   font-family: Pretendard;
   font-size: 36px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: normal;
   cursor: pointer;
   transition: background-color 0.2s;

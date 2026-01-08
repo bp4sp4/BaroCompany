@@ -1,12 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import Image from "next/image";
 import styles from "./StageSelector.module.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface StageSelectorProps {
   theme?: "light" | "dark";
@@ -14,7 +10,6 @@ interface StageSelectorProps {
 
 export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const buttonsRef = useRef<HTMLButtonElement[]>([]);
   const connectorRef = useRef<HTMLDivElement>(null);
   const stageButtons = [
     {
@@ -43,39 +38,6 @@ export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
     },
   ];
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const buttons = buttonsRef.current;
-
-    // 각 버튼이 화면에 들어올 때 순차적으로 나타나는 애니메이션 (촤라라락)
-    buttons.forEach((button, index) => {
-      if (!button) return;
-
-      gsap.from(button, {
-        opacity: 0,
-        scale: 0.8,
-        y: 20,
-        duration: 0.6,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-        delay: index * 0.1, // 순차적으로 나타남
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === containerRef.current) {
-          trigger.kill();
-        }
-      });
-    };
-  }, [theme]);
-
   return (
     <div ref={containerRef} className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.innerContainer}>
@@ -99,12 +61,7 @@ export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
             <div key={button.id} style={{ display: "contents" }}>
               <div className={styles.buttonWrapper}>
                 <div className={styles.speechBubble}>{button.description}</div>
-                <button
-                  ref={(el) => {
-                    if (el) buttonsRef.current[index] = el;
-                  }}
-                  className={styles.stageButton}
-                >
+                <button className={styles.stageButton}>
                   {button.title}
                 </button>
                 {index === 0 && (
