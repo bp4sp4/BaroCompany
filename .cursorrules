@@ -34,6 +34,7 @@
 - `layout_*`: 레이아웃 관련 (`.layout_wrapper`, `.layout_container`, `.layout_sidebar`, `.layout_content`, `.layout_header`, `.layout_footer`)
 - `ui_*`: UI 컴포넌트 (`.ui_card`, `.ui_modal`, `.ui_modal_backdrop`, `.ui_modal_content`, `.ui_dropdown`, `.ui_tooltip`)
 - `btn_*`: 버튼 스타일 (`.btn`, `.btn_primary`, `.btn_secondary`, `.btn_ghost`, `.btn_sm`, `.btn_lg`)
+- `cta_*`: CTA(Call-to-Action) 섹션 관련 (`.cta_section`, `.cta_text_wrapper`, `.cta_title`, `.cta_description`, `.cta_button`, `.cta_button_arrow`)
 - `text_*`: 텍스트 스타일 (`.text_caption`, `.text_label`, `.text_helper`)
 - `is_*`: 상태 표시 (`.is_active`, `.is_disabled`, `.is_hidden`, `.is_visible`)
 
@@ -57,6 +58,18 @@ className={styles.buttonIsActive}
 <button className={`${styles.btn} ${styles.btn_secondary}`}>취소</button>
 <button className={`${styles.btn} ${styles.btn_ghost}`}>더보기</button>
 <button className={`${styles.btn} ${styles.btn_primary} ${styles.btn_sm}`}>작은 버튼</button>
+
+// CTA 섹션
+<section className={styles.cta_section}>
+  <div className={styles.cta_text_wrapper}>
+    <h2 className={styles.cta_title}>제목</h2>
+    <p className={styles.cta_description}>설명</p>
+  </div>
+  <button className={styles.cta_button}>
+    지금 바로 상담하기
+    <svg className={styles.cta_button_arrow}>...</svg>
+  </button>
+</section>
 
 // 레이아웃
 <div className={styles.layout_wrapper}>
@@ -240,6 +253,7 @@ import '../styles/components.css'
 - 소문자와 언더스코어(_) 사용
 - 레이아웃: `layout_*` 접두사
 - 버튼: `btn_*` 접두사
+- CTA: `cta_*` 접두사
 - 텍스트: `text_*` 접두사
 - UI 컴포넌트: `ui_*` 접두사
 - 상태: `is_*` 접두사

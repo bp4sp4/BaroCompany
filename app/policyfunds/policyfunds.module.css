@@ -487,7 +487,7 @@
   align-items: center;
   gap: var(--unit-8, 32px);
   align-self: stretch;
-  background: var(--Blue-50, #e5edff);
+  background: var(--Blue-300, #4c85ff);
 }
 
 .process_text_wrapper {
@@ -502,7 +502,7 @@
 }
 
 .process_title {
-  color: var(--Grayscale-900, #010101);
+  color: var(--white, #fff);
   /* Headline 2 */
   font-family: Pretendard;
   font-size: 36px;
@@ -514,7 +514,7 @@
 }
 
 .process_subtitle {
-  color: var(--Grayscale-600, #656565);
+  color: var(--white, #fff);
   /* Body 1/Normal */
   font-family: Pretendard;
   font-size: 18px;
