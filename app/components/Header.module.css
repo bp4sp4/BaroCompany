@@ -60,7 +60,7 @@
 }
 
 .navLink {
-  color: var(--white, #fff);
+  color: var(--Grayscale-400, #B2B2B2);
   text-align: center;
   /* Title 3 */
   font-family: Pretendard;
@@ -79,13 +79,13 @@
 
 /* 서브페이지: 스크롤 전 - 현재 페이지는 흰색, 나머지는 회색 */
 .navLink.active {
-  color: var(--white, #FFF);
+  color: var(--white, #fff);
   font-weight: 600;
 }
 
 /* 메인페이지: 스크롤 전 - 모든 링크 기본 스타일 (흰색) */
 .header.homepage .navLink {
-  color: var(--white, #FFF);
+  color: var(--white, #fff);
 }
 
 /* 스크롤 후: 배경 흰색 */

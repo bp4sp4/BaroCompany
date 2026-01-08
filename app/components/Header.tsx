@@ -56,7 +56,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             <Link
               href="/portfolio"
               className={`${styles.navLink} ${
-                pathname === "/portfolio" && pathname !== "/" ? styles.active : ""
+                pathname !== "/" && pathname === "/portfolio"
+                  ? styles.active
+                  : ""
               }`}
             >
               포트폴리오
@@ -64,7 +66,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             <Link
               href="/investment"
               className={`${styles.navLink} ${
-                pathname === "/investment" && pathname !== "/" ? styles.active : ""
+                pathname !== "/" && pathname === "/investment"
+                  ? styles.active
+                  : ""
               }`}
             >
               투자유치
@@ -72,7 +76,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             <Link
               href="/policyfunds"
               className={`${styles.navLink} ${
-                pathname === "/policyfunds" && pathname !== "/" ? styles.active : ""
+                pathname !== "/" && pathname === "/policyfunds"
+                  ? styles.active
+                  : ""
               }`}
             >
               정책자금
@@ -80,7 +86,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             <Link
               href="/education"
               className={`${styles.navLink} ${
-                pathname === "/education" && pathname !== "/" ? styles.active : ""
+                pathname !== "/" && pathname === "/education"
+                  ? styles.active
+                  : ""
               }`}
             >
               창업교육
@@ -88,7 +96,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             <Link
               href="/support"
               className={`${styles.navLink} ${
-                pathname === "/support" && pathname !== "/" ? styles.active : ""
+                pathname !== "/" && pathname === "/support" ? styles.active : ""
               }`}
             >
               경영지원
