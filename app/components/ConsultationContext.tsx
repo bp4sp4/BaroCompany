@@ -8,7 +8,9 @@ interface ConsultationContextType {
   closeModal: () => void;
 }
 
-const ConsultationContext = createContext<ConsultationContextType | undefined>(undefined);
+const ConsultationContext = createContext<ConsultationContextType | undefined>(
+  undefined
+);
 
 export function ConsultationProvider({ children }: { children: ReactNode }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,8 +29,9 @@ export function ConsultationProvider({ children }: { children: ReactNode }) {
 export function useConsultation() {
   const context = useContext(ConsultationContext);
   if (context === undefined) {
-    throw new Error("useConsultation must be used within a ConsultationProvider");
+    throw new Error(
+      "useConsultation must be used within a ConsultationProvider"
+    );
   }
   return context;
 }
-

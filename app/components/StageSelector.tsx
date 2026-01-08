@@ -12,7 +12,7 @@ interface StageSelectorProps {
   theme?: "light" | "dark";
 }
 
-export default function StageSelector({ theme = "light" }: StageSelectorProps) {
+export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLButtonElement[]>([]);
   const connectorRef = useRef<HTMLDivElement>(null);
@@ -80,47 +80,41 @@ export default function StageSelector({ theme = "light" }: StageSelectorProps) {
     <div ref={containerRef} className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.innerContainer}>
         <div className={styles.introSection}>
-        <img
-          src="/main/smile.png"
-          alt="smile"
-          width={48}
-          height={48}
-          className={styles.emoji}
-        />
-        <div className={styles.textSection}>
-          <h2 className={styles.question}>대표님은 어떤 상황이신가요?</h2>
-          <p className={styles.description}>
-            대표님 단계에 알맞는 프로그램이 준비되어있습니다.
-          </p>
-        </div>
-      </div>
-      <div className={styles.buttonsSection}>
-        {stageButtons.map((button, index) => (
-          <div key={button.id} style={{ display: 'contents' }}>
-            <div className={styles.buttonWrapper}>
-              {theme === "dark" && (
-                <div className={styles.speechBubble}>{button.description}</div>
-              )}
-              <button
-                ref={(el) => {
-                  if (el) buttonsRef.current[index] = el;
-                }}
-                className={styles.stageButton}
-              >
-                {button.title}
-              </button>
-              {theme === "light" && (
-                <p className={styles.buttonDescription}>{button.subtitle}</p>
-              )}
-              {index === 0 && (
-                <div ref={connectorRef} className={styles.connector}></div>
-              )}
-            </div>
+          <img
+            src="/main/smile.png"
+            alt="smile"
+            width={48}
+            height={48}
+            className={styles.emoji}
+          />
+          <div className={styles.textSection}>
+            <h2 className={styles.question}>대표님은 어떤 상황이신가요?</h2>
+            <p className={styles.description}>
+              대표님 단계에 알맞는 프로그램이 준비되어있습니다.
+            </p>
           </div>
-        ))}
+        </div>
+        <div className={styles.buttonsSection}>
+          {stageButtons.map((button, index) => (
+            <div key={button.id} style={{ display: "contents" }}>
+              <div className={styles.buttonWrapper}>
+                <div className={styles.speechBubble}>{button.description}</div>
+                <button
+                  ref={(el) => {
+                    if (el) buttonsRef.current[index] = el;
+                  }}
+                  className={styles.stageButton}
+                >
+                  {button.title}
+                </button>
+                {index === 0 && (
+                  <div ref={connectorRef} className={styles.connector}></div>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
-

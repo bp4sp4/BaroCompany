@@ -85,7 +85,7 @@
 
 .input:focus {
   outline: none;
-  border-color: #0051FF;
+  border-color: #0051ff;
 }
 
 .input::placeholder {
@@ -95,7 +95,7 @@
 .submitButton {
   width: 100%;
   padding: 16px;
-  background-color: #0051FF;
+  background-color: #0051ff;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -135,4 +135,3 @@
     font-size: 24px;
   }
 }
-

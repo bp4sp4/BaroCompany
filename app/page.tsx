@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef } from "react";
 import Header from "./components/Header";
 import StageSelector from "./components/StageSelector";
 import SuccessCases from "./components/SuccessCases";
@@ -9,63 +9,50 @@ import RecruitmentBanner from "./components/RecruitmentBanner";
 import CompanyShowcase from "./components/CompanyShowcase";
 import AchievementSection from "./components/AchievementSection";
 import Footer from "./components/Footer";
-import Loader from "./components/Loader";
 import FloatingButton from "./components/FloatingButton";
 import { ConsultationProvider } from "./components/ConsultationContext";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const headerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (!isLoading && videoRef.current) {
-      // 로더 완료 후 비디오만 재생
-      videoRef.current.play().catch((error) => {
-        console.log("Video play error:", error);
-      });
-    }
-  }, [isLoading]);
 
   return (
     <ConsultationProvider>
-      <Loader
-        topLogo="/main/logo_white.png"
-        bottomLogo="/main/logo_white.png"
-        centerLogo="/main/logo_black.png"
-        onComplete={() => setIsLoading(false)}
-      />
       <Header ref={headerRef as React.RefObject<HTMLElement>} />
-      <main className={styles.main}>
-        <video
-          ref={videoRef}
-          className={styles.backgroundVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/main/background.mp4" type="video/mp4" />
-        </video>
-        <div className={styles.heroContent}>
-  
-          <h1 className={styles.heroTitle}>
-          <p className={styles.heroSubtitle}>
-           한평생 바로기업과 함께하는 가장 확실한 성장<br />
-          </p>
-            <strong className={styles.heroSubtitleStrong}>정책자금 신청</strong>부터,<br />
-            <strong className={styles.heroSubtitleStrong}>기업성장 지원</strong>까지!
-          </h1>
-        </div>
-      </main>
+      <div className={styles.mainWrapper}>
+        <main className={styles.main}>
+          <video
+            className={styles.backgroundVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/main/background.mp4" type="video/mp4" />
+          </video>
+          <div className={styles.gradientOverlay} />
+          <div className={styles.heroContent}>
+            <h1 className={styles.heroTitle}>
+              START UP,
+              <br />
+              시작부터 성장까지
+            </h1>
+            <p className={styles.heroSubtitle}>
+              대표님들의 성공적인 경영을 위한 전문 컨설팅.
+              <br />
+              창업부터 EXIT까지, 한평생 바로 기업과 함께합니다.
+            </p>
+          </div>
+        </main>
+      </div>
       <section className={styles.stageSection}>
         <StageSelector theme="dark" />
       </section>
+
       <SuccessCases />
 
       <GrowthSection />
-      
+
       <RecruitmentBanner />
       <CompanyShowcase />
       <AchievementSection />

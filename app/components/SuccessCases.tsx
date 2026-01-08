@@ -4,9 +4,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 import styles from "./SuccessCases.module.css";
 
@@ -102,7 +101,7 @@ export default function SuccessCases() {
     // Swiper 컨테이너가 나타나면서 카드들이 순차적으로 보임
     if (swiperRef.current) {
       const cards = swiperRef.current.querySelectorAll(`.${styles.card}`);
-      
+
       cards.forEach((card, index) => {
         gsap.from(card, {
           opacity: 0,
@@ -156,11 +155,13 @@ export default function SuccessCases() {
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === containerRef.current || 
-            trigger.vars.trigger === titleRef.current ||
-            trigger.vars.trigger === subtitleRef.current ||
-            trigger.vars.trigger === moreLinkRef.current ||
-            trigger.vars.trigger === swiperRef.current) {
+        if (
+          trigger.vars.trigger === containerRef.current ||
+          trigger.vars.trigger === titleRef.current ||
+          trigger.vars.trigger === subtitleRef.current ||
+          trigger.vars.trigger === moreLinkRef.current ||
+          trigger.vars.trigger === swiperRef.current
+        ) {
           trigger.kill();
         }
       });
@@ -171,20 +172,19 @@ export default function SuccessCases() {
     <section ref={containerRef} className={styles.container}>
       <div className={styles.header}>
         <div className={styles.titleSection}>
-        <p ref={subtitleRef} className={styles.subtitle}>
+          <p ref={subtitleRef} className={styles.subtitle}>
             플랫폼 정보, 어떤 투자, 어떤 프로그램 이용 등
           </p>
-          <h2 ref={titleRef} className={styles.title}>바로기업 투자유치 성공사례</h2>
-         
+          <h2 ref={titleRef} className={styles.title}>
+            바로기업 투자유치 성공사례
+          </h2>
         </div>
-     
       </div>
       <div ref={swiperRef} className={styles.swiperContainer}>
         <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={16}
+          modules={[Pagination]}
+          spaceBetween={40}
           slidesPerView="auto"
-          
           pagination={{ clickable: true }}
           className={styles.swiper}
         >

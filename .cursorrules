@@ -1,0 +1,623 @@
+# 프로젝트 규칙
+
+## 기술 스택
+- Next.js 14 (App Router)
+- TypeScript (strict mode)
+- React 18
+- CSS Modules
+- Tailwind CSS
+- shadcn UI
+
+## 코딩 스타일
+
+### TypeScript
+- strict mode 사용
+- 타입을 명시적으로 작성
+- `any` 타입 사용 금지
+- 함수 컴포넌트는 기본적으로 default export 사용
+- 컴포넌트명은 PascalCase 사용
+
+### 파일 구조
+- Next.js App Router 구조 준수
+- 각 페이지는 `page.tsx` 파일로 생성
+- CSS Modules는 `*.module.css` 형식 사용
+- 컴포넌트는 `components/` 디렉토리에 위치
+
+### 클래스 네이밍 규칙
+- **소문자와 언더스코어(_)만 사용**
+- BEM 방법론을 단순화한 규칙 적용
+- 클래스명은 최대 3단계까지만 중첩
+- 의미 있는 단어 사용 (약어 지양)
+- 접두사로 역할 구분
+
+#### 접두사별 역할
+- `layout_*`: 레이아웃 관련 (`.layout_wrapper`, `.layout_container`, `.layout_sidebar`, `.layout_content`, `.layout_header`, `.layout_footer`)
+- `ui_*`: UI 컴포넌트 (`.ui_card`, `.ui_modal`, `.ui_modal_backdrop`, `.ui_modal_content`, `.ui_dropdown`, `.ui_tooltip`)
+- `btn_*`: 버튼 스타일 (`.btn`, `.btn_primary`, `.btn_secondary`, `.btn_ghost`, `.btn_sm`, `.btn_lg`)
+- `text_*`: 텍스트 스타일 (`.text_caption`, `.text_label`, `.text_helper`)
+- `is_*`: 상태 표시 (`.is_active`, `.is_disabled`, `.is_hidden`, `.is_visible`)
+
+#### 네이밍 예시
+```tsx
+// ✅ 올바른 예
+className={styles.container}
+className={styles.section_title}
+className={styles.button_is_active}
+
+// ❌ 잘못된 예
+className={styles.Container}
+className={styles.sectionTitle}
+className={styles.buttonIsActive}
+```
+
+#### 사용 예시
+```tsx
+// 버튼
+<button className={`${styles.btn} ${styles.btn_primary}`}>저장하기</button>
+<button className={`${styles.btn} ${styles.btn_secondary}`}>취소</button>
+<button className={`${styles.btn} ${styles.btn_ghost}`}>더보기</button>
+<button className={`${styles.btn} ${styles.btn_primary} ${styles.btn_sm}`}>작은 버튼</button>
+
+// 레이아웃
+<div className={styles.layout_wrapper}>
+  <aside className={styles.layout_sidebar}>사이드바</aside>
+  <main className={styles.layout_content}>콘텐츠</main>
+</div>
+
+// UI 컴포넌트
+<div className={styles.ui_card}>
+  <h3 className={styles.ui_card_title}>제목</h3>
+  <p className={styles.ui_card_description}>설명</p>
+</div>
+
+// 폼
+<div className={styles.form_field}>
+  <label className={styles.text_label}>이메일</label>
+  <input type="email" className={styles.input} placeholder="example@email.com" />
+  <span className={styles.text_helper}>올바른 이메일 형식을 입력해주세요</span>
+</div>
+```
+
+### CSS Modules 사용
+- 각 페이지/컴포넌트별로 CSS Module 파일 생성
+- 클래스명은 소문자 + 언더스코어 조합
+- CSS Module import: `import styles from './component.module.css'`
+
+### Tailwind CSS 사용
+- 유틸리티 클래스는 Tailwind 사용
+- `cn()` 함수 (clsx + tailwind-merge)로 클래스 병합
+- CSS Modules와 Tailwind를 함께 사용 가능
+
+### 컴포넌트 작성 규칙
+- 함수형 컴포넌트 사용
+- Server Component를 기본으로 사용
+- 클라이언트 기능이 필요한 경우에만 `'use client'` 사용
+- Props는 TypeScript interface로 정의
+
+예시:
+```tsx
+interface ComponentProps {
+  title: string
+  description?: string
+}
+
+export default function Component({ title, description }: ComponentProps) {
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>{title}</h1>
+      {description && <p className={styles.description}>{description}</p>}
+    </div>
+  )
+}
+```
+
+### 스타일링 우선순위
+1. CSS Modules (페이지/컴포넌트별 스타일)
+2. Tailwind CSS (유틸리티 클래스)
+3. 전역 CSS 파일 (`styles/` 디렉토리)
+
+### Import 순서
+1. React/Next.js 관련
+2. 외부 라이브러리
+3. 내부 컴포넌트
+4. 유틸리티 함수
+5. 타입 정의
+6. CSS Modules
+
+예시:
+```tsx
+import { useState } from 'react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import styles from './page.module.css'
+```
+
+### 주석 및 문서
+- 한국어 주석 사용 가능
+- 복잡한 로직은 주석으로 설명
+- 컴포넌트 상단에 간단한 설명 추가 권장
+
+### 에러 처리
+- Hydration 에러 방지를 위해 클라이언트 컴포넌트 적절히 사용
+- 에러 바운더리 활용
+- 타입 안정성 유지
+
+### 코드 품질
+- 불필요한 리렌더링 방지
+- 접근성 고려 (a11y)
+- 반응형 디자인 고려
+- 성능 최적화 (이미지 최적화, 코드 스플리팅 등)
+
+## 금지 사항
+- ❌ `any` 타입 사용
+- ❌ camelCase 클래스명 (CSS Modules)
+- ❌ 인라인 스타일 (특별한 경우 제외)
+- ❌ `console.log` 프로덕션 코드에 남기기
+- ❌ 하드코딩된 값 (상수로 분리)
+
+## 권장 사항
+- ✅ 의미 있는 변수명 사용
+- ✅ 재사용 가능한 컴포넌트 작성
+- ✅ 타입 안정성 유지
+- ✅ 접근성 고려
+- ✅ 반응형 디자인 적용
+- ✅ 코드 일관성 유지
+
+## CSS 초기 세팅 가이드
+
+### 스타일 파일 구조
+프로젝트 루트에 `styles/` 디렉토리를 생성하고 다음 파일들을 순서대로 생성합니다:
+
+1. **normalize.css** - 브라우저 스타일 리셋
+2. **tokens.css** - 디자인 토큰 (타이포그래피, 폰트, 색상)
+3. **base.css** - 기본 스타일 및 Tailwind 설정
+4. **layout.css** - 레이아웃 관련 스타일
+5. **components.css** - 공통 컴포넌트 스타일
+
+### 파일 생성 순서 및 내용
+
+#### 1. normalize.css
+- normalize.css v8.0.1 사용
+- 브라우저 간 일관된 기본 스타일 제공
+- 모든 HTML 요소의 기본 스타일 정규화
+
+#### 2. tokens.css
+- Pretendard 폰트 face 정의 (Regular, Medium, SemiBold, Bold)
+- CSS 변수로 타이포그래피 토큰 정의
+- 폰트 패밀리, 크기, 높이, 굵기 정의
+- 색상 토큰 정의 (Primary 등)
+- 레거시 호환성을 위한 변수 포함
+
+#### 3. base.css
+- Tailwind CSS import (`@tailwind base`, `@tailwind components`, `@tailwind utilities`)
+- normalize.css와 tokens.css import
+- 전역 기본 스타일:
+  - box-sizing 설정
+  - html/body 기본 스타일
+  - 타이포그래피 (h1-h6, p, a)
+  - 리스트, 이미지, 코드 스타일
+  - 버튼, 입력 필드 리셋
+  - 스크롤바 커스터마이징
+  - 텍스트 선택 스타일
+
+#### 4. layout.css
+- 레이아웃 관련 유틸리티 클래스:
+  - `.layout_wrapper` - 레이아웃 래퍼
+  - `.layout_container` - 컨테이너 (max-width: 1280px)
+  - `.layout_sidebar` - 사이드바
+  - `.layout_content` - 콘텐츠 영역
+  - `.layout_header` - 헤더
+  - `.layout_footer` - 푸터
+
+#### 5. components.css
+- 공통 컴포넌트 스타일:
+  - 버튼 클래스 (`.btn`, `.btn_primary`, `.btn_secondary`, `.btn_ghost`)
+  - 텍스트 클래스 (`.text_caption`, `.text_label`, `.text_helper`)
+  - UI 컴포넌트 (`.ui_card`, `.ui_modal`)
+  - 상태 클래스 (`.is_active`, `.is_disabled`, `.is_hidden`, `.is_visible`)
+  - 유틸리티 클래스 (flex, grid, spacing, text alignment 등)
+
+### 루트 레이아웃에서 import
+`app/layout.tsx`에서 다음 순서로 import:
+
+```tsx
+import '../styles/base.css'
+import '../styles/layout.css'
+import '../styles/components.css'
+```
+
+**주의**: `base.css`에서 이미 `normalize.css`와 `tokens.css`를 import하므로 별도로 import하지 않습니다.
+
+### CSS 변수 사용 규칙
+- 모든 디자인 토큰은 CSS 변수로 정의
+- `--font-*` 접두사: 타이포그래피 관련
+- `--color-*` 접두사: 색상 관련
+- `--spacing-*` 접두사: 간격 관련
+- `--radius-*` 접두사: 둥근 모서리 관련
+
+### 클래스 네이밍 규칙 (전역 CSS)
+- 소문자와 언더스코어(_) 사용
+- 레이아웃: `layout_*` 접두사
+- 버튼: `btn_*` 접두사
+- 텍스트: `text_*` 접두사
+- UI 컴포넌트: `ui_*` 접두사
+- 상태: `is_*` 접두사
+
+### Tailwind와의 통합
+- `base.css`에서 Tailwind를 import하여 전역으로 사용 가능
+- CSS Modules와 Tailwind를 함께 사용 가능
+- `cn()` 함수로 클래스 병합
+
+## Typography 시스템
+
+### 타이포그래피 스케일
+프로젝트에서는 일관된 타이포그래피 시스템을 사용합니다. 모든 타이포그래피 스타일은 CSS 변수로 정의되어 있습니다.
+
+#### 타이포그래피 카테고리
+1. **Display** - 대형 제목, 히어로 섹션
+   - Display 1: 72px / 100.8px (140%) / Bold (700)
+   - Display 2: 64px / 89.6px (140%) / Bold (700)
+
+2. **Headline** - 섹션 제목, 중간 제목
+   - Headline 1: 42px / 50.4px (120%) / Bold (700)
+   - Headline 2: 36px / 43.2px (120%) / Bold (700)
+   - Headline 3: 28px / 33.6px (120%) / Bold (700)
+
+3. **Title** - 카드 제목, 소제목
+   - Title 1: 28px / 33.6px (120%) / SemiBold (600)
+   - Title 2: 24px / 28.8px (120%) / SemiBold (600)
+   - Title 3: 18px / 21.6px (120%) / SemiBold (600)
+
+4. **Body** - 본문 텍스트
+   - Body 1/Normal: 18px / 21.6px (120%) / Regular (400)
+   - Body 1/Reading: 18px / 25.2px (140%) / Regular (400) - 장문 읽기용
+   - Body 2/Normal: 16px / 19.2px (120%) / Regular (400)
+   - Body 2/Reading: 16px / 22.4px (140%) / Regular (400) - 장문 읽기용
+
+5. **Label** - 라벨, 작은 텍스트
+   - Label 1: 14px / normal / SemiBold (600)
+   - Label 2: 12px / normal / Bold (700)
+
+### CSS 변수 사용 규칙
+
+#### 타이포그래피 CSS 변수 구조
+각 타이포그래피 스타일은 다음과 같은 변수로 정의됩니다:
+- `--font-{category}-{number}-size`: 폰트 크기
+- `--font-{category}-{number}-height`: 줄 높이
+- `--font-{category}-{number}-weight`: 폰트 굵기
+- `--font-{category}-{number}-reading-height`: 읽기용 줄 높이 (Body만 해당)
+
+#### 사용 예시
+
+##### CSS Modules에서 사용
+```css
+/* component.module.css */
+.title {
+  font-size: var(--font-title-1-size);
+  line-height: var(--font-title-1-height);
+  font-weight: var(--font-title-1-weight);
+}
+
+.body_text {
+  font-size: var(--font-body-1-size);
+  line-height: var(--font-body-1-height);
+  font-weight: var(--font-body-1-weight);
+}
+
+.body_reading {
+  font-size: var(--font-body-1-size);
+  line-height: var(--font-body-1-reading-height);
+  font-weight: var(--font-body-1-weight);
+}
+```
+
+##### 전역 CSS 클래스에서 사용
+```css
+.text_display_1 {
+  font-size: var(--font-display-1-size);
+  line-height: var(--font-display-1-height);
+  font-weight: var(--font-display-1-weight);
+}
+
+.text_headline_1 {
+  font-size: var(--font-headline-1-size);
+  line-height: var(--font-headline-1-height);
+  font-weight: var(--font-headline-1-weight);
+}
+
+.text_body_1 {
+  font-size: var(--font-body-1-size);
+  line-height: var(--font-body-1-height);
+  font-weight: var(--font-body-1-weight);
+}
+```
+
+##### React/TSX에서 사용
+```tsx
+// CSS Modules 사용
+<div className={styles.title}>제목</div>
+<p className={styles.body_text}>본문 텍스트</p>
+<p className={styles.body_reading}>긴 문단의 읽기용 텍스트</p>
+
+// 전역 클래스 사용
+<h1 className="text_display_1">대형 제목</h1>
+<h2 className="text_headline_1">섹션 제목</h2>
+<p className="text_body_1">본문 텍스트</p>
+
+// 인라인 스타일 (비권장, 특수한 경우만)
+<h1 style={{
+  fontSize: 'var(--font-display-1-size)',
+  lineHeight: 'var(--font-display-1-height)',
+  fontWeight: 'var(--font-display-1-weight)'
+}}>제목</h1>
+```
+
+### 타이포그래피 선택 가이드
+
+#### 사용 시나리오별 권장 사항
+- **히어로 섹션, 대형 배너**: Display 1, Display 2
+- **페이지 제목, 주요 섹션 제목**: Headline 1, Headline 2
+- **카드 제목, 폼 제목**: Title 1, Title 2, Title 3
+- **일반 본문, 짧은 설명**: Body 1/Normal, Body 2/Normal
+- **장문 본문, 블로그 글**: Body 1/Reading, Body 2/Reading
+- **라벨, 캡션, 부가 설명**: Label 1, Label 2
+
+### 레거시 변수 (호환성)
+기존 코드와의 호환성을 위해 다음 레거시 변수도 제공됩니다:
+- `--font-size-xs`: Label 2 크기
+- `--font-size-sm`: Label 1 크기
+- `--font-size-base`: Body 1 크기
+- `--font-size-lg`: Headline 1 크기
+- `--font-size-xl`: Title 3 크기
+- `--font-size-2xl`: Title 2 크기
+- `--font-size-3xl`: Title 1 크기
+- `--font-size-4xl`: Display 2 크기
+- `--font-size-5xl`: Display 1 크기
+
+### 폰트 패밀리
+- **Base**: `--font-family-base` - 기본 폰트 (Pretendard)
+- **Mono**: `--font-family-mono` - 코드용 폰트
+
+### 폰트 굵기
+- `--font-weight-light`: 300
+- `--font-weight-normal`: 400
+- `--font-weight-medium`: 500
+- `--font-weight-semibold`: 600
+- `--font-weight-bold`: 700
+
+### 주의사항
+- ❌ 하드코딩된 폰트 크기 사용 금지 (예: `font-size: 24px`)
+- ❌ CSS 변수 없이 직접 값 사용 금지
+- ✅ 항상 CSS 변수 사용 (`var(--font-*-size)` 등)
+- ✅ 읽기용 텍스트는 `reading-height` 변수 사용
+- ✅ 의미에 맞는 타이포그래피 스타일 선택
+
+## Spacing 시스템
+
+### Spacing 스케일
+프로젝트에서는 일관된 간격 시스템을 사용합니다. Spacing Unit 시스템으로 정의되어 있으며, CSS 변수로 정의되어 있습니다.
+
+#### Spacing Unit 변수 목록 (기본 사용 - 디자이너 표준)
+- `--unit-1`: 0.125rem (2px)
+- `--unit-2`: 0.25rem (4px)
+- `--unit-3`: 0.5rem (8px)
+- `--unit-4`: 0.75rem (12px)
+- `--unit-5`: 1rem (16px)
+- `--unit-6`: 1.25rem (20px)
+- `--unit-7`: 1.5rem (24px)
+- `--unit-8`: 2rem (32px)
+- `--unit-9`: 2.5rem (40px)
+- `--unit-10`: 3rem (48px)
+- `--unit-11`: 3.5rem (56px)
+- `--unit-12`: 4rem (64px)
+- `--unit-13`: 6rem (96px)
+- `--unit-14`: 7.5rem (120px)
+- `--unit-15`: 10rem (160px)
+
+#### Spacing Unit 별칭 (호환성)
+기존 코드와의 호환성을 위해 다음 별칭도 제공됩니다:
+- `--spacing-unit-1` ~ `--spacing-unit-15`: `--unit-1` ~ `--unit-15`의 별칭
+
+#### Legacy Spacing 변수 (호환성)
+기존 코드와의 호환성을 위해 다음 변수도 제공됩니다:
+- `--spacing-1`: 0.25rem (4px) - unit-2와 동일
+- `--spacing-2`: 0.5rem (8px) - unit-3와 동일
+- `--spacing-3`: 0.75rem (12px) - unit-4와 동일
+- `--spacing-4`: 1rem (16px) - unit-5와 동일
+- `--spacing-6`: 1.5rem (24px) - unit-7와 동일
+- `--spacing-8`: 2rem (32px) - unit-8와 동일
+- `--spacing-10`: 2.5rem (40px) - unit-9와 동일
+- `--spacing-12`: 3rem (48px) - unit-10와 동일
+- `--spacing-16`: 4rem (64px) - unit-12와 동일
+- `--spacing-20`: 6rem (96px) - unit-13와 동일
+- `--spacing-24`: 6rem (96px) - unit-13와 동일
+
+### CSS 변수 사용 규칙
+
+#### Spacing 변수 구조
+간격은 다음과 같은 변수로 정의됩니다:
+- `--unit-{number}`: Spacing Unit 시스템 (1~15) - **디자이너 표준, 기본 사용**
+- `--spacing-unit-{number}`: `--unit-{number}`의 별칭 (호환성)
+- `--spacing-{number}`: Legacy 변수 (호환성 유지)
+
+#### 사용 예시
+
+##### CSS Modules에서 사용
+```css
+/* component.module.css */
+.container {
+  padding: var(--unit-5); /* 16px */
+  margin-bottom: var(--unit-7); /* 24px */
+  gap: var(--unit-3); /* 8px */
+}
+
+.section {
+  padding: var(--unit-7) var(--unit-8); /* 24px 32px */
+  margin-top: var(--unit-5); /* 16px */
+}
+```
+
+##### 전역 CSS 클래스에서 사용
+```css
+.card {
+  padding: var(--unit-5); /* 16px */
+  margin-bottom: var(--unit-7); /* 24px */
+  gap: var(--unit-4); /* 12px */
+}
+
+.sidebar {
+  padding: var(--unit-7); /* 24px */
+  gap: var(--unit-3); /* 8px */
+}
+```
+
+##### React/TSX에서 사용
+```tsx
+// CSS Modules 사용
+<div className={styles.container}>콘텐츠</div>
+
+// 전역 클래스 사용
+<div className="ui_card">카드 내용</div>
+
+// 인라인 스타일 (비권장, 특수한 경우만)
+<div style={{ padding: 'var(--unit-5)', gap: 'var(--unit-3)' }}>
+  콘텐츠
+</div>
+```
+```
+
+### Spacing 선택 가이드
+
+#### 사용 시나리오별 권장 사항
+- **컨테이너 내부 여백**: `--unit-5` (16px) 또는 `--unit-7` (24px)
+- **컴포넌트 간 간격**: `--unit-3` (8px) 또는 `--unit-4` (12px)
+- **섹션 간 간격**: `--unit-7` (24px) 또는 `--unit-8` (32px)
+- **큰 섹션 간격**: `--unit-10` (48px) 또는 `--unit-12` (64px)
+- **작은 요소 간 간격**: `--unit-2` (4px) 또는 `--unit-3` (8px)
+- **버튼 내부 여백**: `--unit-4` (12px) 세로, `--unit-5` (16px) 가로
+- **매우 작은 간격**: `--unit-1` (2px)
+
+#### 사이드바 Spacing 가이드
+- **사이드바 전체 패딩**: `--unit-7` (24px)
+- **헤더 하단 여백**: `--unit-8` (32px)
+- **메뉴 항목 간격**: `--unit-3` (8px)
+- **서브메뉴 들여쓰기**: `--unit-3` (8px) 또는 `--unit-4` (12px)
+- **메뉴 항목 내부 패딩**: `--unit-4` (12px) 세로, `--unit-5` (16px) 가로
+- **푸터 패딩**: `--unit-7` (24px) 세로, `--unit-5` (16px) 가로
+
+### 주의사항
+- ❌ 하드코딩된 간격 값 사용 금지 (예: `padding: 16px`, `margin: 24px`)
+- ❌ CSS 변수 없이 직접 rem/px 값 사용 금지
+- ✅ 항상 CSS 변수 사용 (`var(--unit-*)` 또는 `var(--spacing-unit-*)`, `var(--spacing-*)`)
+- ✅ **디자이너 표준에 맞춰 `--unit-*` 사용 권장** (예: `var(--unit-5, 16px)`)
+- ✅ 의미에 맞는 간격 선택 (작은 간격: unit-1~3, 중간 간격: unit-4~7, 큰 간격: unit-8~15)
+- ✅ 일관된 간격 시스템 유지
+- ✅ Spacing Unit 시스템을 우선적으로 사용
+
+## 반응형 디자인 가이드
+
+### 브레이크포인트 정의
+프로젝트에서는 다음 브레이크포인트를 사용합니다:
+- **Desktop Large**: `1920px` 이상
+- **Desktop**: `1280px` 이상 `1920px` 미만
+- **Tablet**: `1024px` 이상 `1280px` 미만
+- **Mobile**: `480px` 이상 `1024px` 미만
+- **Mobile Small**: `480px` 미만
+
+### 미디어 쿼리 사용 규칙
+
+#### 브레이크포인트만 정의하고 CSS는 각 쿼리 내부에서 적용
+미디어 쿼리에서는 브레이크포인트만 정의하고, 나머지 CSS 속성은 각 미디어 쿼리 블록 내부에서 적용합니다.
+
+#### 사용 예시
+
+##### CSS Modules에서 사용
+```css
+/* component.module.css */
+
+/* 기본 스타일 (Desktop Large - 1920px 이상) */
+.container {
+  width: 1920px;
+  padding: var(--unit-15, 160px) 330px;
+  gap: var(--unit-8, 32px);
+}
+
+/* Desktop (1280px 이상 1920px 미만) */
+@media (max-width: 1919px) {
+  .container {
+    width: 100%;
+    padding: var(--unit-15, 160px) var(--unit-14, 120px);
+    gap: var(--unit-7, 24px);
+  }
+}
+
+/* Tablet (1024px 이상 1280px 미만) */
+@media (max-width: 1279px) {
+  .container {
+    padding: var(--unit-13, 96px) var(--unit-10, 48px);
+    gap: var(--unit-6, 20px);
+  }
+}
+
+/* Mobile (480px 이상 1024px 미만) */
+@media (max-width: 1023px) {
+  .container {
+    padding: var(--unit-10, 48px) var(--unit-7, 24px);
+    gap: var(--unit-5, 16px);
+  }
+}
+
+/* Mobile Small (480px 미만) */
+@media (max-width: 479px) {
+  .container {
+    padding: var(--unit-7, 24px) var(--unit-5, 16px);
+    gap: var(--unit-4, 12px);
+  }
+}
+```
+
+##### 타이포그래피 반응형 적용 예시
+```css
+.title {
+  font-size: var(--font-display-1-size);
+  line-height: var(--font-display-1-height);
+  font-weight: var(--font-display-1-weight);
+}
+
+@media (max-width: 1279px) {
+  .title {
+    font-size: var(--font-headline-1-size);
+    line-height: var(--font-headline-1-height);
+  }
+}
+
+@media (max-width: 1023px) {
+  .title {
+    font-size: var(--font-headline-2-size);
+    line-height: var(--font-headline-2-height);
+  }
+}
+
+@media (max-width: 479px) {
+  .title {
+    font-size: var(--font-headline-3-size);
+    line-height: var(--font-headline-3-height);
+  }
+}
+```
+
+### 반응형 디자인 원칙
+- ✅ **Mobile First 접근 권장**: 기본 스타일을 모바일로 작성하고, 큰 화면으로 확장
+- ✅ **브레이크포인트는 max-width 사용**: 큰 화면부터 작은 화면으로 내려가는 방식
+- ✅ **CSS 변수 활용**: 반응형에서도 CSS 변수 사용 (예: `var(--unit-*)`, `var(--font-*-size)`)
+- ✅ **일관된 브레이크포인트 사용**: 프로젝트 전체에서 동일한 브레이크포인트 사용
+- ✅ **테스트 필수**: 각 브레이크포인트에서 레이아웃과 기능 확인
+
+### 주의사항
+- ❌ 브레이크포인트 값 하드코딩 금지 (예: `@media (max-width: 768px)`)
+- ❌ 미디어 쿼리 내부에서도 하드코딩된 값 사용 금지
+- ✅ 항상 정의된 브레이크포인트 사용 (1920px, 1280px, 1024px, 480px)
+- ✅ CSS 변수와 함께 사용하여 일관성 유지
+- ✅ 각 브레이크포인트에서 필요한 스타일만 오버라이드
+

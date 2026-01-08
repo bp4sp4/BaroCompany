@@ -17,12 +17,15 @@
 }
 
 .container {
-  max-width: 1520px;
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
+  padding: var(--unit-6, 20px) var(--unit-10, 48px);
+  justify-content: space-between;
+  align-items: center;
   margin: 0 auto;
   height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .logoSection {
@@ -30,7 +33,6 @@
   align-items: center;
   gap: 0.75rem;
   flex-shrink: 0;
-  margin-right: 25.1875rem;
 }
 
 .logo {
@@ -54,10 +56,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  flex: 1;
-  justify-content: center;
   font-weight: 700;
-  
 }
 
 .navLink {
@@ -77,7 +76,7 @@
 }
 
 .consultButton {
-  background-color: #0051FF;
+  background-color: #0051ff;
   width: 179px;
   height: 46px;
   border-radius: 1.5rem;
@@ -88,34 +87,118 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   transition: background-color 0.2s;
   font-weight: 700;
   border: none;
 }
 
+.phoneIcon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 2.166px 2.17px 0.186px 1.864px;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+}
 
 .arrowIcon {
   color: #ffd700;
   font-size: 1.25rem;
 }
 
-@media (max-width: 64rem) {
+/* 일반 데스크탑 */
+@media (min-width: 1280px) {
   .container {
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .nav {
-    gap: 1rem;
-  }
-
-  .navLink {
-    font-size: 0.875rem;
-  }
-
-  .consultButton {
-    padding: 0.625rem 1rem;
-    font-size: 0.875rem;
+    display: flex;
+    width: 1280px;
+    max-width: 1280px;
+    padding: var(--unit-6, 20px) 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
   }
 }
 
+/* Desktop Large (1920px 이상) - 여백만 증가 */
+@media (min-width: 1920px) {
+  .container {
+    display: flex;
+    width: 1920px;
+    max-width: 1920px;
+    padding: var(--unit-6, 20px) 330px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+
+/* Tablet (1024px 이상 1280px 미만) */
+@media (max-width: 1279px) {
+  .container {
+    padding: var(--unit-6, 20px) var(--unit-10, 48px);
+  }
+
+  .nav {
+    gap: var(--unit-5, 16px);
+  }
+
+  .navLink {
+    font-size: var(--font-body-2-size);
+  }
+}
+
+/* Mobile (480px 이상 1024px 미만) */
+@media (max-width: 1023px) {
+  .container {
+    padding: var(--unit-5, 16px) var(--unit-7, 24px);
+    height: 70px;
+  }
+
+  .nav {
+    gap: var(--unit-4, 12px);
+  }
+
+  .navLink {
+    font-size: var(--font-label-1-size);
+  }
+
+  .consultButton {
+    padding: var(--unit-4, 12px) var(--unit-5, 16px);
+    font-size: var(--font-label-1-size);
+    width: auto;
+    min-width: 120px;
+  }
+}
+
+/* Mobile Small (480px 미만) */
+@media (max-width: 479px) {
+  .container {
+    padding: var(--unit-4, 12px) var(--unit-5, 16px);
+    height: 60px;
+    flex-wrap: wrap;
+  }
+
+  .nav {
+    gap: var(--unit-3, 8px);
+    flex-wrap: wrap;
+  }
+
+  .navLink {
+    font-size: var(--font-label-2-size);
+  }
+
+  .consultButton {
+    padding: var(--unit-3, 8px) var(--unit-4, 12px);
+    font-size: var(--font-label-2-size);
+    width: auto;
+    min-width: 100px;
+  }
+
+  .logoSection {
+    width: 100%;
+    justify-content: center;
+  }
+}
