@@ -3,6 +3,7 @@
 import { useState, useEffect, forwardRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useConsultation } from "./ConsultationContext";
 import styles from "./Header.module.css";
 
@@ -14,6 +15,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
   ({ isVideoVisible = false }, ref) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { openModal } = useConsultation();
+    const pathname = usePathname();
 
     useEffect(() => {
       const handleScroll = () => {
@@ -36,7 +38,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
     return (
       <header
         ref={ref}
-        className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
+        className={`${styles.header} ${isScrolled ? styles.scrolled : ""} ${
+          pathname === "/" ? styles.homepage : ""
+        }`}
       >
         <div className={styles.container}>
           <div className={styles.logoSection}>
@@ -49,19 +53,44 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             />
           </div>
           <nav className={styles.nav}>
-            <Link href="/portfolio" className={styles.navLink}>
+            <Link
+              href="/portfolio"
+              className={`${styles.navLink} ${
+                pathname === "/portfolio" && pathname !== "/" ? styles.active : ""
+              }`}
+            >
               포트폴리오
             </Link>
-            <Link href="/investment" className={styles.navLink}>
+            <Link
+              href="/investment"
+              className={`${styles.navLink} ${
+                pathname === "/investment" && pathname !== "/" ? styles.active : ""
+              }`}
+            >
               투자유치
             </Link>
-            <Link href="/policyfunds" className={styles.navLink}>
+            <Link
+              href="/policyfunds"
+              className={`${styles.navLink} ${
+                pathname === "/policyfunds" && pathname !== "/" ? styles.active : ""
+              }`}
+            >
               정책자금
             </Link>
-            <Link href="/education" className={styles.navLink}>
+            <Link
+              href="/education"
+              className={`${styles.navLink} ${
+                pathname === "/education" && pathname !== "/" ? styles.active : ""
+              }`}
+            >
               창업교육
             </Link>
-            <Link href="/support" className={styles.navLink}>
+            <Link
+              href="/support"
+              className={`${styles.navLink} ${
+                pathname === "/support" && pathname !== "/" ? styles.active : ""
+              }`}
+            >
               경영지원
             </Link>
             <button className={styles.consultButton} onClick={openModal}>
