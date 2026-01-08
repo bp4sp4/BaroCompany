@@ -28,7 +28,7 @@ export default function Home() {
             muted
             playsInline
           >
-            <source src="/main/background.mp4" type="video/mp4" />
+            <source src="/images/main/background.mp4" type="video/mp4" />
           </video>
           <div className={styles.gradientOverlay} />
           <div className={styles.heroContent}>

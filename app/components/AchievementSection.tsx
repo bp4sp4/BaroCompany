@@ -152,7 +152,7 @@ export default function AchievementSection() {
                 <div className={styles.userInfo}>
                   <div className={styles.avatar}>
                     <Image
-                      src="/main/human.png"
+                      src="/images/main/human.png"
                       alt="Avatar"
                       width={60}
                       height={60}

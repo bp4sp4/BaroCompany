@@ -487,7 +487,7 @@
   align-items: center;
   gap: var(--unit-8, 32px);
   align-self: stretch;
-  background: var(--Blue-300, #4c85ff);
+  background: var(--Blue-50, #e5edff);
 }
 
 .process_text_wrapper {
@@ -502,23 +502,25 @@
 }
 
 .process_title {
-  color: #ffffff;
+  color: var(--Grayscale-900, #010101);
+  /* Headline 2 */
   font-family: Pretendard;
-  font-size: 28px;
+  font-size: 36px;
   font-style: normal;
   font-weight: 700;
-  line-height: 120%;
+  line-height: 120%; /* 43.2px */
   margin: 0;
   text-align: center;
 }
 
 .process_subtitle {
-  color: #ffffff;
+  color: var(--Grayscale-600, #656565);
+  /* Body 1/Normal */
   font-family: Pretendard;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%;
+  line-height: 120%; /* 21.6px */
   margin: 0;
   text-align: center;
 }
@@ -621,7 +623,13 @@
   gap: var(--unit-10, 48px);
   align-self: stretch;
   position: relative;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url("/policyfunds/policy_footer_banner.jpg") lightgray 50% / cover no-repeat;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    url("/images/policyfunds/policy_footer_banner.jpg") lightgray 50% / cover
+      no-repeat;
 }
 
 .cta_text_wrapper {
@@ -633,19 +641,19 @@
 }
 
 .cta_title {
-  color: var(--white, #FFF);
-  /* Display 2 */
+  color: var(--white, #fff);
+  /* Headline 2 */
   font-family: Pretendard;
   font-size: 64px;
   font-style: normal;
   font-weight: 700;
-  line-height: 140%; /* 89.6px */
+  line-height: 140%; /* 43.2px */
   margin: 0;
   text-align: center;
 }
 
 .cta_description {
-  color: var(--Grayscale-100, #F2F2F2);
+  color: var(--Grayscale-100, #f2f2f2);
   text-align: center;
   /* Body 1/Reading */
   font-family: Pretendard;
@@ -658,25 +666,34 @@
 
 .cta_button {
   display: flex;
-  padding: var(--unit-5, 16px) var(--unit-6, 20px);
+  width: 390px;
+  padding: var(--unit-7, 24px) var(--unit-9, 40px);
   justify-content: center;
   align-items: center;
-  gap: var(--unit-2, 4px);
-  border-radius: 32px;
-  background: var(--Blue-300, #4C85FF);
+  gap: var(--unit-3, 8px);
+  border-radius: 45.5px;
+  background: var(--Blue-300, #4c85ff);
   color: #ffffff;
   border: none;
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 36px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   cursor: pointer;
   transition: background-color 0.2s;
+  box-sizing: border-box;
 }
 
 .cta_button:hover {
   background: var(--Blue-400, #2469ff);
+}
+
+.cta_button_arrow {
+  width: 36px;
+  height: 36px;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
 }
 
 .feature_cards_container {

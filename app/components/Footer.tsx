@@ -16,7 +16,7 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.companyNameWrapper}>
           <Image
-            src="/main/logo_white.png"
+            src="/images/main/logo_white.png"
             alt="한평생 바로기업"
             width={200}
             height={64}

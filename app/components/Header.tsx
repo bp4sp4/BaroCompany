@@ -44,13 +44,17 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
       >
         <div className={styles.container}>
           <div className={styles.logoSection}>
-            <Image
-              src={isScrolled ? "/main/logo_black.png" : "/main/logo_white.png"}
-              alt="한평생 바로기업"
-              width={200}
-              height={isScrolled ? 46 : 64}
-              className={styles.logo}
-            />
+            <Link href="/">
+              <Image
+                src={
+                  isScrolled ? "/images/main/logo_black.png" : "/images/main/logo_white.png"
+                }
+                alt="한평생 바로기업"
+                width={200}
+                height={isScrolled ? 46 : 64}
+                className={styles.logo}
+              />
+            </Link>
           </div>
           <nav className={styles.nav}>
             <Link
@@ -101,9 +105,17 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             >
               경영지원
             </Link>
+            <Link
+              href="/notice"
+              className={`${styles.navLink} ${
+                pathname !== "/" && pathname === "/notice" ? styles.active : ""
+              }`}
+            >
+              주의사항
+            </Link>
             <button className={styles.consultButton} onClick={openModal}>
               <Image
-                src="/main/phone.png"
+                src="/images/main/phone.png"
                 alt="전화"
                 width={24}
                 height={24}

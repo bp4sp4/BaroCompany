@@ -21,7 +21,7 @@ export default function CompanyShowcase() {
       tags: ["#창업컨설팅", "#1:1멘토"],
       category: "Preparing business",
       companyName: "창업을 준비 중일때",
-      image: "/main/showcase/showcase001.png",
+      image: "/images/main/showcase/showcase001.png",
     },
     {
       id: 2,
@@ -30,7 +30,7 @@ export default function CompanyShowcase() {
       tags: ["#정책자금", "#맞춤형전략", "#1:!멘토"],
       category: "Secure funds",
       companyName: "자금이 필요할 때",
-      image: "/main/showcase/showcase002.png",
+      image: "/images/main/showcase/showcase002.png",
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ export default function CompanyShowcase() {
       tags: ["#절세솔루션", "#인사노무", "#기업인증"],
       category: "Management support",
       companyName: "경영 지원이 필요할 때",
-      image: "/main/showcase/showcase003.png",
+      image: "/images/main/showcase/showcase003.png",
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ export default function CompanyShowcase() {
       tags: ["#IR자료제작", "#투자자매칭", "#기업인증"],
       category: "Attracting investment",
       companyName: "투자가 필요할 때",
-      image: "/main/showcase/showcase004.png",
+      image: "/images/main/showcase/showcase004.png",
     },
 
   ];

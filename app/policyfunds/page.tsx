@@ -15,7 +15,7 @@ export default function PolicyFundsPage() {
         <section className={styles.banner}>
           <div className={styles.banner_image_wrapper}>
             <Image
-              src="/policyfunds/policy_banner.png"
+              src="/images/policyfunds/policy_banner.png"
               alt="정책자금 배너"
               fill
               className={styles.banner_image}
@@ -225,7 +225,7 @@ export default function PolicyFundsPage() {
             <div className={styles.feature_card}>
               <div className={styles.feature_card_image}>
                 <Image
-                  src="/policyfunds/policy_reason01.jpg"
+                  src="/images/policyfunds/policy_reason01.jpg"
                   alt="높은 승인율"
                   fill
                   className={styles.feature_card_image_img}
@@ -240,7 +240,7 @@ export default function PolicyFundsPage() {
             <div className={styles.feature_card}>
               <div className={styles.feature_card_image}>
                 <Image
-                  src="/policyfunds/policy_reason02.jpg"
+                  src="/images/policyfunds/policy_reason02.jpg"
                   alt="빠른 처리"
                   fill
                   className={styles.feature_card_image_img}
@@ -255,7 +255,7 @@ export default function PolicyFundsPage() {
             <div className={styles.feature_card}>
               <div className={styles.feature_card_image}>
                 <Image
-                  src="/policyfunds/policy_reason03.jpg"
+                  src="/images/policyfunds/policy_reason03.jpg"
                   alt="안전한 컨설팅"
                   fill
                   className={styles.feature_card_image_img}
@@ -270,7 +270,7 @@ export default function PolicyFundsPage() {
             <div className={styles.feature_card}>
               <div className={styles.feature_card_image}>
                 <Image
-                  src="/policyfunds/policy_reason04.jpg"
+                  src="/images/policyfunds/policy_reason04.jpg"
                   alt="최대 혜택"
                   fill
                   className={styles.feature_card_image_img}
@@ -527,7 +527,7 @@ export default function PolicyFundsPage() {
               <h3 className={styles.process_card_title}>무료 진단</h3>
               <div className={styles.process_card_icon}>
                 <Image
-                  src="/policyfunds/policy_pocess_01.png"
+                  src="/images/policyfunds/policy_pocess_01.png"
                   alt="무료 진단"
                   width={120}
                   height={120}
@@ -559,7 +559,7 @@ export default function PolicyFundsPage() {
               <h3 className={styles.process_card_title}>서류 준비</h3>
               <div className={styles.process_card_icon}>
                 <Image
-                  src="/policyfunds/policy_pocess_02.png"
+                  src="/images/policyfunds/policy_pocess_02.png"
                   alt="서류 준비"
                   width={120}
                   height={120}
@@ -591,7 +591,7 @@ export default function PolicyFundsPage() {
               <h3 className={styles.process_card_title}>신청 대행</h3>
               <div className={styles.process_card_icon}>
                 <Image
-                  src="/policyfunds/policy_pocess_03.png"
+                  src="/images/policyfunds/policy_pocess_03.png"
                   alt="신청 대행"
                   width={120}
                   height={120}
@@ -624,7 +624,7 @@ export default function PolicyFundsPage() {
               <h3 className={styles.process_card_title}>심사 지원</h3>
               <div className={styles.process_card_icon}>
                 <Image
-                  src="/policyfunds/policy_pocess_04.png"
+                  src="/images/policyfunds/policy_pocess_04.png"
                   alt="심사 지원"
                   width={120}
                   height={120}
@@ -656,7 +656,7 @@ export default function PolicyFundsPage() {
               <h3 className={styles.process_card_title}>사후 관리</h3>
               <div className={styles.process_card_icon}>
                 <Image
-                  src="/policyfunds/policy_pocess_05.png"
+                  src="/images/policyfunds/policy_pocess_05.png"
                   alt="사후 관리"
                   width={120}
                   height={120}
@@ -684,14 +684,14 @@ export default function PolicyFundsPage() {
             지금 바로 상담하기
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="15"
-              viewBox="0 0 18 15"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
               fill="none"
               className={styles.cta_button_arrow}
             >
               <path
-                d="M1.12502 6.42856L14.1594 6.42856L9.32973 1.8289C8.89038 1.41048 8.89038 0.732241 9.32973 0.313818C9.76907 -0.104606 10.4812 -0.104606 10.9206 0.313818L17.6707 6.74246L17.7476 6.82407C18.108 7.24491 18.0826 7.86527 17.6707 8.25754L10.9206 14.6862C10.4812 15.1046 9.76907 15.1046 9.32973 14.6862C8.89038 14.2678 8.89038 13.5895 9.32973 13.1711L14.1594 8.57144H1.12502C0.503687 8.57144 -2.71592e-08 8.09174 0 7.5C2.71592e-08 6.90826 0.503687 6.42856 1.12502 6.42856Z"
+                d="M6.18752 16.3928L25.7391 16.3928L18.4946 9.49335C17.8356 8.86572 17.8356 7.84836 18.4946 7.22073C19.1536 6.59309 20.2218 6.59309 20.8809 7.22073L31.006 16.8637L31.1214 16.9861C31.662 17.6174 31.6238 18.5479 31.006 19.1363L20.8809 28.7793C20.2218 29.4069 19.1536 29.4069 18.4946 28.7793C17.8356 28.1516 17.8356 27.1343 18.4946 26.5066L25.7391 19.6072L6.18752 19.6072C5.25553 19.6072 4.5 18.8876 4.5 18C4.5 17.1124 5.25553 16.3928 6.18752 16.3928Z"
                 fill="white"
               />
             </svg>

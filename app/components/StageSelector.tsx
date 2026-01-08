@@ -81,7 +81,7 @@ export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
       <div className={styles.innerContainer}>
         <div className={styles.introSection}>
           <img
-            src="/main/smile.png"
+            src="/images/main/smile.png"
             alt="smile"
             width={48}
             height={48}
