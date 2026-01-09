@@ -59,7 +59,8 @@ export default function PolicyFundsPage() {
                   <span className={styles.popular_tag}>인기</span>
                 </div>
                 <p className={styles.card_description}>
-                  급여·임차료·원자재비 등 기업의 일상적인 운영에 필요한 자금
+                  급여·임차료·원자재비 등<br /> 기업의 일상적인 운영에 필요한
+                  자금
                 </p>
               </div>
               <div className={styles.card_info}>
@@ -100,7 +101,7 @@ export default function PolicyFundsPage() {
                   <span className={styles.popular_tag}>인기</span>
                 </div>
                 <p className={styles.card_description}>
-                  생산 시설·사무 기계·차량 등 고정 자산 구입에 필요한 자금
+                  생산 시설·사무 기계·차량 등<br /> 고정 자산 구입에 필요한 자금
                 </p>
               </div>
               <div className={styles.card_info}>
@@ -138,8 +139,8 @@ export default function PolicyFundsPage() {
                   <h3 className={styles.card_title}>기술개발자금</h3>
                 </div>
                 <p className={styles.card_description}>
-                  제품 개발·기술 혁신·특허 출원 등 신기술 개발 및 R&D 투자에
-                  필요한 자금
+                  제품 개발·기술 혁신·특허 출원 등<br /> 신기술 개발 및 R&D
+                  투자에 필요한 자금
                 </p>
               </div>
               <div className={styles.card_info}>
@@ -183,8 +184,8 @@ export default function PolicyFundsPage() {
                   <h3 className={styles.card_title}>구매자금</h3>
                 </div>
                 <p className={styles.card_description}>
-                  재고 확보·대량 구매 할인 활용 등 원자재 및 상품 구매에 필요한
-                  자금
+                  재고 확보·대량 구매 할인 활용 등<br /> 원자재 및 상품 구매에
+                  필요한 자금
                 </p>
               </div>
               <div className={styles.card_info}>
@@ -225,7 +226,7 @@ export default function PolicyFundsPage() {
               </div>
               <h3 className={styles.feature_card_title}>높은 승인율</h3>
               <p className={styles.feature_card_subtitle}>
-                정책자금 신청 경험이 풍부한 전문가가 최적화된 서류 작성으로 높은
+                정책자금 신청 경험이 풍부한 전문가가 <br /> 서류 작성으로 높은
                 승인율을 보장합니다.
               </p>
             </div>
@@ -515,8 +516,15 @@ export default function PolicyFundsPage() {
           </div>
           <div className={styles.process_cards_container}>
             <div className={styles.process_card}>
-              <div className={styles.process_step_badge}>STEP 1</div>
-              <h3 className={styles.process_card_title}>무료 진단</h3>
+              <div className={styles.process_text_wrapper}>
+                <div className={styles.process_title_row}>
+                  <div className={styles.process_step_badge}>STEP 1</div>
+                  <h3 className={styles.process_card_title}>무료 진단</h3>
+                </div>
+                <p className={styles.process_card_description}>
+                  기업 현황 파악 및<br /> 적합 프로그램 분석
+                </p>
+              </div>
               <div className={styles.process_card_icon}>
                 <Image
                   src="/images/policyfunds/policy_pocess_01.png"
@@ -526,9 +534,6 @@ export default function PolicyFundsPage() {
                   className={styles.process_card_image}
                 />
               </div>
-              <p className={styles.process_card_description}>
-                기업 현황 파악 및<br /> 적합 프로그램 분석
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -547,8 +552,15 @@ export default function PolicyFundsPage() {
               />
             </svg>
             <div className={styles.process_card}>
-              <div className={styles.process_step_badge}>STEP 2</div>
-              <h3 className={styles.process_card_title}>서류 준비</h3>
+              <div className={styles.process_text_wrapper}>
+                <div className={styles.process_title_row}>
+                  <div className={styles.process_step_badge}>STEP 2</div>
+                  <h3 className={styles.process_card_title}>서류 준비</h3>
+                </div>
+                <p className={styles.process_card_description}>
+                  필요 서류 작성 및<br /> 완벽한 준비
+                </p>
+              </div>
               <div className={styles.process_card_icon}>
                 <Image
                   src="/images/policyfunds/policy_pocess_02.png"
@@ -558,9 +570,6 @@ export default function PolicyFundsPage() {
                   className={styles.process_card_image}
                 />
               </div>
-              <p className={styles.process_card_description}>
-                필요 서류 작성 및<br /> 완벽한 준비
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -579,8 +588,16 @@ export default function PolicyFundsPage() {
               />
             </svg>
             <div className={styles.process_card}>
-              <div className={styles.process_step_badge}>STEP 3</div>
-              <h3 className={styles.process_card_title}>신청 대행</h3>
+              <div className={styles.process_text_wrapper}>
+                <div className={styles.process_title_row}>
+                  <div className={styles.process_step_badge}>STEP 3</div>
+                  <h3 className={styles.process_card_title}>신청 대행</h3>
+                </div>
+                <p className={styles.process_card_description}>
+                  정책자금 신청서
+                  <br /> 제출 및 대행
+                </p>
+              </div>
               <div className={styles.process_card_icon}>
                 <Image
                   src="/images/policyfunds/policy_pocess_03.png"
@@ -590,10 +607,6 @@ export default function PolicyFundsPage() {
                   className={styles.process_card_image}
                 />
               </div>
-              <p className={styles.process_card_description}>
-                정책자금 신청서
-                <br /> 제출 및 대행
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -612,8 +625,15 @@ export default function PolicyFundsPage() {
               />
             </svg>
             <div className={styles.process_card}>
-              <div className={styles.process_step_badge}>STEP 4</div>
-              <h3 className={styles.process_card_title}>심사 지원</h3>
+              <div className={styles.process_text_wrapper}>
+                <div className={styles.process_title_row}>
+                  <div className={styles.process_step_badge}>STEP 4</div>
+                  <h3 className={styles.process_card_title}>심사 지원</h3>
+                </div>
+                <p className={styles.process_card_description}>
+                  심사 과정 모니터링 및<br /> 추가 자료 제출
+                </p>
+              </div>
               <div className={styles.process_card_icon}>
                 <Image
                   src="/images/policyfunds/policy_pocess_04.png"
@@ -623,9 +643,6 @@ export default function PolicyFundsPage() {
                   className={styles.process_card_image}
                 />
               </div>
-              <p className={styles.process_card_description}>
-                심사 과정 모니터링 및<br /> 추가 자료 제출
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -644,8 +661,15 @@ export default function PolicyFundsPage() {
               />
             </svg>
             <div className={styles.process_card}>
-              <div className={styles.process_step_badge}>STEP 5</div>
-              <h3 className={styles.process_card_title}>사후 관리</h3>
+              <div className={styles.process_text_wrapper}>
+                <div className={styles.process_title_row}>
+                  <div className={styles.process_step_badge}>STEP 5</div>
+                  <h3 className={styles.process_card_title}>사후 관리</h3>
+                </div>
+                <p className={styles.process_card_description}>
+                  자금 수령 후<br /> 사후관리 및 컨설팅
+                </p>
+              </div>
               <div className={styles.process_card_icon}>
                 <Image
                   src="/images/policyfunds/policy_pocess_05.png"
@@ -655,9 +679,6 @@ export default function PolicyFundsPage() {
                   className={styles.process_card_image}
                 />
               </div>
-              <p className={styles.process_card_description}>
-                자금 수령 후<br /> 사후관리 및 컨설팅
-              </p>
             </div>
           </div>
         </section>

@@ -386,10 +386,19 @@ export default function BizSupportPage() {
           </div>
           <div className={styles.investment_process_cards_container}>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 1</div>
-              <h3 className={styles.investment_process_card_title}>
-                상담 신청
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 1
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    상담 신청
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  무료 경영 진단 신청
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/bizsupport/bizsupport_process_01.png"
@@ -399,9 +408,6 @@ export default function BizSupportPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                무료 경영 진단 신청
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -420,10 +426,19 @@ export default function BizSupportPage() {
               />
             </svg>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 2</div>
-              <h3 className={styles.investment_process_card_title}>
-                현황 분석
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 2
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    현황 분석
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  기업 상황 및 니즈 분석
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/bizsupport/bizsupport_process_02.png"
@@ -433,9 +448,6 @@ export default function BizSupportPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                기업 상황 및 니즈 분석
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -454,10 +466,19 @@ export default function BizSupportPage() {
               />
             </svg>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 3</div>
-              <h3 className={styles.investment_process_card_title}>
-                전략 수립
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 3
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    전략 수립
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  맞춤형 경영 전략 수립
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/bizsupport/bizsupport_process_03.png"
@@ -467,9 +488,6 @@ export default function BizSupportPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                맞춤형 경영 전략 수립
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -488,10 +506,19 @@ export default function BizSupportPage() {
               />
             </svg>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 4</div>
-              <h3 className={styles.investment_process_card_title}>
-                실행 지원
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 4
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    실행 지원
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  전략 실행 및 모니터링
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/bizsupport/bizsupport_process_04.png"
@@ -501,9 +528,6 @@ export default function BizSupportPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                전략 실행 및 모니터링
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -522,10 +546,19 @@ export default function BizSupportPage() {
               />
             </svg>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 5</div>
-              <h3 className={styles.investment_process_card_title}>
-                성과 관리
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 5
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    성과 관리
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  성과 측정 및 개선
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/bizsupport/bizsupport_process_05.png"
@@ -535,9 +568,6 @@ export default function BizSupportPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                성과 측정 및 개선
-              </p>
             </div>
           </div>
         </section>

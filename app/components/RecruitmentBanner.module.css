@@ -48,6 +48,19 @@
   line-height: 120%; /* 50.4px */
 }
 
+/* Laptop 1024px */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .section {
+    display: flex;
+    padding: var(--unit-14, 120px) 80px 0 80px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    align-self: stretch;
+  }
+}
+
 /* 일반 데스크탑 */
 @media (min-width: 1280px) {
   .section {

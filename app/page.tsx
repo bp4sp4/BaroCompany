@@ -45,20 +45,10 @@ export default function Home() {
 
       <section className={styles.main_achievements_section}>
         <div className={styles.main_achievements_wrapper}>
-          <div className={styles.main_achievements_header}>
-            <h2 className={styles.main_achievements_title}>
-              포트폴리오 분야별 성과
-            </h2>
-            <p className={styles.main_achievements_subtitle}>
-              다양한 산업과 분야에서 입증된 컨설팅 성과 건수
-            </p>
-          </div>
           <div className={styles.main_achievements_metrics}>
             <div className={styles.main_achievement_item}>
-              <span className={styles.main_achievement_tag}>
-                정책자금 컨설팅
-              </span>
-              <span className={styles.main_achievement_number}>180+</span>
+              <span className={styles.main_achievement_tag}>지원기업</span>
+              <span className={styles.main_achievement_number}>500+</span>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,8 +61,8 @@ export default function Home() {
               <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
             </svg>
             <div className={styles.main_achievement_item}>
-              <span className={styles.main_achievement_tag}>투자유치 지원</span>
-              <span className={styles.main_achievement_number}>120+</span>
+              <span className={styles.main_achievement_tag}>승인율</span>
+              <span className={styles.main_achievement_number}>98%</span>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -85,10 +75,8 @@ export default function Home() {
               <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
             </svg>
             <div className={styles.main_achievement_item}>
-              <span className={styles.main_achievement_tag}>
-                경영지원 컨설팅
-              </span>
-              <span className={styles.main_achievement_number}>150+</span>
+              <span className={styles.main_achievement_tag}>평균 지원액</span>
+              <span className={styles.main_achievement_number}>9.2억</span>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -101,8 +89,8 @@ export default function Home() {
               <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
             </svg>
             <div className={styles.main_achievement_item}>
-              <span className={styles.main_achievement_tag}>창업교육</span>
-              <span className={styles.main_achievement_number}>200+</span>
+              <span className={styles.main_achievement_tag}>컨설팅 경력</span>
+              <span className={styles.main_achievement_number}>15년</span>
             </div>
           </div>
         </div>

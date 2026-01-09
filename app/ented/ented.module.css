@@ -52,7 +52,7 @@
   height: 100%;
   justify-content: center;
   margin: 0 auto;
-  padding: var(--unit-13, 96px) var(--unit-5, 16px) 0;
+
   box-sizing: border-box;
 }
 
@@ -77,8 +77,232 @@
   margin: 0;
 }
 
+/* 태블릿 (가로) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .banner {
+    display: flex;
+    height: 700px;
+    padding: 306px 80px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+  }
+
+  .banner_image_wrapper {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      ),
+      url("/images/ented/ented_banner.jpg") lightgray 50% / cover no-repeat;
+  }
+
+  .programs_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 80px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .programs_cards {
+    display: inline-grid !important;
+    row-gap: var(--unit-4, 12px) !important;
+    column-gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+    grid-template-rows: repeat(2, fit-content(100%)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .program_card {
+    display: flex !important;
+    width: 100% !important;
+    padding: var(--unit-7, 24px) !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    justify-self: stretch !important;
+  }
+
+  .curriculum_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 80px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .curriculum_cards {
+    display: inline-grid !important;
+    row-gap: 12px !important;
+    column-gap: 12px !important;
+    align-self: stretch !important;
+    grid-template-rows: repeat(2, fit-content(100%)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .curriculum_card {
+    display: flex !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    aspect-ratio: 213/263 !important;
+    justify-self: stretch !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
+    background: var(--white, #fff) !important;
+    gap: 12px !important;
+  }
+
+  .curriculum_card_image {
+    width: 100% !important;
+    height: 284px !important;
+  }
+
+  .features_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 80px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .features_cards_wrapper {
+    display: flex !important;
+    align-items: center !important;
+    align-content: center !important;
+    gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .feature_card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: var(--unit-4, 12px) !important;
+    flex: 1 1 207px !important;
+    min-width: 207px !important;
+    max-width: 100% !important;
+  }
+
+  .feature_card_image {
+    display: flex !important;
+    width: 100% !important;
+    height: 207px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-7, 24px) !important;
+    align-self: stretch !important;
+    aspect-ratio: 1/1 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .feature_card_title,
+  .feature_card_subtitle {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-3, 8px) !important;
+    align-self: stretch !important;
+  }
+
+  .support_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 80px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+    background: var(--Grayscale-100, #f2f2f2) !important;
+  }
+
+  .support_card_description br {
+    display: block !important;
+  }
+
+  .cta_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 10px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-10, 48px) !important;
+    align-self: stretch !important;
+  }
+}
+
 /* 일반 데스크탑 */
 @media (min-width: 1280px) {
+  .features_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .features_wrapper {
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    padding: 0 10px !important;
+  }
+
+  .features_text_wrapper {
+    align-items: flex-start !important;
+    width: 100% !important;
+  }
+
+  .support_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 0 !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .support_cards_wrapper {
+    display: flex !important;
+    width: 1260px !important;
+    align-items: center !important;
+    align-content: center !important;
+    gap: var(--unit-4, 12px) !important;
+    flex-wrap: wrap !important;
+  }
+
+  .support_contents_wrapper {
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    padding: 0 10px !important;
+  }
+
+  .support_card {
+    display: flex !important;
+    width: 412px !important;
+    height: 324px !important;
+    padding: var(--unit-6, 20px) !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    flex-shrink: 0 !important;
+  }
+
   .banner {
     max-width: 100%;
     height: 700px;
@@ -87,7 +311,6 @@
   .banner_content {
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: var(--unit-13, 96px);
   }
 
   .banner_title {
@@ -106,10 +329,6 @@
   .banner {
     max-width: 100%;
     height: 700px;
-  }
-
-  .banner_content {
-    padding-top: var(--unit-13, 96px);
   }
 
   .banner_title {
@@ -578,7 +797,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+
   align-self: stretch;
   width: 100%;
   max-width: 1280px;
@@ -593,7 +812,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 21.6px */
-  margin: 0;
+  margin-bottom: var(--unit-3, 8px);
 }
 
 .support_title {
@@ -604,7 +823,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: 120%; /* 43.2px */
-  margin: 0;
+  margin-bottom: 32px;
 }
 
 .support_cards_wrapper {
@@ -670,6 +889,10 @@
   font-style: normal;
   font-weight: 600;
   line-height: 120%; /* 21.6px */
+}
+
+.support_card_description br {
+  display: none;
 }
 
 .support_card_bottom p {

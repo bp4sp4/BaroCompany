@@ -146,10 +146,21 @@ export default function FundraisingPage() {
           </div>
           <div className={styles.investment_process_cards_container}>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 1</div>
-              <h3 className={styles.investment_process_card_title}>
-                기업 분석
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 1
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    기업 분석
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  기업의 사업 모델, 시장,
+                  <br />
+                  경쟁력 분석
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/investment/investment_process_01.png"
@@ -159,11 +170,6 @@ export default function FundraisingPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                기업의 사업 모델, 시장,
-                <br />
-                경쟁력 분석
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -182,10 +188,21 @@ export default function FundraisingPage() {
               />
             </svg>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 2</div>
-              <h3 className={styles.investment_process_card_title}>
-                가치 평가
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 2
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    가치 평가
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  객관적인 기준에 따른
+                  <br />
+                  기업 가치 신청
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/investment/investment_process_02.png"
@@ -195,11 +212,6 @@ export default function FundraisingPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                객관적인 기준에 따른
-                <br />
-                기업 가치 신청
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -218,10 +230,20 @@ export default function FundraisingPage() {
               />
             </svg>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 3</div>
-              <h3 className={styles.investment_process_card_title}>
-                전략 수립
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 3
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    전략 수립
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  투자유치 목표액 및
+                  <br /> 전략 수립
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/investment/investment_process_03.png"
@@ -231,10 +253,6 @@ export default function FundraisingPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                투자유치 목표액 및
-                <br /> 전략 수립
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -253,8 +271,20 @@ export default function FundraisingPage() {
               />
             </svg>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 4</div>
-              <h3 className={styles.investment_process_card_title}>IR 준비</h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 4
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    IR 준비
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  투자 설명회 자료 및
+                  <br /> 피칭 준비
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/investment/investment_process_04.png"
@@ -264,10 +294,6 @@ export default function FundraisingPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                투자 설명회 자료 및
-                <br /> 피칭 준비
-              </p>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -286,10 +312,21 @@ export default function FundraisingPage() {
               />
             </svg>
             <div className={styles.investment_process_card}>
-              <div className={styles.investment_process_step_badge}>STEP 5</div>
-              <h3 className={styles.investment_process_card_title}>
-                투자자 매칭
-              </h3>
+              <div className={styles.investment_process_text_wrapper}>
+                <div className={styles.investment_process_title_row}>
+                  <div className={styles.investment_process_step_badge}>
+                    STEP 5
+                  </div>
+                  <h3 className={styles.investment_process_card_title}>
+                    투자자 매칭
+                  </h3>
+                </div>
+                <p className={styles.investment_process_card_description}>
+                  적합한 투자자
+                  <br />
+                  발굴 및 협상
+                </p>
+              </div>
               <div className={styles.investment_process_card_icon}>
                 <Image
                   src="/images/investment/investment_process_05.png"
@@ -299,11 +336,6 @@ export default function FundraisingPage() {
                   className={styles.investment_process_card_image}
                 />
               </div>
-              <p className={styles.investment_process_card_description}>
-                적합한 투자자
-                <br />
-                발굴 및 협상
-              </p>
             </div>
           </div>
         </section>
@@ -330,7 +362,7 @@ export default function FundraisingPage() {
                 전문가 팀
               </h3>
               <p className={styles.investment_feature_card_subtitle}>
-                투자 유치 경험이 풍부한 전문가 팀
+                투자 유치 경험이 <br /> 풍부한 전문가 팀
               </p>
             </div>
             <div className={styles.investment_feature_card}>
@@ -344,7 +376,7 @@ export default function FundraisingPage() {
               </div>
               <h3 className={styles.investment_feature_card_title}>네트워크</h3>
               <p className={styles.investment_feature_card_subtitle}>
-                다양한 투자자 및 기관 네트워크 보유
+                다양한 투자자 및<br /> 기관 네트워크 보유
               </p>
             </div>
             <div className={styles.investment_feature_card}>
@@ -360,7 +392,8 @@ export default function FundraisingPage() {
                 데이터 기반
               </h3>
               <p className={styles.investment_feature_card_subtitle}>
-                시장 데이터와 벤치마킹을 통한 전략
+                시장 데이터와
+                <br /> 벤치마킹을 통한 전략
               </p>
             </div>
             <div className={styles.investment_feature_card}>
@@ -376,7 +409,8 @@ export default function FundraisingPage() {
                 지속 지원
               </h3>
               <p className={styles.investment_feature_card_subtitle}>
-                투자 유치 후 기업 성장까지 지속 지원
+                투자 유치 후 기업
+                <br /> 성장까지 지속 지원
               </p>
             </div>
           </div>
@@ -410,7 +444,7 @@ export default function FundraisingPage() {
                     경영 컨설팅
                   </h3>
                   <p className={styles.post_investment_card_subtitle}>
-                    투자 자금 활용 및 경영 전략 수립
+                    투자 자금 활용 및<br /> 경영 전략 수립
                   </p>
                 </div>
               </div>
@@ -457,7 +491,8 @@ export default function FundraisingPage() {
                     투자자 관계 관리
                   </h3>
                   <p className={styles.post_investment_card_subtitle}>
-                    투자자와의 지속적인 관계 유지 및 관리
+                    투자자와의 지속적인
+                    <br /> 관계 유지 및 관리
                   </p>
                 </div>
               </div>
@@ -506,7 +541,8 @@ export default function FundraisingPage() {
                     추가 투자 유치
                   </h3>
                   <p className={styles.post_investment_card_subtitle}>
-                    시리즈 A, B 등 추가 투자 유치 지원
+                    시리즈 A, B 등 추가 투자
+                    <br /> 유치 지원
                   </p>
                 </div>
               </div>

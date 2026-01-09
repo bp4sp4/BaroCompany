@@ -444,7 +444,8 @@ export default function EntedPage() {
                   </svg>
                   <p className={styles.support_card_title}>1:1 멘토링</p>
                   <p className={styles.support_card_description}>
-                    개별 창업가와의 지속적인 상담 및 지도
+                    개별 창업가와의
+                    <br /> 지속적인 상담 및 지도
                   </p>
                 </div>
                 <div className={styles.support_card_bottom}>
@@ -484,7 +485,8 @@ export default function EntedPage() {
                     정책자금 신청 지원
                   </p>
                   <p className={styles.support_card_description}>
-                    정부 지원 정책자금 신청 컨설팅
+                    정부 지원 정책자금
+                    <br /> 신청 컨설팅
                   </p>
                 </div>
                 <div className={styles.support_card_bottom}>
@@ -512,7 +514,8 @@ export default function EntedPage() {
                   </svg>
                   <p className={styles.support_card_title}>사업 성장 지원</p>
                   <p className={styles.support_card_description}>
-                    초기 사업 성장 단계에서의 경영 지원
+                    초기 사업 성장 단계에서의
+                    <br /> 경영 지원
                   </p>
                 </div>
                 <div className={styles.support_card_bottom}>

@@ -269,6 +269,17 @@
   stroke-width: 2;
 }
 
+/* Laptop 1024px */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .main_achievements_section {
+    display: flex;
+    padding: var(--unit-13, 96px) 80px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+  }
+}
+
 /* 일반 데스크탑 */
 @media (min-width: 1280px) {
   .main_achievements_section {

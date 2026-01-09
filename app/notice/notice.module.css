@@ -57,7 +57,7 @@
   height: 100%;
   justify-content: center;
   margin: 0 auto;
-  padding: var(--unit-13, 96px) var(--unit-5, 16px) 0;
+
   box-sizing: border-box;
 }
 
@@ -82,6 +82,47 @@
   margin: 0;
 }
 
+/* 태블릿 (가로) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .banner {
+    display: flex;
+    height: 700px;
+    padding: 306px 80px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+  }
+
+  .banner_image_wrapper {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      ),
+      url("/images/notice/notice_banner.jpg") lightgray 50% / cover no-repeat;
+  }
+
+  .content_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 80px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .cta_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 10px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-10, 48px) !important;
+    align-self: stretch !important;
+  }
+}
+
 /* 일반 데스크탑 */
 @media (min-width: 1280px) {
   .banner {
@@ -92,7 +133,6 @@
   .banner_content {
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: var(--unit-13, 96px);
   }
 
   .banner_title {
