@@ -44,7 +44,6 @@ export default function SuccessCases() {
     },
   ];
 
-
   return (
     <section ref={containerRef} className={styles.container}>
       <div className={styles.header}>
@@ -60,16 +59,22 @@ export default function SuccessCases() {
       <div ref={swiperRef} className={styles.swiperContainer}>
         <Swiper
           modules={[Pagination]}
-          spaceBetween={40}
-          slidesPerView="auto"
+          spaceBetween={20}
+          slidesPerView={3}
           breakpoints={{
             1280: {
               slidesPerView: 3,
-              spaceBetween: 40,
+              spaceBetween: 10,
+            },
+            1920: {
+              slidesPerView: 3.5,
+              spaceBetween: 230,
             },
           }}
           pagination={{ clickable: true }}
           className={styles.swiper}
+          centeredSlides={false}
+          watchOverflow={true}
         >
           {cards.map((card) => (
             <SwiperSlide key={card.id} className={styles.slide}>

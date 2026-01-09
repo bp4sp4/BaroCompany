@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import styles from "./ConsultationModal.module.css";
 
 interface ConsultationModalProps {
@@ -9,12 +8,15 @@ interface ConsultationModalProps {
   onClose: () => void;
 }
 
-export default function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
+export default function ConsultationModal({
+  isOpen,
+  onClose,
+}: ConsultationModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
-    industry: "",
   });
+  const [isAgreed, setIsAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
@@ -33,11 +35,12 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
       });
 
       if (response.ok) {
-        setSubmitMessage("상담 신청이 완료되었습니다!");
+        setSubmitMessage("입력되었습니다");
         // 제출 후 모달 닫기
         setTimeout(() => {
           onClose();
-          setFormData({ name: "", contact: "", industry: "" });
+          setFormData({ name: "", contact: "" });
+          setIsAgreed(false);
           setSubmitMessage("");
         }, 1500);
       } else {
@@ -52,36 +55,16 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
     }
   };
 
-  const formatPhoneNumber = (value: string) => {
-    // 숫자만 추출
-    const numbers = value.replace(/[^\d]/g, '');
-    
-    // 전화번호 포맷팅 (010-XXXX-XXXX)
-    if (numbers.length <= 3) {
-      return numbers;
-    } else if (numbers.length <= 7) {
-      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
-    } else {
-      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
-    }
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    
-    // 연락처 필드인 경우 자동 포맷팅
-    if (name === 'contact') {
-      const formatted = formatPhoneNumber(value);
-      setFormData((prev) => ({
-        ...prev,
-        [name]: formatted,
-      }));
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAgreed(e.target.checked);
   };
 
   if (!isOpen) return null;
@@ -92,11 +75,13 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
         <button className={styles.closeButton} onClick={onClose}>
           ×
         </button>
-        <h2 className={styles.title}>1:1 전문가 상담신청</h2>
+        <div className={styles.modalHeader}>
+          <h2 className={styles.title}>정책자금상담</h2>
+        </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
             <label htmlFor="name" className={styles.label}>
-              이름
+              이름(회사명)
             </label>
             <input
               type="text"
@@ -105,13 +90,13 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               value={formData.name}
               onChange={handleChange}
               className={styles.input}
-              placeholder="이름을 입력해주세요"
+              placeholder="이름 혹은 회사명"
               required
             />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="contact" className={styles.label}>
-              연락처
+              연락처(회사연락처)
             </label>
             <input
               type="tel"
@@ -120,25 +105,22 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
               value={formData.contact}
               onChange={handleChange}
               className={styles.input}
-              placeholder="010-1234-5678"
-              maxLength={13}
+              placeholder="-제외 입력"
               required
             />
           </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="industry" className={styles.label}>
-              업종
-            </label>
+          <div className={styles.checkboxGroup}>
             <input
-              type="text"
-              id="industry"
-              name="industry"
-              value={formData.industry}
-              onChange={handleChange}
-              className={styles.input}
-              placeholder="업종을 입력해주세요"
+              type="checkbox"
+              id="privacy"
+              checked={isAgreed}
+              onChange={handleCheckboxChange}
+              className={styles.checkbox}
               required
             />
+            <label htmlFor="privacy" className={styles.checkboxLabel}>
+              개인정보처리방침 동의
+            </label>
           </div>
           {submitMessage && (
             <div className={styles.message}>{submitMessage}</div>
@@ -146,9 +128,9 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
           <button
             type="submit"
             className={styles.submitButton}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isAgreed}
           >
-            {isSubmitting ? "제출 중..." : "상담 신청하기"}
+            {isSubmitting ? "제출 중..." : "상담신청"}
           </button>
         </form>
       </div>

@@ -47,12 +47,12 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { name, contact, industry } = body;
+    const { name, contact } = body;
 
     // 유효성 검사
-    if (!name || !contact || !industry) {
+    if (!name || !contact) {
       return NextResponse.json(
-        { error: "All fields are required" },
+        { error: "Name and contact are required" },
         { status: 400 }
       );
     }
@@ -64,7 +64,6 @@ export async function POST(request: NextRequest) {
         {
           name,
           contact,
-          industry,
         },
       ])
       .select()

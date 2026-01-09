@@ -4,7 +4,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    url("/images/main/banner.jpg") lightgray 50% / cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,9 +19,9 @@
 
 .modal {
   background-color: #ffffff;
-  border-radius: 16px;
-  padding: 40px;
-  max-width: 500px;
+  border-radius: 10px;
+  padding: 0;
+  max-width: 400px;
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
@@ -47,18 +52,30 @@
   color: #000;
 }
 
+.modalHeader {
+  background-color: var(--Blue-300, #4c85ff);
+  border-radius: 10px 10px 0 0;
+  padding: var(--unit-4, 12px) var(--unit-6, 20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .title {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
-  color: #000;
-  margin: 0 0 32px 0;
+  color: #ffffff;
+  margin: 0;
   text-align: center;
+  font-family: Pretendard;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding: 40px;
 }
 
 .formGroup {
@@ -92,10 +109,36 @@
   color: #999;
 }
 
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--Blue-600, #0049e5);
+}
+
+.checkboxLabel {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: Pretendard;
+}
+
 .submitButton {
+  display: flex;
+  padding: var(--unit-4, 12px) var(--unit-6, 20px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   width: 100%;
-  padding: 16px;
-  background-color: #0051ff;
+  background-color: var(--Blue-600, #0049e5);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -104,6 +147,7 @@
   cursor: pointer;
   transition: background-color 0.2s;
   margin-top: 8px;
+  font-family: Pretendard;
 }
 
 .submitButton:hover:not(:disabled) {

@@ -5,6 +5,12 @@
   background-color: #f5f5f5;
   padding: 160px 200px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--unit-8, 32px);
+  align-self: stretch;
 }
 
 .sectionInner {
@@ -16,10 +22,10 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+
   align-items: flex-start;
   text-align: left;
-  margin-bottom: 38px;
+  margin-bottom: 32px;
 }
 
 .title {
@@ -32,7 +38,7 @@
 
 .subtitle {
   font-size: 18px;
-  color: #0051FF;
+  color: #0051ff;
   margin: 0;
   font-weight: 400;
   margin-bottom: 8px;
@@ -41,18 +47,20 @@
 .cardList {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 12px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .card {
-  width: 496px;
-  height: 439px;
+  display: flex;
+  width: 412px;
+  flex-direction: column;
+
+  align-items: flex-start;
+  flex-shrink: 0;
   background-color: #ffffff;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -73,24 +81,52 @@
 }
 
 .cardContent {
-  padding: 1.5rem;
+  padding: var(--unit-6, 20px);
   display: flex;
   flex-direction: column;
-  
 }
 
 .cardSubtitle {
-  font-size: 18px;
-  color: #656565;
+  color: var(--Grayscale-600, #656565);
+
+  /* Body 2/Normal */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 19.2px */
   margin-bottom: 4px;
-  opacity: 0.7;
 }
 
 .cardTitle {
-  font-size: 28px;
+  color: var(--Grayscale-900, #010101);
+
+  /* Title 2 */
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
   font-weight: 600;
-  color: #010101;
-  margin: 0;
+  line-height: 120%; /* 28.8px */
+}
+
+/* 일반 데스크탑 */
+@media (min-width: 1280px) {
+  .section {
+    padding: 160px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--unit-8, 32px);
+    align-self: stretch;
+  }
+}
+
+/* FHD 이상 */
+@media (min-width: 1920px) {
+  .section {
+    padding: 160px 200px;
+  }
 }
 
 @media (max-width: 768px) {

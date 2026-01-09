@@ -47,7 +47,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             <Link href="/">
               <Image
                 src={
-                  isScrolled ? "/images/main/logo_black.png" : "/images/main/logo_white.png"
+                  isScrolled
+                    ? "/images/main/logo_black.png"
+                    : "/images/main/logo_white.png"
                 }
                 alt="한평생 바로기업"
                 width={200}
@@ -88,9 +90,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
               정책자금
             </Link>
             <Link
-              href="/ented"
+              href="/education"
               className={`${styles.navLink} ${
-                pathname !== "/" && pathname === "/ented"
+                pathname !== "/" && pathname === "/education"
                   ? styles.active
                   : ""
               }`}
@@ -98,9 +100,9 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
               창업교육
             </Link>
             <Link
-              href="/bizsupport"
+              href="/support"
               className={`${styles.navLink} ${
-                pathname !== "/" && pathname === "/bizsupport" ? styles.active : ""
+                pathname !== "/" && pathname === "/support" ? styles.active : ""
               }`}
             >
               경영지원
@@ -113,7 +115,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             >
               주의사항
             </Link>
-            <button className={styles.consultButton} onClick={openModal}>
+            <a href="tel:02-2135-6221" className={styles.consultButton}>
               <Image
                 src="/images/main/phone.png"
                 alt="전화"
@@ -122,7 +124,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
                 className={styles.phoneIcon}
               />
               02-2135-6221
-            </button>
+            </a>
           </nav>
         </div>
       </header>

@@ -9,7 +9,6 @@ interface Consultation {
   id: string;
   name: string;
   contact: string;
-  industry: string;
   is_completed: boolean;
   created_at: string;
 }
@@ -143,7 +142,6 @@ export default function AdminPage() {
               <th>번호</th>
               <th>이름</th>
               <th>연락처</th>
-              <th>업종</th>
               <th>신청일시</th>
               <th>상담완료</th>
             </tr>
@@ -151,7 +149,7 @@ export default function AdminPage() {
           <tbody>
             {currentConsultations.length === 0 ? (
               <tr>
-                <td colSpan={6} className={styles.empty}>
+                <td colSpan={5} className={styles.empty}>
                   상담 신청이 없습니다.
                 </td>
               </tr>
@@ -164,7 +162,6 @@ export default function AdminPage() {
                   <td>{startIndex + index + 1}</td>
                   <td>{consultation.name}</td>
                   <td>{consultation.contact}</td>
-                  <td>{consultation.industry}</td>
                   <td>{formatDate(consultation.created_at)}</td>
                   <td>
                     <input

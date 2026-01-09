@@ -61,9 +61,7 @@ export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
             <div key={button.id} style={{ display: "contents" }}>
               <div className={styles.buttonWrapper}>
                 <div className={styles.speechBubble}>{button.description}</div>
-                <button className={styles.stageButton}>
-                  {button.title}
-                </button>
+                <button className={styles.stageButton}>{button.title}</button>
                 {index === 0 && (
                   <div ref={connectorRef} className={styles.connector}></div>
                 )}
