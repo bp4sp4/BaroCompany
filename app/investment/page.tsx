@@ -57,8 +57,7 @@ export default function FundraisingPage() {
                 <div className={styles.service_card_content}>
                   <h3 className={styles.service_card_title}>기업 가치 평가</h3>
                   <p className={styles.service_card_description}>
-                    객관적인 데이터 기반 기업
-                    <br /> 가치 평가 및 분석
+                    객관적인 데이터 기반 <br /> 기업 가치 평가 및 분석
                   </p>
                 </div>
               </div>
@@ -197,7 +196,7 @@ export default function FundraisingPage() {
                 />
               </div>
               <p className={styles.investment_process_card_description}>
-                객관적인인 기준에 따른
+                객관적인 기준에 따른
                 <br />
                 기업 가치 신청
               </p>
