@@ -131,13 +131,13 @@
 }
 
 .connector {
-  position: absolute;
-  left: 170px;
-  top: 32px;
-  right: -1000px;
-  height: 1px;
-  border-top: 2px dotted;
   opacity: 0.3;
+  border-top: 2px dotted;
+  height: 1px;
+  position: absolute;
+  top: 32px;
+  left: 170px;
+  right: -1000px;
 }
 
 /* Light Theme - Hidden */
@@ -196,10 +196,10 @@
 }
 
 .dark .connector {
-  border-color: #ffffff;
+  border-color: #fff;
 }
 
-@media (max-width: 64rem) {
+@media (max-width: 1023px) {
   .container {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -213,8 +213,7 @@
   }
 
   .buttonsSection {
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: 40px;
   }
 
   .connector {
@@ -230,7 +229,66 @@
   }
 }
 
-/* FHD 이상 */
+/* Laptop 1024px */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: var(--unit-9, 40px) 80px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    gap: 40px;
+    height: auto;
+  }
+
+  .innerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .buttonWrapper {
+    margin-right: 40px;
+  }
+
+  .introSection {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .buttonWrapper:first-child {
+    position: relative;
+  }
+
+  .connector {
+    position: absolute;
+    top: 50%;
+    left: calc(100% - 67px);
+    width: calc(100vw - 500px);
+    min-width: 600px;
+    height: 1px;
+    opacity: 1 !important;
+    transform: translateY(-50%);
+    z-index: 0;
+    pointer-events: none;
+    display: block !important;
+  }
+
+  .dark .connector path {
+    stroke: #fff !important;
+    stroke-width: 1px;
+    opacity: 0.3 !important;
+  }
+}
+
+/* Desktop 1920px 이상 */
 @media (min-width: 1920px) {
   .container {
     max-width: 1920px;

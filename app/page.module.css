@@ -23,11 +23,7 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  background: linear-gradient(
-      270deg,
-      rgba(0, 0, 0, 0) 29.38%,
-      #000 100%
-    ),
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0) 29.38%, #000 100%),
     url("/images/main/main_banner.jpg") lightgray 50% / cover no-repeat;
 }
 
@@ -45,11 +41,12 @@
   position: relative;
   z-index: 3;
   display: flex;
-  width: 100%;
-  max-width: 1260px;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--unit-3, 8px);
+  flex: 1 0 0;
+  width: 100%;
+  max-width: 1260px;
   margin: 0 auto;
   padding: 0 var(--unit-5, 16px);
   box-sizing: border-box;
@@ -75,6 +72,24 @@
   line-height: 120%;
   margin: 0;
   text-align: left;
+}
+
+/* 1024px */
+@media (min-width: 1024px) {
+  .main {
+    display: flex;
+    height: 700px;
+    padding: 306px 80px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+  }
+
+  .banner_image_wrapper {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0) 29.38%, #000 100%),
+      url("/images/main/main_banner.jpg") lightgray 50% / cover no-repeat;
+  }
 }
 
 /* 일반 데스크탑 */

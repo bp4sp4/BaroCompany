@@ -55,12 +55,14 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: clamp(1rem, 2vw, 3rem);
   font-weight: 700;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .navLink {
-  color: var(--Grayscale-400, #B2B2B2);
+  color: var(--Grayscale-400, #b2b2b2);
   text-align: center;
   /* Title 3 */
   font-family: Pretendard;
@@ -143,11 +145,32 @@
   font-size: 1.25rem;
 }
 
+/* 1024px 이상 */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1024px;
+    padding: var(--unit-6, 20px) 10px;
+    margin: 0 auto;
+    height: 80px;
+    box-sizing: border-box;
+  }
+
+  .nav {
+    gap: clamp(1rem, 1.5vw, 2rem);
+    flex: 1;
+    justify-content: flex-end;
+  }
+}
+
 /* 일반 데스크탑 */
 @media (min-width: 1280px) {
   .container {
     display: flex;
-    width: 1280px;
+    width: 100%;
     max-width: 1280px;
     padding: var(--unit-6, 20px) 10px;
     justify-content: space-between;
@@ -160,7 +183,7 @@
 @media (min-width: 1920px) {
   .container {
     display: flex;
-    width: 1920px;
+    width: 100%;
     max-width: 1920px;
     padding: var(--unit-6, 20px) 330px;
     justify-content: space-between;
@@ -169,14 +192,14 @@
   }
 }
 
-/* Tablet (1024px 이상 1280px 미만) */
-@media (max-width: 1279px) {
+/* Tablet (768px 이상 1023px 이하) */
+@media (min-width: 768px) and (max-width: 1023px) {
   .container {
     padding: var(--unit-6, 20px) var(--unit-10, 48px);
   }
 
   .nav {
-    gap: var(--unit-5, 16px);
+    gap: clamp(1rem, 2vw, 2rem);
   }
 
   .navLink {
@@ -184,8 +207,8 @@
   }
 }
 
-/* Mobile (480px 이상 1024px 미만) */
-@media (max-width: 1023px) {
+/* Mobile (480px 이상 767px 이하) */
+@media (min-width: 480px) and (max-width: 767px) {
   .container {
     padding: var(--unit-5, 16px) var(--unit-7, 24px);
     height: 70px;

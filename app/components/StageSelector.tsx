@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./StageSelector.module.css";
 
@@ -10,7 +10,22 @@ interface StageSelectorProps {
 
 export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const connectorRef = useRef<HTMLDivElement>(null);
+  const connectorSvgRef = useRef<SVGSVGElement>(null);
+  const connectorDivRef = useRef<HTMLDivElement>(null);
+  const [is1024Screen, setIs1024Screen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      // 1024px부터 1279px까지
+      setIs1024Screen(width >= 1024 && width <= 1279);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   const stageButtons = [
     {
       id: 1,
@@ -62,9 +77,27 @@ export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
               <div className={styles.buttonWrapper}>
                 <div className={styles.speechBubble}>{button.description}</div>
                 <button className={styles.stageButton}>{button.title}</button>
-                {index === 0 && (
-                  <div ref={connectorRef} className={styles.connector}></div>
-                )}
+                {index === 0 && is1024Screen ? (
+                  <svg
+                    ref={connectorSvgRef}
+                    className={styles.connector}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="100%"
+                    height="1"
+                    viewBox="0 0 1000 1"
+                    fill="none"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M0 0.5L1000 0.5"
+                      stroke="#FAFAFA"
+                      strokeDasharray="3 2"
+                      strokeWidth="1"
+                    />
+                  </svg>
+                ) : index === 0 ? (
+                  <div ref={connectorDivRef} className={styles.connector}></div>
+                ) : null}
               </div>
             </div>
           ))}
