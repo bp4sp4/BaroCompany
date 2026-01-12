@@ -6,9 +6,13 @@
 }
 
 .banner {
-  width: 100%;
-  max-width: 100%;
+  display: flex;
   height: 700px;
+  padding: 306px var(--unit-5, 16px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -63,23 +67,152 @@
 
 .banner_title {
   color: var(--white, #fff);
-  /* Display 1 */
-  font-family: Pretendard;
-  font-size: var(--font-display-1-size);
+  font-family: Pretendard, sans-serif;
+  font-size: 72px;
   font-style: normal;
   font-weight: 700;
-  line-height: 140%; /* 100.8px */
+  line-height: 140%;
   margin: 0;
+  text-align: left;
 }
 
 .banner_subtitle {
-  color: var(--Grayscale-50, #fafafa);
-  font-family: var(--font-family-base);
-  font-size: var(--font-title-2-size);
+  color: #fafafa;
+  font-family: Pretendard, sans-serif;
+  font-size: 24px;
   font-style: normal;
-  font-weight: var(--font-title-2-weight);
-  line-height: var(--font-title-2-height);
+  font-weight: 600;
+  line-height: 120%;
   margin: 0;
+  text-align: left;
+}
+
+/* 모바일 및 태블릿 */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .banner {
+    display: flex !important;
+    height: 700px !important;
+    padding: 306px var(--unit-5, 16px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    align-self: stretch !important;
+  }
+
+  .banner_image_wrapper {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      ),
+      url("/images/notice/notice_banner.jpg") lightgray 50% / cover no-repeat !important;
+  }
+
+  .banner_content {
+    padding: 0 !important;
+  }
+
+  .banner_title {
+    color: var(--white, #fff) !important;
+    font-family: Pretendard !important;
+    font-size: 42px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+  }
+
+  .banner_subtitle {
+    color: var(--Grayscale-50, #fafafa) !important;
+    font-family: Pretendard !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: 120% !important;
+  }
+
+  .content_section {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .content_title {
+    font-size: 28px !important;
+  }
+
+  .content_subtitle {
+    font-size: 16px !important;
+  }
+
+  .notice_item_title {
+    font-size: 16px !important;
+  }
+  .notice_item_description {
+    font-size: 16px !important;
+  }
+
+  .cta_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-10, 48px) !important;
+    align-self: stretch !important;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      url("/images/notice/notice_footer_banner.jpg") lightgray 50% / cover
+        no-repeat !important;
+  }
+
+  .cta_title {
+    color: var(--white, #fff) !important;
+    font-family: Pretendard !important;
+    font-size: 28px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+  }
+
+  .cta_description {
+    color: var(--Grayscale-100, #f2f2f2) !important;
+    text-align: center !important;
+    font-family: Pretendard !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 140% !important;
+  }
+
+  .cta_button {
+    font-size: 18px !important;
+    display: flex !important;
+    padding: var(--unit-4, 12px) var(--unit-6, 20px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-2, 4px) !important;
+    border-radius: 26.5px !important;
+    background: var(--Blue-300, #4c85ff) !important;
+    width: fit-content !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+  }
+
+  .cta_button_arrow {
+    width: 24px !important;
+    height: 24px !important;
+    aspect-ratio: 1/1 !important;
+  }
+
+  .cta_description br {
+    display: block !important;
+  }
 }
 
 /* 태블릿 (가로) */
@@ -120,6 +253,10 @@
     align-items: center !important;
     gap: var(--unit-10, 48px) !important;
     align-self: stretch !important;
+  }
+
+  .cta_description br {
+    display: none !important;
   }
 }
 
@@ -365,7 +502,7 @@
   font-size: 64px;
   font-style: normal;
   font-weight: 700;
-  line-height: 140%; /* 43.2px */
+  line-height: 120%;
   margin: 0;
   text-align: center;
 }
@@ -396,7 +533,7 @@
   font-family: Pretendard;
   font-size: 36px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: normal;
   cursor: pointer;
   transition: background-color 0.2s;

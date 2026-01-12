@@ -6,9 +6,13 @@
 }
 
 .banner {
-  width: 100%;
-  max-width: 100%;
+  display: flex;
   height: 700px;
+  padding: 306px var(--unit-5, 16px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -58,27 +62,312 @@
 
 .banner_title {
   color: var(--white, #fff);
-  /* Display 1 */
-  font-family: Pretendard;
-  font-size: var(--font-display-1-size);
+  font-family: Pretendard, sans-serif;
+  font-size: 72px;
   font-style: normal;
   font-weight: 700;
-  line-height: 140%; /* 100.8px */
+  line-height: 140%;
   margin: 0;
+  text-align: left;
 }
 
 .banner_subtitle {
-  color: var(--Grayscale-50, #fafafa);
-  font-family: var(--font-family-base);
-  font-size: var(--font-title-2-size);
+  color: #fafafa;
+  font-family: Pretendard, sans-serif;
+  font-size: 24px;
   font-style: normal;
-  font-weight: var(--font-title-2-weight);
-  line-height: var(--font-title-2-height);
+  font-weight: 600;
+  line-height: 120%;
   margin: 0;
+  text-align: left;
+}
+
+/* 모바일 및 태블릿 */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .banner {
+    display: flex !important;
+    height: 700px !important;
+    padding: 306px var(--unit-5, 16px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    align-self: stretch !important;
+  }
+
+  .banner_image_wrapper {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      ),
+      url("/images/ented/ented_banner.jpg") lightgray 50% / cover no-repeat !important;
+  }
+
+  .banner_content {
+    padding: 0 !important;
+  }
+
+  .banner_title {
+    color: var(--white, #fff) !important;
+    font-family: Pretendard !important;
+    font-size: 42px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+  }
+
+  .banner_subtitle {
+    color: var(--Grayscale-50, #fafafa) !important;
+    font-family: Pretendard !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: 120% !important;
+  }
+
+  .programs_section {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .programs_wrapper {
+    padding: 0 !important;
+  }
+
+  .programs_cards {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+  }
+
+  .program_card {
+    display: flex !important;
+    height: 340.8px !important;
+    padding: var(--unit-7, 24px) !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    align-self: stretch !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
+    background: var(--white, #fff) !important;
+    width: 100% !important;
+  }
+
+  .programs_title {
+    font-size: 28px !important;
+  }
+
+  .programs_subtitle {
+    font-size: 16px !important;
+    text-align: left !important;
+  }
+
+  .curriculum_section {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+    background: var(--Grayscale-100, #f2f2f2) !important;
+    padding: 0 !important;
+  }
+
+  .curriculum_cards {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+  }
+
+  .curriculum_card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    align-self: stretch !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
+    background: var(--white, #fff) !important;
+    width: 100% !important;
+  }
+
+  .curriculum_title {
+    font-size: 28px !important;
+  }
+
+  .curriculum_subtitle {
+    font-size: 16px !important;
+  }
+
+  .features_section {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+    background: var(--white, #fff) !important;
+  }
+
+  .features_cards_wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+  }
+
+  .feature_card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+    max-width: 100% !important;
+  }
+
+  .feature_card_image {
+    display: flex !important;
+    height: 343px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-7, 24px) !important;
+    align-self: stretch !important;
+    aspect-ratio: 1/1 !important;
+    width: 100% !important;
+  }
+
+  .features_title {
+    font-size: 28px !important;
+  }
+
+  .features_subtitle {
+    font-size: 16px !important;
+  }
+
+  .support_section {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+    background: var(--Grayscale-100, #f2f2f2) !important;
+  }
+
+  .support_cards_wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+  }
+
+  .support_card {
+    display: flex !important;
+    height: 350px !important;
+    padding: var(--unit-6, 20px) !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    align-self: stretch !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
+    background: var(--white, #fff) !important;
+    width: 100% !important;
+    flex: none !important;
+    min-height: 350px !important;
+  }
+
+  .support_title {
+    font-size: 28px !important;
+  }
+
+  .support_subtitle {
+    font-size: 16px !important;
+  }
+
+  .cta_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-10, 48px) !important;
+    align-self: stretch !important;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      url("/images/ented/ented_footer_banner.jpg") lightgray 50% / cover
+        no-repeat !important;
+  }
+
+  .cta_title {
+    color: var(--white, #fff) !important;
+    font-family: Pretendard !important;
+    font-size: 28px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+  }
+
+  .cta_description {
+    color: var(--Grayscale-100, #f2f2f2) !important;
+    text-align: center !important;
+    font-family: Pretendard !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 140% !important;
+  }
+
+  .cta_button {
+    font-size: 18px !important;
+    display: flex !important;
+    padding: var(--unit-4, 12px) var(--unit-6, 20px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-2, 4px) !important;
+    border-radius: 26.5px !important;
+    background: var(--Blue-300, #4c85ff) !important;
+    width: fit-content !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+  }
+
+  .cta_button_arrow {
+    width: 24px !important;
+    height: 24px !important;
+    aspect-ratio: 1/1 !important;
+  }
+
+  .cta_description br {
+    display: block !important;
+  }
 }
 
 /* 태블릿 (가로) */
 @media (min-width: 1024px) and (max-width: 1279px) {
+  .cta_description br {
+    display: none !important;
+  }
   .banner {
     display: flex;
     height: 700px;
@@ -172,6 +461,11 @@
     align-items: center !important;
     gap: var(--unit-8, 32px) !important;
     align-self: stretch !important;
+    padding: 0 !important;
+  }
+
+  .features_wrapper {
+    padding: 0 !important;
   }
 
   .features_cards_wrapper {
@@ -228,17 +522,53 @@
     background: var(--Grayscale-100, #f2f2f2) !important;
   }
 
-  .support_card_description br {
-    display: block !important;
-  }
-
   .cta_section {
     display: flex !important;
-    padding: var(--unit-14, 120px) 10px !important;
+    padding: var(--unit-14, 120px) var(--unit-5, 16px) !important;
     flex-direction: column !important;
     align-items: center !important;
     gap: var(--unit-10, 48px) !important;
     align-self: stretch !important;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      url("/images/ented/ented_footer_banner.jpg") lightgray 50% / cover
+        no-repeat !important;
+  }
+
+  .cta_title {
+    color: var(--white, #fff) !important;
+    font-family: Pretendard !important;
+    font-size: 64px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+  }
+
+  .cta_description {
+    color: var(--Grayscale-100, #f2f2f2) !important;
+    text-align: center !important;
+    font-family: Pretendard !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 140% !important;
+  }
+
+  .cta_button {
+    font-size: 18px !important;
+    display: flex !important;
+    padding: var(--unit-4, 12px) var(--unit-6, 20px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-2, 4px) !important;
+    border-radius: 26.5px !important;
+    background: var(--Blue-300, #4c85ff) !important;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: none !important;
   }
 }
 
@@ -891,10 +1221,6 @@
   line-height: 120%; /* 21.6px */
 }
 
-.support_card_description br {
-  display: none;
-}
-
 .support_card_bottom p {
   color: var(--Grayscale-900, #010101);
   /* Body 2/Normal */
@@ -927,11 +1253,10 @@
 /* CTA Section */
 .cta_section {
   display: flex;
-  padding: var(--unit-14, 120px) 0;
+  padding: var(--unit-14, 120px) 10px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: var(--unit-8, 32px);
+  gap: var(--unit-10, 48px);
   align-self: stretch;
   background: linear-gradient(
       0deg,
@@ -947,7 +1272,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--unit-3, 8px);
+  gap: 9px;
 }
 
 .cta_title {
@@ -957,7 +1282,7 @@
   font-size: 64px;
   font-style: normal;
   font-weight: 700;
-  line-height: 140%; /* 43.2px */
+  line-height: 120%; /* 43.2px */
   margin: 0;
   text-align: center;
 }
@@ -974,8 +1299,13 @@
   margin: 0;
 }
 
+.cta_description br {
+  display: none;
+}
+
 .cta_button {
   display: flex;
+
   padding: var(--unit-7, 24px) var(--unit-9, 40px);
   justify-content: center;
   align-items: center;

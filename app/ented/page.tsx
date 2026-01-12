@@ -532,7 +532,7 @@ export default function EntedPage() {
           <div className={styles.cta_text_wrapper}>
             <h2 className={styles.cta_title}>창업의 꿈을 함께 이루세요</h2>
             <p className={styles.cta_description}>
-              한평생 바로 기업과 함께 성공적인 창업을 준비하고 실현하세요
+              한평생 바로 기업과 함께 성공적인 창업을 <br /> 준비하고 실현하세요
             </p>
           </div>
           <button className={styles.cta_button}>

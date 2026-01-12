@@ -317,6 +317,12 @@
     min-width: auto !important;
     max-width: 100% !important;
   }
+
+  .cta_button_arrow {
+    width: 24px !important;
+    height: 24px !important;
+    aspect-ratio: 1/1 !important;
+  }
 }
 
 /* 1024px */

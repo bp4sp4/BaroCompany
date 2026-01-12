@@ -291,17 +291,10 @@ export default function PolicyFundsPage() {
                   <h3 className={styles.comparison_card_title}>
                     소상공인 지원 프로그램
                   </h3>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1"
-                    height="20"
-                    viewBox="0 0 1 20"
-                    fill="none"
-                    className={styles.comparison_card_separator}
-                  >
-                    <path d="M0.5 0V19.5" stroke="#919191" />
-                  </svg>
                   <p className={styles.comparison_card_subtitle}>
+                    <span className={styles.comparison_card_subtitle_separator}>
+                      |
+                    </span>
                     소상공인 및 소기업
                   </p>
                 </div>
@@ -350,17 +343,13 @@ export default function PolicyFundsPage() {
                   <h3 className={styles.comparison_card_title}>
                     중소기업 성장 자금
                   </h3>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1"
-                    height="20"
-                    viewBox="0 0 1 20"
-                    fill="none"
-                    className={styles.comparison_card_separator}
-                  >
-                    <path d="M0.5 0V19.5" stroke="#919191" />
-                  </svg>
-                  <p className={styles.comparison_card_subtitle}>중소기업</p>
+
+                  <p className={styles.comparison_card_subtitle}>
+                    <span className={styles.comparison_card_subtitle_separator}>
+                      |
+                    </span>
+                    중소 기업
+                  </p>
                 </div>
                 <div className={styles.comparison_card_tags}>
                   <span className={styles.comparison_card_tag}>
@@ -408,7 +397,10 @@ export default function PolicyFundsPage() {
                     창업 초기 지원 자금
                   </h3>
                   <p className={styles.comparison_card_subtitle}>
-                    | 신규 창업자
+                    <span className={styles.comparison_card_subtitle_separator}>
+                      |
+                    </span>
+                    신규 창업자
                   </p>
                 </div>
                 <div className={styles.comparison_card_tags}>
@@ -454,17 +446,13 @@ export default function PolicyFundsPage() {
                   <h3 className={styles.comparison_card_title}>
                     수출 기업 지원 자금
                   </h3>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1"
-                    height="20"
-                    viewBox="0 0 1 20"
-                    fill="none"
-                    className={styles.comparison_card_separator}
-                  >
-                    <path d="M0.5 0V19.5" stroke="#919191" />
-                  </svg>
-                  <p className={styles.comparison_card_subtitle}>수출 기업</p>
+
+                  <p className={styles.comparison_card_subtitle}>
+                    <span className={styles.comparison_card_subtitle_separator}>
+                      |
+                    </span>
+                    수출 기업
+                  </p>
                 </div>
                 <div className={styles.comparison_card_tags}>
                   <span className={styles.comparison_card_tag}>
@@ -685,7 +673,8 @@ export default function PolicyFundsPage() {
         <section className={styles.cta_section}>
           <div className={styles.cta_text_wrapper}>
             <h2 className={styles.cta_title}>
-              정책자금으로 기업 자금을 확보하세요
+              정책자금으로
+              <br /> 기업 자금을 확보하세요
             </h2>
             <p className={styles.cta_description}>
               한평생 바로 기업의 정책자금 컨설팅으로 정부 지원을 최대한 활용하고

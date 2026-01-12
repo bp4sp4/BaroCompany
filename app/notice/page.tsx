@@ -132,11 +132,12 @@ function NoticeContent() {
           <div className={styles.cta_text_wrapper}>
             <h2 className={styles.cta_title}>믿을 수 있는 곳에서 시작하세요</h2>
             <p className={styles.cta_description}>
-              한평생 바로 기업과 함께 성공적인 투자 유치를 실현하세요
+              한평생 바로 기업과 함께 성공적인
+              <br /> 투자 유치를 실현하세요
             </p>
           </div>
           <button className={styles.cta_button} onClick={openModal}>
-            상담 신청하기
+            지금 바로 상담하기
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="36"
@@ -146,11 +147,8 @@ function NoticeContent() {
               className={styles.cta_button_arrow}
             >
               <path
-                d="M15 9L21 18L15 27"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                d="M6.18752 16.3928L25.7391 16.3928L18.4946 9.49335C17.8356 8.86572 17.8356 7.84836 18.4946 7.22073C19.1536 6.59309 20.2218 6.59309 20.8809 7.22073L31.006 16.8637L31.1214 16.9861C31.662 17.6174 31.6238 18.5479 31.006 19.1363L20.8809 28.7793C20.2218 29.4069 19.1536 29.4069 18.4946 28.7793C17.8356 28.1516 17.8356 27.1343 18.4946 26.5066L25.7391 19.6072L6.18752 19.6072C5.25553 19.6072 4.5 18.8876 4.5 18C4.5 17.1124 5.25553 16.3928 6.18752 16.3928Z"
+                fill="white"
               />
             </svg>
           </button>
