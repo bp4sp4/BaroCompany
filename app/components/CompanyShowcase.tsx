@@ -1,18 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import styles from "./CompanyShowcase.module.css";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function CompanyShowcase() {
-  const containerRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
   const companies = [
     {
       id: 1,
@@ -56,87 +47,15 @@ export default function CompanyShowcase() {
     },
   ];
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    // 제목이 먼저 나타남
-    if (titleRef.current) {
-      gsap.from(titleRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: "sine.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    // 서브타이틀이 제목 다음에 나타남
-    if (subtitleRef.current) {
-      gsap.from(subtitleRef.current, {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        ease: "sine.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    // 카드 6개가 그리드 순서대로 순차적으로 나타남 (왼쪽 위부터 오른쪽 아래로)
-    cardsRef.current.forEach((card, index) => {
-      if (!card) return;
-
-      gsap.from(card, {
-        opacity: 0,
-        y: 40,
-        scale: 0.95,
-        duration: 0.7,
-        ease: "sine.out",
-        delay: index * 0.1, // 순차적으로 나타남 (그리드 순서대로)
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === containerRef.current) {
-          trigger.kill();
-        }
-      });
-    };
-  }, []);
-
   return (
-    <section ref={containerRef} className={styles.container}>
+    <section className={styles.container}>
       <div className={styles.header}>
-        <p ref={subtitleRef} className={styles.subtitle}>
-          한평생 바로기업에서 답해드립니다
-        </p>
-        <h2 ref={titleRef} className={styles.title}>
-          어떤 서비스가 필요하신가요?
-        </h2>
+        <p className={styles.subtitle}>한평생 바로기업에서 답해드립니다</p>
+        <h2 className={styles.title}>어떤 서비스가 필요하신가요?</h2>
       </div>
       <div className={styles.cardsGrid}>
-        {companies.slice(0, 4).map((company, index) => (
-          <div
-            key={company.id}
-            ref={(el) => {
-              if (el) cardsRef.current[index] = el;
-            }}
-            className={styles.card}
-          >
+        {companies.slice(0, 4).map((company) => (
+          <div key={company.id} className={styles.card}>
             <div className={styles.imageContainer}>
               {company.image && (
                 <Image

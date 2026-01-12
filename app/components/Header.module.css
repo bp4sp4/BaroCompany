@@ -38,6 +38,10 @@
 .logo {
   object-fit: contain;
   transition: opacity 0.3s ease;
+  width: 200px;
+  height: 46px;
+
+  aspect-ratio: 100/23;
 }
 
 .logoText {
@@ -76,7 +80,7 @@
 }
 
 .navLink:hover {
-  opacity: 0.8;
+  color: var(--Grayscale-900, #e4e4e4);
 }
 
 /* 서브페이지: 스크롤 전 - 현재 페이지는 흰색, 나머지는 회색 */

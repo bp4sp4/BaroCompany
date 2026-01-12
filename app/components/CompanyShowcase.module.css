@@ -222,6 +222,8 @@
   .container {
     height: 822px;
     padding: 160px 10px;
+    width: 1280px;
+    margin: 0 auto;
   }
 }
 
@@ -229,7 +231,8 @@
 @media (min-width: 1920px) {
   .container {
     height: 822px;
-    padding: 160px clamp(10px, calc(10px + (100vw - 1280px) * 0.5), 330px);
+    width: 1280px;
+    margin: 0 auto;
   }
 }
 
