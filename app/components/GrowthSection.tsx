@@ -48,7 +48,7 @@ export default function GrowthSection() {
       <div className={styles.sectionInner}>
         <div className={styles.header}>
           <p className={styles.subtitle}>
-            나에게 딱 맞는 전문적인 실무! 한평생에서 꺼내보세요
+            나에게 딱 맞는 전문적인 실무는 한평생에서 시작하세요
           </p>
           <h2 className={styles.title}>대표님의 빠른 성장을 돕습니다</h2>
         </div>

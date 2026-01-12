@@ -197,6 +197,19 @@
   }
 }
 
+/* 모바일 375px ~ 1023px */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .container {
+    display: flex !important;
+    padding: var(--unit-14, 120px) 10px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-10, 48px) !important;
+    align-self: stretch !important;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 60px 24px;

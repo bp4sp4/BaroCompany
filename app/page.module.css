@@ -74,6 +74,48 @@
   text-align: left;
 }
 
+/* 모바일 및 태블릿 */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .main {
+    display: flex !important;
+    height: 700px !important;
+    padding: 306px 16px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    align-self: stretch !important;
+  }
+
+  .banner_image_wrapper {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0) 29.38%, #000 100%),
+      url("/images/main/main_banner.jpg") lightgray 50% / cover no-repeat !important;
+  }
+
+  .heroContent {
+    padding: 0 !important;
+  }
+
+  .heroTitle {
+    color: var(--white, #fff) !important;
+    /* Headline 1 */
+    font-family: Pretendard !important;
+    font-size: 42px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important; /* 50.4px */
+  }
+
+  .heroSubtitle {
+    color: var(--Grayscale-50, #fafafa) !important;
+    /* Title 3 */
+    font-family: Pretendard !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: 120% !important; /* 21.6px */
+  }
+}
+
 /* 1024px */
 @media (min-width: 1024px) {
   .main {
@@ -267,6 +309,44 @@
 .main_achievement_separator path {
   stroke: var(--Grayscale-500, #919191);
   stroke-width: 2;
+}
+
+/* 모바일 375px ~ 1023px */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .main_achievements_section {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    align-self: stretch !important;
+  }
+
+  .main_achievements_metrics {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-10, 48px) !important;
+    width: 100% !important;
+  }
+
+  .main_achievement_item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-4, 12px) !important;
+  }
+
+  .main_achievement_separator {
+    width: 50px !important;
+    height: 2px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .main_achievement_separator path {
+    stroke: var(--Grayscale-500, #919191) !important;
+    stroke-width: 2px !important;
+  }
 }
 
 /* Laptop 1024px */

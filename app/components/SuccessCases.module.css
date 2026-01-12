@@ -224,6 +224,83 @@
   }
 }
 
+/* 모바일 375px ~ 1023px */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .container {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+    height: auto !important;
+  }
+
+  .swiperContainer {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .swiper {
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .swiper :global(.swiper-wrapper) {
+    align-items: flex-start !important;
+  }
+
+  .slide {
+    display: flex !important;
+    width: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  .card {
+    display: flex !important;
+
+    width: 334px !important;
+
+    height: auto !important;
+    padding: var(--unit-7, 24px) var(--unit-6, 20px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    aspect-ratio: 334/243 !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
+    background: var(--white, #fff) !important;
+  }
+
+  .title {
+    color: var(--Grayscale-900, #010101);
+
+    /* Headline 3 */
+    font-family: Pretendard;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 33.6px */
+  }
+
+  .subtitle {
+    color: var(--Blue-500, #0051ff);
+
+    /* Body 2/Normal */
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 19.2px */
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1.5rem 1rem;
@@ -233,10 +310,6 @@
   .header {
     flex-direction: column;
     gap: 1rem;
-  }
-
-  .title {
-    font-size: 1.5rem;
   }
 
   .slide {

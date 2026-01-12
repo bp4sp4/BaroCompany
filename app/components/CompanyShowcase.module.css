@@ -236,9 +236,42 @@
   }
 }
 
-@media (max-width: 1024px) {
+/* 모바일 375px ~ 1023px */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .container {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 50px !important;
+    align-self: stretch !important;
+    height: auto !important;
+  }
+
+  .header {
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
   .cardsGrid {
-    grid-template-columns: repeat(2, 496px);
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .card {
+    width: 100% !important;
+    max-width: 496px !important;
+    margin: 0 auto !important;
+  }
+
+  .imageContainer {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
   }
 }
 

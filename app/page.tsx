@@ -52,13 +52,13 @@ export default function Home() {
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="2"
-              height="50"
-              viewBox="0 0 2 50"
+              width="50"
+              height="2"
+              viewBox="0 0 50 2"
               fill="none"
               className={styles.main_achievement_separator}
             >
-              <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+              <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
             </svg>
             <div className={styles.main_achievement_item}>
               <span className={styles.main_achievement_tag}>승인율</span>
@@ -66,13 +66,13 @@ export default function Home() {
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="2"
-              height="50"
-              viewBox="0 0 2 50"
+              width="50"
+              height="2"
+              viewBox="0 0 50 2"
               fill="none"
               className={styles.main_achievement_separator}
             >
-              <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+              <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
             </svg>
             <div className={styles.main_achievement_item}>
               <span className={styles.main_achievement_tag}>평균 지원액</span>
@@ -80,13 +80,13 @@ export default function Home() {
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="2"
-              height="50"
-              viewBox="0 0 2 50"
+              width="50"
+              height="2"
+              viewBox="0 0 50 2"
               fill="none"
               className={styles.main_achievement_separator}
             >
-              <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+              <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
             </svg>
             <div className={styles.main_achievement_item}>
               <span className={styles.main_achievement_tag}>컨설팅 경력</span>

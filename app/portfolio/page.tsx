@@ -47,17 +47,19 @@ export default function PortfolioPage() {
                       <h3 className={styles.success_case_company_name}>
                         스타트업 A사 (AI 솔루션)
                       </h3>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1"
-                        height="20"
-                        viewBox="0 0 1 20"
-                        fill="none"
-                        className={styles.success_case_separator}
-                      >
-                        <path d="M0.5 0V19.5" stroke="#919191" />
-                      </svg>
-                      <span className={styles.success_case_year}>2024</span>
+                      <div className={styles.success_case_year_wrapper}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1"
+                          height="20"
+                          viewBox="0 0 1 20"
+                          fill="none"
+                          className={styles.success_case_separator}
+                        >
+                          <path d="M0.5 0V19.5" stroke="#919191" />
+                        </svg>
+                        <span className={styles.success_case_year}>2024</span>
+                      </div>
                     </div>
                   </div>
                   <p className={styles.success_case_description}>
@@ -95,17 +97,19 @@ export default function PortfolioPage() {
                       <h3 className={styles.success_case_company_name}>
                         중소기업 B사 (핀테크)
                       </h3>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1"
-                        height="20"
-                        viewBox="0 0 1 20"
-                        fill="none"
-                        className={styles.success_case_separator}
-                      >
-                        <path d="M0.5 0V19.5" stroke="#919191" />
-                      </svg>
-                      <span className={styles.success_case_year}>2024</span>
+                      <div className={styles.success_case_year_wrapper}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1"
+                          height="20"
+                          viewBox="0 0 1 20"
+                          fill="none"
+                          className={styles.success_case_separator}
+                        >
+                          <path d="M0.5 0V19.5" stroke="#919191" />
+                        </svg>
+                        <span className={styles.success_case_year}>2024</span>
+                      </div>
                     </div>
                   </div>
                   <p className={styles.success_case_description}>
@@ -143,17 +147,19 @@ export default function PortfolioPage() {
                       <h3 className={styles.success_case_company_name}>
                         제조업체 C사 (스마트팩토리)
                       </h3>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1"
-                        height="20"
-                        viewBox="0 0 1 20"
-                        fill="none"
-                        className={styles.success_case_separator}
-                      >
-                        <path d="M0.5 0V19.5" stroke="#919191" />
-                      </svg>
-                      <span className={styles.success_case_year}>2023</span>
+                      <div className={styles.success_case_year_wrapper}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1"
+                          height="20"
+                          viewBox="0 0 1 20"
+                          fill="none"
+                          className={styles.success_case_separator}
+                        >
+                          <path d="M0.5 0V19.5" stroke="#919191" />
+                        </svg>
+                        <span className={styles.success_case_year}>2023</span>
+                      </div>
                     </div>
                   </div>
                   <p className={styles.success_case_description}>
@@ -188,17 +194,19 @@ export default function PortfolioPage() {
                       <h3 className={styles.success_case_company_name}>
                         서비스업 D사 (O2O 플랫폼)
                       </h3>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1"
-                        height="20"
-                        viewBox="0 0 1 20"
-                        fill="none"
-                        className={styles.success_case_separator}
-                      >
-                        <path d="M0.5 0V19.5" stroke="#919191" />
-                      </svg>
-                      <span className={styles.success_case_year}>2023</span>
+                      <div className={styles.success_case_year_wrapper}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1"
+                          height="20"
+                          viewBox="0 0 1 20"
+                          fill="none"
+                          className={styles.success_case_separator}
+                        >
+                          <path d="M0.5 0V19.5" stroke="#919191" />
+                        </svg>
+                        <span className={styles.success_case_year}>2023</span>
+                      </div>
                     </div>
                   </div>
                   <p className={styles.success_case_description}>
@@ -235,17 +243,19 @@ export default function PortfolioPage() {
                       <h3 className={styles.success_case_company_name}>
                         이커머스 E사 (패션)
                       </h3>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1"
-                        height="20"
-                        viewBox="0 0 1 20"
-                        fill="none"
-                        className={styles.success_case_separator}
-                      >
-                        <path d="M0.5 0V19.5" stroke="#919191" />
-                      </svg>
-                      <span className={styles.success_case_year}>2024</span>
+                      <div className={styles.success_case_year_wrapper}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1"
+                          height="20"
+                          viewBox="0 0 1 20"
+                          fill="none"
+                          className={styles.success_case_separator}
+                        >
+                          <path d="M0.5 0V19.5" stroke="#919191" />
+                        </svg>
+                        <span className={styles.success_case_year}>2024</span>
+                      </div>
                     </div>
                   </div>
                   <p className={styles.success_case_description}>
@@ -284,17 +294,19 @@ export default function PortfolioPage() {
                       <h3 className={styles.success_case_company_name}>
                         바이오 F사 (헬스케어)
                       </h3>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1"
-                        height="20"
-                        viewBox="0 0 1 20"
-                        fill="none"
-                        className={styles.success_case_separator}
-                      >
-                        <path d="M0.5 0V19.5" stroke="#919191" />
-                      </svg>
-                      <span className={styles.success_case_year}>2024</span>
+                      <div className={styles.success_case_year_wrapper}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1"
+                          height="20"
+                          viewBox="0 0 1 20"
+                          fill="none"
+                          className={styles.success_case_separator}
+                        >
+                          <path d="M0.5 0V19.5" stroke="#919191" />
+                        </svg>
+                        <span className={styles.success_case_year}>2024</span>
+                      </div>
                     </div>
                   </div>
                   <p className={styles.success_case_description}>
@@ -346,13 +358,13 @@ export default function PortfolioPage() {
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="2"
-                height="50"
-                viewBox="0 0 2 50"
+                width="50"
+                height="2"
+                viewBox="0 0 50 2"
                 fill="none"
                 className={styles.portfolio_achievement_separator}
               >
-                <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
               </svg>
               <div className={styles.portfolio_achievement_item}>
                 <span className={styles.portfolio_achievement_tag}>
@@ -364,13 +376,13 @@ export default function PortfolioPage() {
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="2"
-                height="50"
-                viewBox="0 0 2 50"
+                width="50"
+                height="2"
+                viewBox="0 0 50 2"
                 fill="none"
                 className={styles.portfolio_achievement_separator}
               >
-                <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
               </svg>
               <div className={styles.portfolio_achievement_item}>
                 <span className={styles.portfolio_achievement_tag}>
@@ -582,7 +594,8 @@ export default function PortfolioPage() {
         <section className={styles.cta_section}>
           <div className={styles.cta_text_wrapper}>
             <h2 className={styles.cta_title}>
-              당신의 성공 사례도 만들어보세요
+              당신의 성공 사례도
+              <br /> 만들어보세요
             </h2>
             <p className={styles.cta_description}>
               한평생 바로 기업과 함께 성공의 길을 걸어보세요

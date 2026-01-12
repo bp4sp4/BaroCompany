@@ -49,7 +49,7 @@ export default function SuccessCases() {
       <div className={styles.header}>
         <div className={styles.titleSection}>
           <p ref={subtitleRef} className={styles.subtitle}>
-            플랫폼 정보, 어떤 투자, 어떤 프로그램 이용 등
+            대표님의 성공과 성장을 함께합니다
           </p>
           <h2 ref={titleRef} className={styles.title}>
             바로기업 투자유치 성공사례
@@ -59,20 +59,33 @@ export default function SuccessCases() {
       <div ref={swiperRef} className={styles.swiperContainer}>
         <Swiper
           modules={[Pagination]}
-          spaceBetween={20}
+          spaceBetween={30}
           slidesPerView={3}
           breakpoints={{
+            375: {
+              slidesPerView: 1,
+              spaceBetween: 100,
+              centeredSlides: false,
+            },
+            480: {
+              slidesPerView: 1.2,
+              spaceBetween: 10,
+              centeredSlides: false,
+            },
             1024: {
               slidesPerView: 2.2,
               spaceBetween: 100,
+              centeredSlides: false,
             },
             1280: {
               slidesPerView: 3,
               spaceBetween: 10,
+              centeredSlides: false,
             },
             1920: {
               slidesPerView: 3.5,
               spaceBetween: 230,
+              centeredSlides: false,
             },
           }}
           pagination={{ clickable: true }}

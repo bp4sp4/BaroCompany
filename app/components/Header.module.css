@@ -36,11 +36,8 @@
 }
 
 .logo {
-  object-fit: contain;
-  transition: opacity 0.3s ease;
   width: 200px;
   height: 46px;
-
   aspect-ratio: 100/23;
 }
 
@@ -149,8 +146,225 @@
   font-size: 1.25rem;
 }
 
+.mobileMenuButton {
+  display: none;
+  width: 36px;
+  height: 36px;
+  aspect-ratio: 1/1;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.mobileMenuButton svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 모바일 및 태블릿 (1023px 이하 공통) */
+@media (max-width: 1023px) {
+  .header {
+    height: 80px; /* 헤더 높이 고정 */
+    background-color: transparent;
+  }
+
+  .container {
+    height: 100%;
+    padding: 0 20px !important; /* 좌우 여백 확보 */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important; /* 로고는 왼쪽, 버튼은 오른쪽 */
+    align-items: center !important;
+    max-width: 100% !important;
+  }
+
+  /* 네비게이션과 상담버튼은 모바일에서 완전히 숨김 */
+  .nav {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    pointer-events: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+  }
+
+  .consultButton {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    pointer-events: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .nav * {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  .logoSection {
+    display: flex !important;
+    align-items: center;
+    z-index: 101;
+  }
+
+  .logo {
+    width: 140px !important; /* 모바일에서는 로고 크기를 조금 줄이는 것이 안정적입니다 */
+    height: auto !important;
+  }
+
+  .mobileMenuButton {
+    display: flex !important;
+    position: relative;
+    z-index: 101; /* 메뉴가 열려도 로고와 버튼은 보여야 함 */
+    margin: 0;
+    padding: 0;
+  }
+
+  .header.menuOpen {
+    background-color: #000 !important;
+  }
+
+  .header.menuOpen.scrolled {
+    background-color: #fff !important;
+  }
+
+  .mobileMenuOverlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 98 !important;
+
+    transition: opacity 0.3s ease !important;
+    pointer-events: none !important;
+  }
+
+  .overlayOpen {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .overlayClosed {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .mobileMenu {
+    position: fixed !important;
+    top: 80px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background-color: #000 !important;
+    z-index: 99 !important;
+    overflow: hidden !important;
+    transition: max-height 0.5s ease-in-out, visibility 0.5s ease-in-out,
+      opacity 0.5s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    max-height: 0 !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .mobileMenuOpen {
+    max-height: 100vh !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .mobileMenuClosed {
+    max-height: 0 !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .mobileMenuScrolled {
+    background-color: #fff !important;
+  }
+
+  .mobileMenuContent {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0px 30px 30px 30px !important;
+    gap: var(--unit-6, 20px) !important;
+  }
+
+  .mobileNavLink {
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    padding: var(--unit-4, 12px) 0 !important;
+    transition: color 0.2s !important;
+    font-family: Pretendard !important;
+  }
+
+  .mobileMenuScrolled .mobileNavLink {
+    color: #000 !important;
+  }
+
+  .mobileNavLink:hover {
+    opacity: 0.8 !important;
+  }
+
+  .mobileConsultButton {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: var(--unit-4, 12px) var(--unit-6, 20px) !important;
+    background-color: #0051ff !important;
+    color: #fff !important;
+    border-radius: 1.5rem !important;
+    text-decoration: none !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    margin-top: var(--unit-4, 12px) !important;
+    font-family: Pretendard !important;
+  }
+}
+
 /* 1024px 이상 */
 @media (min-width: 1024px) and (max-width: 1279px) {
+  .mobileMenuButton {
+    display: none !important;
+  }
+
+  .mobileMenu {
+    display: none !important;
+  }
+
+  .mobileMenuOverlay {
+    display: none !important;
+  }
+
   .container {
     display: flex;
     justify-content: space-between;
@@ -172,6 +386,18 @@
 
 /* 일반 데스크탑 */
 @media (min-width: 1280px) {
+  .mobileMenuButton {
+    display: none !important;
+  }
+
+  .mobileMenu {
+    display: none !important;
+  }
+
+  .mobileMenuOverlay {
+    display: none !important;
+  }
+
   .container {
     display: flex;
     width: 100%;
@@ -185,6 +411,18 @@
 
 /* Desktop Large (1920px 이상) - 여백만 증가 */
 @media (min-width: 1920px) {
+  .mobileMenuButton {
+    display: none !important;
+  }
+
+  .mobileMenu {
+    display: none !important;
+  }
+
+  .mobileMenuOverlay {
+    display: none !important;
+  }
+
   .container {
     display: flex;
     width: 100%;
@@ -208,58 +446,5 @@
 
   .navLink {
     font-size: var(--font-body-2-size);
-  }
-}
-
-/* Mobile (480px 이상 767px 이하) */
-@media (min-width: 480px) and (max-width: 767px) {
-  .container {
-    padding: var(--unit-5, 16px) var(--unit-7, 24px);
-    height: 70px;
-  }
-
-  .nav {
-    gap: var(--unit-4, 12px);
-  }
-
-  .navLink {
-    font-size: var(--font-label-1-size);
-  }
-
-  .consultButton {
-    padding: var(--unit-4, 12px) var(--unit-5, 16px);
-    font-size: var(--font-label-1-size);
-    width: auto;
-    min-width: 120px;
-  }
-}
-
-/* Mobile Small (480px 미만) */
-@media (max-width: 479px) {
-  .container {
-    padding: var(--unit-4, 12px) var(--unit-5, 16px);
-    height: 60px;
-    flex-wrap: wrap;
-  }
-
-  .nav {
-    gap: var(--unit-3, 8px);
-    flex-wrap: wrap;
-  }
-
-  .navLink {
-    font-size: var(--font-label-2-size);
-  }
-
-  .consultButton {
-    padding: var(--unit-3, 8px) var(--unit-4, 12px);
-    font-size: var(--font-label-2-size);
-    width: auto;
-    min-width: 100px;
-  }
-
-  .logoSection {
-    width: 100%;
-    justify-content: center;
   }
 }

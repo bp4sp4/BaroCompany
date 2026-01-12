@@ -380,6 +380,13 @@
   margin-bottom: 0;
 }
 
+/* 모바일 및 태블릿 (375px ~ 1023px) - 플로팅 배너 숨김 */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .floatingForm {
+    display: none !important;
+  }
+}
+
 @media (max-width: 768px) {
   .floatingForm {
     right: 10px;

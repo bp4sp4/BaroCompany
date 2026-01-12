@@ -8,7 +8,7 @@
 .banner {
   display: flex;
   height: 700px;
-  padding: 306px 0;
+  padding: 306px var(--unit-5, 16px);
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -26,7 +26,11 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  background: linear-gradient(270deg, rgba(0, 0, 0, 0) 29.38%, #000 100%),
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    ),
     url("/images/portfolio/portfolio_banner.jpg") lightgray 50% / cover
       no-repeat;
 }
@@ -58,23 +62,261 @@
 
 .banner_title {
   color: var(--white, #fff);
-  /* Display 1 */
-  font-family: Pretendard;
-  font-size: var(--font-display-1-size);
+  font-family: Pretendard, sans-serif;
+  font-size: 72px;
   font-style: normal;
   font-weight: 700;
-  line-height: 140%; /* 100.8px */
+  line-height: 140%;
   margin: 0;
+  text-align: left;
 }
 
 .banner_subtitle {
-  color: var(--Grayscale-50, #fafafa);
-  font-family: var(--font-family-base);
-  font-size: var(--font-title-2-size);
+  color: #fafafa;
+  font-family: Pretendard, sans-serif;
+  font-size: 24px;
   font-style: normal;
-  font-weight: var(--font-title-2-weight);
-  line-height: var(--font-title-2-height);
+  font-weight: 600;
+  line-height: 120%;
   margin: 0;
+  text-align: left;
+}
+
+/* 모바일 및 태블릿 */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .banner {
+    display: flex !important;
+    height: 700px !important;
+    padding: 306px var(--unit-5, 16px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    align-self: stretch !important;
+  }
+
+  .banner_image_wrapper {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+      ),
+      url("/images/portfolio/portfolio_banner.jpg") lightgray 50% / cover
+        no-repeat !important;
+  }
+
+  .banner_content {
+    padding: 0 !important;
+  }
+
+  .banner_title {
+    color: var(--white, #fff) !important;
+    font-family: Pretendard !important;
+    font-size: 42px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 120% !important;
+  }
+
+  .banner_subtitle {
+    color: var(--Grayscale-50, #fafafa) !important;
+    font-family: Pretendard !important;
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: 120% !important;
+  }
+
+  .success_cases_section {
+    display: flex !important;
+    padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .success_cases_cards_container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--unit-6, 20px) !important;
+    width: 100% !important;
+  }
+
+  .success_case_card {
+    display: flex !important;
+    padding: var(--unit-7, 24px) var(--unit-6, 20px) !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
+    background: var(--white, #fff) !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  .success_case_card_top {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+  }
+
+  .success_cases_subtitle {
+    font-size: 16px !important;
+  }
+
+  .success_cases_title {
+    font-size: 28px !important;
+  }
+  .success_case_company_wrapper {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--unit-3, 8px) !important;
+    margin-bottom: 0px !important;
+  }
+
+  .success_case_company_name {
+    font-size: 24px !important;
+    width: 100% !important;
+    margin-bottom: 0 !important;
+  }
+
+  .success_case_year_wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--unit-4, 12px) !important;
+  }
+
+  .success_case_separator {
+    margin-right: 0 !important;
+  }
+
+  .success_case_results_text {
+    font-size: 18px !important;
+  }
+
+  .portfolio_achievements_section {
+    display: flex !important;
+    padding: var(--unit-13, 96px) 10px !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 32px !important;
+    align-self: stretch !important;
+  }
+
+  .portfolio_achievements_metrics {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 32px !important;
+  }
+
+  .portfolio_achievement_separator {
+    width: 50px !important;
+    height: 2px !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  .portfolio_achievement_separator svg {
+    width: 50px !important;
+    height: 2px !important;
+  }
+
+  .portfolio_achievement_separator path {
+    stroke-width: 2px !important;
+    stroke: var(--Grayscale-500, #919191) !important;
+  }
+
+  .portfolio_features_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+  }
+
+  .portfolio_features_cards {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--unit-4, 12px) !important;
+    align-self: stretch !important;
+  }
+
+  .portfolio_feature_card {
+    display: flex !important;
+    padding: var(--unit-6, 20px) !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--unit-8, 32px) !important;
+    align-self: stretch !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
+    background: var(--white, #fff) !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  .cta_section {
+    display: flex !important;
+    padding: var(--unit-14, 120px) var(--unit-5, 16px) !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-10, 48px) !important;
+    align-self: stretch !important;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      url("/images/portfolio/portfolio_footer_banner.jpg") lightgray 50% / cover
+        no-repeat !important;
+  }
+  .portfolio_achievements_title {
+    font-size: 28px !important;
+  }
+  .portfolio_achievements_subtitle {
+    font-size: 18px !important;
+  }
+
+  .portfolio_feature_title {
+    font-size: 28px !important;
+  }
+  .portfolio_feature_description {
+    font-size: 18px !important;
+  }
+  .cta_title {
+    font-size: 28px !important;
+  }
+  .cta_description {
+    font-size: 16px !important;
+  }
+
+  .cta_title br {
+    display: block !important;
+  }
+
+  .cta_button {
+    font-size: 18px !important;
+    display: flex !important;
+    padding: var(--unit-4, 12px) var(--unit-6, 20px) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-2, 4px) !important;
+    border-radius: 26.5px !important;
+    background: var(--Blue-300, #4c85ff) !important;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+  }
 }
 
 /* 1024px */
@@ -113,13 +355,13 @@
   }
 
   .banner_title {
-    font-size: var(--font-display-1-size);
+    font-size: 72px;
     line-height: 140%;
   }
 
   .banner_subtitle {
-    font-size: var(--font-title-2-size);
-    line-height: var(--font-title-2-height);
+    font-size: 24px;
+    line-height: 120%;
   }
 
   .content_section {
@@ -147,13 +389,13 @@
   }
 
   .banner_title {
-    font-size: var(--font-display-1-size);
+    font-size: 72px;
     line-height: 140%;
   }
 
   .banner_subtitle {
-    font-size: var(--font-title-2-size);
-    line-height: var(--font-title-2-height);
+    font-size: 24px;
+    line-height: 120%;
   }
 
   .content_section {
@@ -409,14 +651,14 @@
 }
 
 .success_cases_subtitle {
-  color: var(--Grayscale-700, #3d3d3d);
-  /* Body 1/Normal */
+  color: var(--Blue-500, #0051ff);
+
+  /* Body 2/Normal */
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%; /* 21.6px */
-  margin: 0;
+  line-height: 120%; /* 19.2px */
 }
 
 .success_cases_title {
@@ -500,6 +742,12 @@
   gap: var(--unit-4, 12px);
   margin-bottom: 16px;
   width: 100%;
+}
+
+.success_case_year_wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--unit-4, 12px);
 }
 
 .success_case_company_name {
@@ -1030,6 +1278,10 @@
   line-height: 120%; /* 43.2px */
   margin: 0;
   text-align: center;
+}
+
+.cta_title br {
+  display: none;
 }
 
 .cta_description {
