@@ -178,8 +178,6 @@
     align-items: center !important;
     gap: var(--unit-8, 32px) !important;
     align-self: stretch !important;
-    background: var(--Grayscale-100, #f2f2f2) !important;
-    padding: 0 !important;
   }
 
   .curriculum_cards {
@@ -207,6 +205,40 @@
 
   .curriculum_subtitle {
     font-size: 16px !important;
+  }
+
+  .curriculum_card_image {
+    flex: 1 0 0 !important;
+    align-self: stretch !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 200px !important;
+    aspect-ratio: 1/1 !important;
+  }
+
+  .curriculum_card:nth-child(1) .curriculum_card_image {
+    background: url("/images/ented/ented_01.jpg") lightgray 50% / cover
+      no-repeat !important;
+  }
+
+  .curriculum_card:nth-child(2) .curriculum_card_image {
+    background: url("/images/ented/ented_02.jpg") lightgray 50% / cover
+      no-repeat !important;
+  }
+
+  .curriculum_card:nth-child(3) .curriculum_card_image {
+    background: url("/images/ented/ented_03.jpg") lightgray 50% / cover
+      no-repeat !important;
+  }
+
+  .curriculum_card:nth-child(4) .curriculum_card_image {
+    background: url("/images/ented/ented_04.jpg") lightgray 50% / cover
+      no-repeat !important;
+  }
+
+  .curriculum_card_image_img {
+    display: none !important;
   }
 
   .features_section {
@@ -449,8 +481,34 @@
   }
 
   .curriculum_card_image {
-    width: 100% !important;
+    display: flex !important;
     height: 284px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+    align-self: stretch !important;
+    aspect-ratio: 3/2 !important;
+  }
+
+  .curriculum_card:nth-child(1) .curriculum_card_image {
+    background: url("/images/ented/ented_01.jpg") lightgray 50% / cover
+      no-repeat !important;
+  }
+
+  .curriculum_card:nth-child(2) .curriculum_card_image {
+    background: url("/images/ented/ented_02.jpg") lightgray 50% / cover
+      no-repeat !important;
+  }
+
+  .curriculum_card:nth-child(3) .curriculum_card_image {
+    background: url("/images/ented/ented_03.jpg") lightgray 50% / cover
+      no-repeat !important;
+  }
+
+  .curriculum_card:nth-child(4) .curriculum_card_image {
+    background: url("/images/ented/ented_04.jpg") lightgray 50% / cover
+      no-repeat !important;
   }
 
   .features_section {
@@ -461,7 +519,7 @@
     align-items: center !important;
     gap: var(--unit-8, 32px) !important;
     align-self: stretch !important;
-    padding: 0 !important;
+    background: var(--white, #fff) !important;
   }
 
   .features_wrapper {

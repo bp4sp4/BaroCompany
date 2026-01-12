@@ -212,7 +212,11 @@
   .portfolio_achievements_metrics {
     flex-direction: column !important;
     width: 100% !important;
-    gap: 32px !important;
+    gap: var(--unit-10, 48px) !important;
+  }
+
+  .portfolio_achievement_number {
+    font-size: 42px !important;
   }
 
   .portfolio_achievement_separator {

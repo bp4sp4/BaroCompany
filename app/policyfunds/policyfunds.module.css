@@ -219,14 +219,18 @@
   }
 
   .feature_card_image {
-    flex: 1 0 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: var(--unit-7, 24px) !important;
     align-self: stretch !important;
-    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
-    background: lightgray 50% / cover no-repeat !important;
+    aspect-ratio: 1/1 !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--Grayscale-200, #E4E4E4) !important;
     width: 100% !important;
-    max-width: 100% !important;
     height: auto !important;
-    min-height: 200px !important;
+    min-height: 0 !important;
     position: relative !important;
   }
 

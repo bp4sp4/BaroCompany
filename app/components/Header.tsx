@@ -7,6 +7,9 @@ import { usePathname } from "next/navigation";
 import { useConsultation } from "./ConsultationContext";
 import styles from "./Header.module.css";
 
+// 로고 캐시 버스터 - 빌드 타임에 고정
+const LOGO_VERSION = "v1.0.0";
+
 // 모바일 감지 훅
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(true); // 초기값을 true로 설정 (SSR 안전)
@@ -67,18 +70,16 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         <div className={styles.container}>
           <div className={styles.logoSection}>
             <Link href="/">
-              <Image
-                src={
+              <img
+                src={`${
                   isScrolled
                     ? "/images/main/logo_black.png"
                     : "/images/main/logo_white.png"
-                }
+                }?v=${LOGO_VERSION}`}
                 alt="한평생 바로기업"
-                width={200}
-                height={isScrolled ? 46 : 64}
+                width={240}
+                height={isScrolled ? 55 : 77}
                 className={styles.logo}
-                unoptimized
-                priority
               />
             </Link>
           </div>

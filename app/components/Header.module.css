@@ -39,6 +39,7 @@
   width: 200px;
   height: 46px;
   aspect-ratio: 100/23;
+  object-fit: cover;
 }
 
 .logoText {
@@ -231,8 +232,8 @@
   }
 
   .logo {
-    width: 140px !important; /* 모바일에서는 로고 크기를 조금 줄이는 것이 안정적입니다 */
-    height: auto !important;
+    width: 200px !important; /* 모바일에서는 로고 크기를 조금 줄이는 것이 안정적입니다 */
+    height: 46px !important;
   }
 
   .mobileMenuButton {
