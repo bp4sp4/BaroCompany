@@ -26,9 +26,9 @@ function EntedContent() {
               <br /> 현실로 만드는 교육
             </h1>
             <p className={styles.banner_subtitle}>
-              한평생 바로 기업의 창업교육으로 성공적인 창업을 준비하세요.
+              기초부터 실전까지, 한평생 바로기업의
               <br />
-              기초부터 실전까지 모든 것을 배울 수 있습니다.
+              창업교육으로 성공적인 창업 준비
             </p>
           </div>
         </section>

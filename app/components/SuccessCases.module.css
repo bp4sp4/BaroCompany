@@ -267,6 +267,7 @@
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
+    justify-content: center !important;
   }
 
   .swiper {
@@ -278,14 +279,19 @@
   }
 
   .swiper :global(.swiper-wrapper) {
-    align-items: flex-start !important;
+  }
+
+  .swiper :global(.swiper-slide) {
+    display: flex !important;
+    justify-content: center !important;
+    width: auto !important;
   }
 
   .slide {
     display: flex !important;
-
     flex-shrink: 0 !important;
     margin-bottom: 16px !important;
+    justify-content: center !important;
   }
 
   .card {
@@ -300,6 +306,7 @@
     border-radius: 10px !important;
     border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
     background: var(--white, #fff) !important;
+    margin: 0 auto !important;
   }
 
   .title {
@@ -325,5 +332,19 @@
   }
   .SuccessCases-module__j9sBjq__swiper .swiper-pagination {
     margin-top: 16px !important;
+  }
+
+  .companyName {
+    font-size: 24px !important;
+  }
+
+  .investmentButton {
+    font-size: 24px !important;
+  }
+  .description {
+    font-size: 16px !important;
+  }
+  .tag {
+    font-size: 12px !important;
   }
 }

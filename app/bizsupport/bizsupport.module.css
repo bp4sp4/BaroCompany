@@ -99,7 +99,7 @@
         rgba(0, 0, 0, 0.7) 0%,
         rgba(0, 0, 0, 0.7) 100%
       ),
-      url("/images/bizsupport/bizsupport_banner.jpg") lightgray 50% / cover
+      url("/images/bizsupport/biz_support_mobile.jpg") lightgray 50% / cover
         no-repeat !important;
   }
 
@@ -268,7 +268,7 @@
     background: url("/images/bizsupport/bizsupport_feature_01.jpg") lightgray
       50% / cover no-repeat !important;
     width: 100% !important;
-    height: auto !important;
+    height: 343px !important;
     min-height: 0 !important;
   }
 
@@ -484,7 +484,7 @@
 }
 
 /* 태블릿 및 중간 크기 (1024px ~ 1199px) */
-@media (min-width: 1024px) and (max-width: 1199px) {
+@media (min-width: 1024px) and (max-width: 1279px) {
   .services_cards_wrapper {
     display: flex !important;
     flex-direction: row !important;
@@ -614,7 +614,7 @@
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: var(--unit-8, 32px) !important;
+    gap: var(--unit-3, 8px) !important;
     width: 100% !important;
   }
 
@@ -1285,7 +1285,7 @@
 .feature_card_image {
   width: 100%;
   height: 306px;
-  min-height: 306px;
+
   position: relative;
   overflow: hidden;
   flex-shrink: 0;

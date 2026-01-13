@@ -23,13 +23,12 @@ function BizSupportContent() {
           <div className={styles.banner_content}>
             <h1 className={styles.banner_title}>
               기업 성장의
-              <br /> 모든 단계를 함께합니다.
+              <br /> 모든 단계를 함께
             </h1>
             <p className={styles.banner_subtitle}>
-              초기 단계부터 성숙 단계까지, 한평생 바로 기업이 기업의 모든 성장
-              과정을
+              체계적인 기업 성장 지원 및
               <br />
-              체계적으로 지원하고 최적의 경영 전략을 제시합니다.
+              최적의 경영 전략 제시
             </p>
           </div>
         </section>

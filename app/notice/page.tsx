@@ -23,9 +23,8 @@ function NoticeContent() {
           <div className={styles.banner_content}>
             <h1 className={styles.banner_title}>안전하게 시작하세요</h1>
             <p className={styles.banner_subtitle}>
-              초기 단계부터 성숙 단계까지, 한평생 바로 기업이 기업의 모든 성장
-              과정을
-              <br /> 체계적으로 지원하고 최적의 경영 전략을 제시합니다.
+              한평생 바로기업에서
+              <br /> 안전한 컨설팅을 받아보세요
             </p>
           </div>
         </section>
@@ -133,7 +132,7 @@ function NoticeContent() {
           <div className={styles.cta_text_wrapper}>
             <h2 className={styles.cta_title}>믿을 수 있는 곳에서 시작하세요</h2>
             <p className={styles.cta_description}>
-              한평생 바로 기업과 함께 성공적인
+              한평생 바로 기업과 함께 안전하게
               <br /> 투자 유치를 실현하세요
             </p>
           </div>

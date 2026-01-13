@@ -8,7 +8,8 @@ export default function RecruitmentBanner() {
         <h2 className={styles.title}>
           기술력에 자신있다면,
           <br />
-          바로기업에서 그 시작을 함께하세요!
+          바로기업에서 그 시작을
+          <br className={styles.br} /> 함께하세요!
         </h2>
       </div>
     </section>

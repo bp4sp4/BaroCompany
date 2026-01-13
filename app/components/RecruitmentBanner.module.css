@@ -48,8 +48,15 @@
   line-height: 120%; /* 50.4px */
 }
 
+.br {
+  display: none;
+}
+
 /* Laptop 1024px */
 @media (min-width: 1024px) and (max-width: 1279px) {
+  .br {
+    display: none !important;
+  }
   .section {
     display: flex;
     padding: var(--unit-14, 120px) 80px 0 80px;
@@ -82,6 +89,10 @@
     width: 1260px;
     height: 336px;
     padding: 40px 50px;
+  }
+
+  .br {
+    display: none !important;
   }
 }
 
@@ -130,6 +141,10 @@
     font-weight: 700 !important;
     line-height: 120% !important; /* 33.6px */
   }
+
+  .br {
+    display: block !important;
+  }
 }
 
 /* FHD 이상 */
@@ -144,5 +159,9 @@
     width: 1260px;
     height: 336px;
     padding: 40px 50px;
+  }
+
+  .br {
+    display: none !important;
   }
 }

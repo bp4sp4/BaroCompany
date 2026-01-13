@@ -20,7 +20,7 @@ export default function CompanyShowcase() {
       achievement: "자금확보",
       description:
         "복잡하고 까다로운 정책자금<br/> 확실한 전략으로 받을 수 있도록",
-      tags: ["#정책자금", "#맞춤형전략", "#1:1멘토"],
+      tags: ["#정책자금", "#맞춤형전략"],
       category: "Secure funds",
       companyName: "자금이 필요할 때",
       image: "/images/main/showcase/showcase002.png",
@@ -30,7 +30,7 @@ export default function CompanyShowcase() {
       achievement: "경영지원",
       description:
         "세무·노무 이슈는 전문가에게,<br/> 대표님은 사업과 성장에만 집중!",
-      tags: ["#절세솔루션", "#인사노무", "#기업인증"],
+      tags: ["#절세솔루션", "#기업인증"],
       category: "Management support",
       companyName: "경영 지원이 필요할 때",
       image: "/images/main/showcase/showcase003.png",
@@ -40,7 +40,7 @@ export default function CompanyShowcase() {
       achievement: "투자유치",
       description:
         "기업의 가치를 증명하는 스토리로<br/> 성공적인 자금 조달과 스케일업",
-      tags: ["#IR자료제작", "#투자자매칭", "#기업인증"],
+      tags: ["#IR자료제작", "#기업인증"],
       category: "Attracting investment",
       companyName: "투자가 필요할 때",
       image: "/images/main/showcase/showcase004.png",

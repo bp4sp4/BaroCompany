@@ -53,6 +53,37 @@ export default function AchievementSection() {
       name: "한*생 대표님",
       company: "A 카페",
     },
+    {
+      id: 7,
+      quote: '"바로기업 덕분에<br/>정부지원사업 어렵지 않았어요"',
+      name: "한*생 대표님",
+      company: "A 카페",
+    },
+    {
+      id: 8,
+      quote: '"잠자고 있던 돈을<br/>찾은 기분입니다."',
+      name: "한*생 대표님",
+      company: "A 카페",
+    },
+    {
+      id: 9,
+      quote:
+        "막막했던 서류 작성부터 대면<br/> 상담까지 함께해주어 확장에만<br/> 전념할 수 있었습니다.",
+      name: "한*생 대표님",
+      company: "A 카페",
+    },
+    {
+      id: 10,
+      quote: '"바로기업 덕분에<br/>정부지원사업 어렵지 않았어요"',
+      name: "한*생 대표님",
+      company: "A 카페",
+    },
+    {
+      id: 11,
+      quote: '"잠자고 있던 돈을<br/>찾은 기분입니다."',
+      name: "한*생 대표님",
+      company: "A 카페",
+    },
   ];
 
   // 무한 반복을 위해 배열을 복제

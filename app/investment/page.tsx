@@ -26,8 +26,8 @@ function FundraisingContent() {
               <br /> 투자 유치의 파트너
             </h1>
             <p className={styles.banner_subtitle}>
-              한평생 바로 기업의 투자 유치 전문가와 함께
-              <br /> 기업의 가치를 극대화하고 적절한 투자자를 발굴하세요.
+              투자 유치 전문가와 함께
+              <br /> 기업의 가치를 극대화 하세요
             </p>
           </div>
         </section>
@@ -35,7 +35,7 @@ function FundraisingContent() {
           <div className={styles.services_content_wrapper}>
             <div className={styles.services_text_wrapper}>
               <p className={styles.services_subtitle}>
-                기업의 가치를 극대화하고 적절한 투자자를 발굴하는 전문 서비스
+                기업 가치 극대화 및 투자자 발굴 서비스
               </p>
               <h2 className={styles.services_title}>투자 유치 서비스</h2>
             </div>
@@ -352,10 +352,10 @@ function FundraisingContent() {
         <section className={styles.investment_reason_section}>
           <div className={styles.investment_reason_content}>
             <p className={styles.investment_reason_subtitle}>
-              투자자 네트워크와 전문 경험으로 성공적인 투자 유치를 지원합니다
+              투자자 네트워크와 전문 경험
             </p>
             <h2 className={styles.investment_reason_title}>
-              한평생 바로 기업의 투자 유치만의 특징
+              바로기업만의 투자 유치
             </h2>
           </div>
           <div className={styles.investment_feature_cards_container}>
@@ -432,7 +432,7 @@ function FundraisingContent() {
         <section className={styles.post_investment_section}>
           <div className={styles.post_investment_text_wrapper}>
             <p className={styles.post_investment_subtitle}>
-              투자 유치 후에도 기업 성장까지 지속적으로 지원합니다
+              기업 성장까지 지속적인 지원
             </p>
             <h2 className={styles.post_investment_title}>투자 유치 후 지원</h2>
           </div>

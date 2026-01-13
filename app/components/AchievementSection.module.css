@@ -13,7 +13,6 @@
 
 .header {
   text-align: center;
-  margin-bottom: 80px;
 }
 
 .title {
@@ -34,7 +33,6 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: 130px;
 }
 
 .marqueeWrapper {
@@ -185,7 +183,13 @@
 /* 일반 데스크탑 */
 @media (min-width: 1280px) {
   .container {
-    padding: var(--unit-14, 120px) 10px;
+    display: flex;
+    padding: var(--unit-14, 120px) 10px !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--unit-10, 48px) !important;
+    align-self: stretch;
   }
 }
 

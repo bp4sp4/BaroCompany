@@ -8,7 +8,7 @@ export default function GrowthSection() {
     {
       id: 1,
       title: "정책 자금 종합 컨설팅",
-      subtitle: "복잡한 서류와 사업계획서 대행, 승인 시까지 책임지고 지원",
+      subtitle: "복잡한 서류와 사업계획서 대행, 승인까지",
       image: "/images/main/growth/growth001.png",
     },
     {
@@ -47,10 +47,8 @@ export default function GrowthSection() {
     <section className={styles.section}>
       <div className={styles.sectionInner}>
         <div className={styles.header}>
-          <p className={styles.subtitle}>
-            나에게 딱 맞는 전문적인 실무는 한평생에서 시작하세요
-          </p>
-          <h2 className={styles.title}>대표님의 빠른 성장을 돕습니다</h2>
+          <p className={styles.subtitle}>전문적인 실무는 한평생에서</p>
+          <h2 className={styles.title}>기업의 빠른 성장을 돕습니다</h2>
         </div>
         <div className={styles.cardList}>
           {cards.map((card, index) => (

@@ -35,7 +35,14 @@ const useIsMobile = () => {
 
 export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, [isMobile]);
 
   return (
     <ConsultationProvider>
@@ -43,6 +50,8 @@ export default function Home() {
       <div className={styles.mainWrapper}>
         <main className={styles.main}>
           <video
+            ref={videoRef}
+            key={isMobile ? "mobile" : "desktop"}
             className={styles.banner_video}
             autoPlay
             loop
@@ -50,7 +59,14 @@ export default function Home() {
             playsInline
             preload="auto"
           >
-            <source src="/images/main/main_video.mp4" type="video/mp4" />
+            <source
+              src={
+                isMobile
+                  ? "/images/main/main_mobile_video.mp4"
+                  : "/images/main/main_video.mp4"
+              }
+              type="video/mp4"
+            />
           </video>
           <div className={styles.banner_overlay} />
           <div className={styles.heroContent}>
@@ -60,9 +76,9 @@ export default function Home() {
               시작부터 성장까지
             </h1>
             <p className={styles.heroSubtitle}>
-              대표님들의 성공적인 경영을 위한 전문 컨설팅.
+              창업부터 EXIT까지, 대표님들의
               <br />
-              창업부터 EXIT까지, 한평생 바로 기업과 함께합니다.
+              성공적인 경영을 위한 전문 컨설팅
             </p>
           </div>
         </main>
@@ -80,18 +96,7 @@ export default function Home() {
               <span className={styles.main_achievement_tag}>지원기업</span>
               <span className={styles.main_achievement_number}>500+</span>
             </div>
-            {isMobile ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="50"
-                height="2"
-                viewBox="0 0 50 2"
-                fill="none"
-                className={styles.main_achievement_separator}
-              >
-                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
-              </svg>
-            ) : (
+            {!isMobile && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="2"
@@ -107,18 +112,7 @@ export default function Home() {
               <span className={styles.main_achievement_tag}>승인율</span>
               <span className={styles.main_achievement_number}>98%</span>
             </div>
-            {isMobile ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="50"
-                height="2"
-                viewBox="0 0 50 2"
-                fill="none"
-                className={styles.main_achievement_separator}
-              >
-                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
-              </svg>
-            ) : (
+            {!isMobile && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="2"
@@ -134,18 +128,7 @@ export default function Home() {
               <span className={styles.main_achievement_tag}>평균 지원액</span>
               <span className={styles.main_achievement_number}>9.2억</span>
             </div>
-            {isMobile ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="50"
-                height="2"
-                viewBox="0 0 50 2"
-                fill="none"
-                className={styles.main_achievement_separator}
-              >
-                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
-              </svg>
-            ) : (
+            {!isMobile && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="2"

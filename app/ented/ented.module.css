@@ -642,10 +642,10 @@
   }
 
   .features_wrapper {
-    width: 100% !important;
+    width: auto !important;
     max-width: 1280px !important;
-    margin: 0 auto !important;
-    padding: 0 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .features_text_wrapper {

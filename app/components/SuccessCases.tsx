@@ -49,7 +49,7 @@ export default function SuccessCases() {
       <div className={styles.header}>
         <div className={styles.titleSection}>
           <p ref={subtitleRef} className={styles.subtitle}>
-            대표님의 성공과 성장을 함께합니다
+            성공과 성장을 함께합니다
           </p>
           <h2 ref={titleRef} className={styles.title}>
             바로기업 투자유치 성공사례
@@ -68,7 +68,7 @@ export default function SuccessCases() {
             },
             480: {
               slidesPerView: 1.2,
-              spaceBetween: 10,
+              spaceBetween: 8,
               centeredSlides: false,
             },
             1024: {

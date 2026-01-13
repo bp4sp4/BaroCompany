@@ -535,7 +535,7 @@
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: var(--unit-8, 32px) !important;
+    gap: var(--unit-3, 8px) !important;
     width: 100% !important;
   }
 
@@ -752,7 +752,6 @@
     justify-content: flex-start !important;
     align-items: center !important;
     gap: var(--unit-6, 20px) !important;
-    padding: var(--unit-8, 32px) var(--unit-6, 20px) !important;
     width: 380px !important;
     height: auto !important;
   }

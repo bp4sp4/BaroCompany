@@ -22,14 +22,12 @@ function PolicyFundsContent() {
           <div className={styles.banner_overlay} />
           <div className={styles.banner_content}>
             <h1 className={styles.banner_title}>
-              정책자금으로
-              <br /> 기업 자금을 확보하세요
+              기업의 성장을 위한
+              <br /> 기업 자금 확보
             </h1>
             <p className={styles.banner_subtitle}>
-              정부 지원 정책자금은 기업의 성장을 위한 가장 효율적인 자금 조달
-              방법입니다.
-              <br /> 한평생 바로 기업의 전문 컨설턴트가 최대 지원액을 받을 수
-              있도록 완벽하게 지원합니다.
+              한평생 바로 기업의 전문 컨설턴트가
+              <br /> 최대 지원액을 받을 수 있도록 완벽하게 지원
             </p>
           </div>
         </section>
@@ -213,11 +211,9 @@ function PolicyFundsContent() {
         <section className={styles.reason_section}>
           <div className={styles.reason_content}>
             <p className={styles.reason_subtitle}>
-              정책자금 컨설팅 전문가로서 기업의 최대 이익을 위해 최선을 다합니다
+              기업의 최대 이익을 위해 최선을 다합니다
             </p>
-            <h2 className={styles.reason_title}>
-              한평생 바로 기업을 선택해야 하는 이유
-            </h2>
+            <h2 className={styles.reason_title}>바로기업을 선택하는 이유</h2>
           </div>
           <div className={styles.feature_cards_container}>
             <div className={styles.feature_card}>
@@ -289,7 +285,7 @@ function PolicyFundsContent() {
         <section className={styles.comparison_section}>
           <div className={styles.comparison_text_wrapper}>
             <p className={styles.comparison_subtitle}>
-              기업 규모 및 특성에 맞는 최적의 프로그램을 선택하세요
+              최적의 프로그램을 선택하세요
             </p>
             <h2 className={styles.comparison_title}>정책자금 프로그램 비교</h2>
           </div>

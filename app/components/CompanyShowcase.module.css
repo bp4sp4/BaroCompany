@@ -176,14 +176,13 @@
 /* Laptop 1024px ~ 1279px */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .container {
-    /* 고정 높이를 해제하여 내용물에 맞게 늘어나도록 설정 */
-    height: auto;
-    min-height: 822px;
-    padding: 100px 40px; /* 좌우 패딩 조절 */
     display: flex;
+    padding: 160px 80px;
     flex-direction: column;
     align-items: center;
-    gap: 60px; /* 헤더와 그리드 사이 간격 */
+    gap: 50px;
+    align-self: stretch;
+    height: auto;
   }
 
   .companyInfo {
@@ -192,8 +191,7 @@
 
   .header {
     width: 100%;
-    align-items: center; /* 노트북/태블릿에선 중앙 정렬이 더 안정적일 수 있음 */
-    text-align: center;
+    align-items: flex-start; /* 노트북/태블릿에선 중앙 정렬이 더 안정적일 수 있음 */
   }
 
   .cardsGrid {
@@ -211,7 +209,7 @@
   }
 
   .imageContainer {
-    width: 100%;
+    width: 426px;
     height: auto;
     aspect-ratio: 1 / 1; /* 정사각형 유지 */
   }
@@ -243,21 +241,20 @@
     padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 50px !important;
+    gap: 32px !important;
     align-self: stretch !important;
     height: auto !important;
   }
 
   .header {
     width: 100% !important;
-    align-items: center !important;
-    text-align: center !important;
+    align-items: flex-start !important;
   }
 
   .cardsGrid {
     display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    gap: 32px !important;
     width: 100% !important;
     justify-content: center !important;
   }
@@ -273,32 +270,12 @@
     height: auto !important;
     aspect-ratio: 1 / 1 !important;
   }
-}
-
-@media (max-width: 768px) {
-  .container {
-    height: auto;
-    padding: 1.5rem 1rem;
-  }
-
-  .cardsGrid {
-    grid-template-columns: 1fr;
-    justify-content: center;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 496px;
-    margin: 0 auto;
-  }
-
-  .imageContainer {
-    width: 100%;
-    max-width: 496px;
-    margin: 0 auto;
-  }
 
   .title {
-    font-size: 1.5rem;
+    font-size: 28px !important;
+  }
+
+  .subtitle {
+    font-size: 18px !important;
   }
 }

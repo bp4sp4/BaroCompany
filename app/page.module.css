@@ -24,6 +24,7 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  background: #000;
 }
 
 .banner_video::after {
@@ -221,6 +222,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: var(--unit-8, 32px);
   align-self: stretch;
   background: var(--Blue-50, #e5edff);
 }
@@ -272,7 +274,6 @@
   max-width: 1260px;
   justify-content: space-between;
   align-items: center;
-  gap: 0;
 }
 
 .main_achievement_item {
@@ -284,20 +285,20 @@
 
 .main_achievement_tag {
   display: flex;
-  padding: var(--unit-4, 12px) var(--unit-6, 20px);
+  padding: var(--unit-3, 8px) var(--unit-4, 12px);
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 30px;
   background: var(--Blue-300, #4c85ff);
   color: var(--white, #fff);
-  /* Title 3 */
+
+  /* Label 2 */
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 12px;
   font-style: normal;
-  font-weight: 600;
-  line-height: 120%; /* 21.6px */
-  white-space: nowrap;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .main_achievement_number {
@@ -327,36 +328,32 @@
   .main_achievements_section {
     display: flex !important;
     padding: var(--unit-13, 96px) var(--unit-5, 16px) !important;
-    flex-direction: column !important;
     justify-content: space-between !important;
     align-items: center !important;
     align-self: stretch !important;
+    background: var(--Blue-50, #e5edff) !important;
   }
 
   .main_achievements_metrics {
     display: flex !important;
-    flex-direction: column !important;
+    justify-content: center !important;
     align-items: center !important;
-    gap: var(--unit-10, 48px) !important;
-    width: 100% !important;
+    align-content: center !important;
+    gap: var(--unit-11, 56px) var(--unit-9, 40px) !important;
+    flex: 1 0 0 !important;
+    flex-wrap: wrap !important;
   }
 
   .main_achievement_item {
     display: flex !important;
+    width: 123px !important;
     flex-direction: column !important;
     align-items: center !important;
     gap: var(--unit-4, 12px) !important;
   }
 
   .main_achievement_separator {
-    width: 50px !important;
-    height: 2px !important;
-    flex-shrink: 0 !important;
-  }
-
-  .main_achievement_separator path {
-    stroke: var(--Grayscale-500, #919191) !important;
-    stroke-width: 2px !important;
+    display: none !important;
   }
 
   .main_achievement_number {
