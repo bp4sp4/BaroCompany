@@ -314,6 +314,7 @@
   width: 2px;
   height: 50px;
   flex-shrink: 0;
+  display: block;
 }
 
 .main_achievement_separator path {
@@ -372,6 +373,18 @@
     align-items: center;
     align-self: stretch;
   }
+
+  .main_achievement_separator {
+    width: 2px !important;
+    height: 50px !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+  }
+
+  .main_achievement_separator path {
+    stroke: var(--Grayscale-500, #919191) !important;
+    stroke-width: 2px !important;
+  }
 }
 
 /* 일반 데스크탑 */
@@ -382,6 +395,18 @@
 
   .main_achievements_metrics {
     max-width: 1260px;
+  }
+
+  .main_achievement_separator {
+    width: 2px !important;
+    height: 50px !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+  }
+
+  .main_achievement_separator path {
+    stroke: var(--Grayscale-500, #919191) !important;
+    stroke-width: 2px !important;
   }
 }
 
@@ -394,5 +419,17 @@
 
   .main_achievements_metrics {
     max-width: 1260px;
+  }
+
+  .main_achievement_separator {
+    width: 2px !important;
+    height: 50px !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+  }
+
+  .main_achievement_separator path {
+    stroke: var(--Grayscale-500, #919191) !important;
+    stroke-width: 2px !important;
   }
 }

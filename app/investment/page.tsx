@@ -342,10 +342,10 @@ export default function FundraisingPage() {
         <section className={styles.investment_reason_section}>
           <div className={styles.investment_reason_content}>
             <p className={styles.investment_reason_subtitle}>
-              투자 유치 전문가로서 기업의 최대 이익을 위해 최선을 다합니다
+              투자자 네트워크와 전문 경험으로 성공적인 투자 유치를 지원합니다
             </p>
             <h2 className={styles.investment_reason_title}>
-              한평생 바로 기업을 선택해야 하는 이유
+              한평생 바로 기업의 투자 유치만의 특징
             </h2>
           </div>
           <div className={styles.investment_feature_cards_container}>

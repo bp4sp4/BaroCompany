@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ConsultationProvider } from "../components/ConsultationContext";
@@ -7,7 +8,27 @@ import FloatingButton from "../components/FloatingButton";
 import Image from "next/image";
 import styles from "./portfolio.module.css";
 
+// 모바일 감지 훅
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1023);
+    };
+
+    if (typeof window !== "undefined") {
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }
+  }, []);
+
+  return isMobile;
+};
+
 export default function PortfolioPage() {
+  const isMobile = useIsMobile();
   return (
     <ConsultationProvider>
       <Header />
@@ -356,16 +377,29 @@ export default function PortfolioPage() {
                   180+
                 </span>
               </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="50"
-                height="2"
-                viewBox="0 0 50 2"
-                fill="none"
-                className={styles.portfolio_achievement_separator}
-              >
-                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
-              </svg>
+              {isMobile ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="2"
+                  viewBox="0 0 50 2"
+                  fill="none"
+                  className={styles.portfolio_achievement_separator}
+                >
+                  <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2"
+                  height="50"
+                  viewBox="0 0 2 50"
+                  fill="none"
+                  className={styles.portfolio_achievement_separator}
+                >
+                  <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+                </svg>
+              )}
               <div className={styles.portfolio_achievement_item}>
                 <span className={styles.portfolio_achievement_tag}>
                   투자유치 지원
@@ -374,16 +408,29 @@ export default function PortfolioPage() {
                   120+
                 </span>
               </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="50"
-                height="2"
-                viewBox="0 0 50 2"
-                fill="none"
-                className={styles.portfolio_achievement_separator}
-              >
-                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
-              </svg>
+              {isMobile ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="2"
+                  viewBox="0 0 50 2"
+                  fill="none"
+                  className={styles.portfolio_achievement_separator}
+                >
+                  <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2"
+                  height="50"
+                  viewBox="0 0 2 50"
+                  fill="none"
+                  className={styles.portfolio_achievement_separator}
+                >
+                  <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+                </svg>
+              )}
               <div className={styles.portfolio_achievement_item}>
                 <span className={styles.portfolio_achievement_tag}>
                   경영지원 컨설팅

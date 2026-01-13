@@ -226,7 +226,7 @@ export default function PolicyFundsPage() {
               </div>
               <h3 className={styles.feature_card_title}>높은 승인율</h3>
               <p className={styles.feature_card_subtitle}>
-                정책자금 신청 경험이 풍부한 전문가가 <br /> 서류 작성으로 높은
+                정책자금 신청 경험이 풍부한 전문가가 최적화된 서류 작성으로 높은
                 승인율을 보장합니다.
               </p>
             </div>

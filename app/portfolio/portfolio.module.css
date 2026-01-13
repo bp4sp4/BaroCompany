@@ -350,6 +350,18 @@
       url("/images/portfolio/portfolio_banner.jpg") lightgray 50% / cover
         no-repeat;
   }
+
+  .portfolio_achievement_separator {
+    width: 2px !important;
+    height: 50px !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+  }
+
+  .portfolio_achievement_separator path {
+    stroke: var(--Grayscale-500, #919191) !important;
+    stroke-width: 2px !important;
+  }
 }
 
 /* 일반 데스크탑 */
@@ -374,21 +386,33 @@
     line-height: 120%;
   }
 
-  .content_section {
-    padding: var(--unit-14, 120px) 0;
+  .portfolio_achievement_separator {
+    width: 2px !important;
+    height: 50px !important;
+    flex-shrink: 0 !important;
+    display: block !important;
   }
 
-  .content_wrapper {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
+  .portfolio_achievement_separator path {
+    stroke: var(--Grayscale-500, #919191) !important;
+    stroke-width: 2px !important;
   }
+}
 
-  .consultation_form_inner {
-    max-width: 1280px;
-    padding: var(--unit-4, 12px) 10px;
-  }
+.content_section {
+  padding: var(--unit-14, 120px) 0;
+}
+
+.content_wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.consultation_form_inner {
+  max-width: 1280px;
+  padding: var(--unit-4, 12px) 10px;
 }
 
 /* FHD 이상 */
@@ -406,6 +430,18 @@
   .banner_subtitle {
     font-size: 24px;
     line-height: 120%;
+  }
+
+  .portfolio_achievement_separator {
+    width: 2px !important;
+    height: 50px !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+  }
+
+  .portfolio_achievement_separator path {
+    stroke: var(--Grayscale-500, #919191) !important;
+    stroke-width: 2px !important;
   }
 
   .content_section {

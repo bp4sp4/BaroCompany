@@ -154,7 +154,6 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  gap: var(--unit-4, 12px);
   text-align: center;
   padding: 0;
 }

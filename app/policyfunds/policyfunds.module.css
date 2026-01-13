@@ -227,7 +227,7 @@
     align-self: stretch !important;
     aspect-ratio: 1/1 !important;
     border-radius: 10px !important;
-    border: 1px solid var(--Grayscale-200, #E4E4E4) !important;
+    border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
     width: 100% !important;
     height: auto !important;
     min-height: 0 !important;
@@ -625,10 +625,6 @@
   font-weight: 400;
   line-height: 140%; /* 22.4px */
   margin: 0;
-}
-
-.card_description br {
-  display: none;
 }
 
 .card_info {
@@ -1457,6 +1453,70 @@
     padding: var(--unit-13, 96px) 10px;
     padding-top: 0;
   }
+
+  .process_card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: var(--unit-6, 20px) !important;
+    padding: var(--unit-8, 32px) var(--unit-6, 20px) !important;
+    width: 380px !important;
+    height: auto !important;
+  }
+
+  .process_text_wrapper {
+    display: contents !important;
+  }
+
+  .process_title_row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-4, 12px) !important;
+    width: 100% !important;
+    order: 1 !important;
+  }
+
+  .process_step_badge {
+    order: 1 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .process_card_title {
+    order: 2 !important;
+    text-align: center !important;
+    margin: 0 0 var(--unit-6, 20px) 0 !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+  }
+
+  .process_card_icon {
+    order: 3 !important;
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .process_card_image {
+    width: 120px !important;
+    height: 120px !important;
+    object-fit: contain !important;
+  }
+
+  .process_card_description {
+    order: 4 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    font-size: 16px !important;
+    width: 100% !important;
+  }
+
+  .process_card_description br {
+    display: block !important;
+  }
 }
 
 /* FHD 이상 */
@@ -1513,5 +1573,69 @@
   .container {
     padding: var(--unit-13, 96px) 330px;
     padding-top: 0;
+  }
+
+  .process_card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: var(--unit-6, 20px) !important;
+    padding: var(--unit-8, 32px) var(--unit-6, 20px) !important;
+    width: 380px !important;
+    height: auto !important;
+  }
+
+  .process_text_wrapper {
+    display: contents !important;
+  }
+
+  .process_title_row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--unit-4, 12px) !important;
+    width: 100% !important;
+    order: 1 !important;
+  }
+
+  .process_step_badge {
+    order: 1 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .process_card_title {
+    order: 2 !important;
+    text-align: center !important;
+    margin: 0 0 var(--unit-6, 20px) 0 !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+  }
+
+  .process_card_icon {
+    order: 3 !important;
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .process_card_image {
+    width: 120px !important;
+    height: 120px !important;
+    object-fit: contain !important;
+  }
+
+  .process_card_description {
+    order: 4 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    font-size: 16px !important;
+    width: 100% !important;
+  }
+
+  .process_card_description br {
+    display: block !important;
   }
 }

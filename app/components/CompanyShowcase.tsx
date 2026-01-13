@@ -20,7 +20,7 @@ export default function CompanyShowcase() {
       achievement: "자금확보",
       description:
         "복잡하고 까다로운 정책자금<br/> 확실한 전략으로 받을 수 있도록",
-      tags: ["#정책자금", "#맞춤형전략", "#1:!멘토"],
+      tags: ["#정책자금", "#맞춤형전략", "#1:1멘토"],
       category: "Secure funds",
       companyName: "자금이 필요할 때",
       image: "/images/main/showcase/showcase002.png",

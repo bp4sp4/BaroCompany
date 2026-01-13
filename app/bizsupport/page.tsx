@@ -61,8 +61,7 @@ export default function BizSupportPage() {
                 </svg>
                 <h3 className={styles.service_card_title}>조직 구축 컨설팅</h3>
                 <p className={styles.service_card_description}>
-                  효율적인 조직 구조 설계
-                  <br />및 인사 관리 전략
+                  효율적인 조직 구조 설계 및 <br /> 인사 관리 전략
                 </p>
               </div>
               <div className={styles.service_card}>
@@ -699,7 +698,7 @@ export default function BizSupportPage() {
               기업 성장의 파트너가 되겠습니다
             </h2>
             <p className={styles.cta_description}>
-              한평생 바로 기업과 함께 성공적인 경영 전략을 수립하고 실행하세요
+              한평생 바로 기업과 함께 지속적인 성장과 성공을 이루세요
             </p>
           </div>
           <button className={styles.cta_button}>

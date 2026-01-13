@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Header from "./components/Header";
 import StageSelector from "./components/StageSelector";
 import SuccessCases from "./components/SuccessCases";
@@ -13,8 +13,28 @@ import FloatingButton from "./components/FloatingButton";
 import { ConsultationProvider } from "./components/ConsultationContext";
 import styles from "./page.module.css";
 
+// 모바일 감지 훅
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1023);
+    };
+
+    if (typeof window !== "undefined") {
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }
+  }, []);
+
+  return isMobile;
+};
+
 export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
 
   return (
     <ConsultationProvider>
@@ -58,44 +78,83 @@ export default function Home() {
               <span className={styles.main_achievement_tag}>지원기업</span>
               <span className={styles.main_achievement_number}>500+</span>
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="2"
-              viewBox="0 0 50 2"
-              fill="none"
-              className={styles.main_achievement_separator}
-            >
-              <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
-            </svg>
+            {isMobile ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="2"
+                viewBox="0 0 50 2"
+                fill="none"
+                className={styles.main_achievement_separator}
+              >
+                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2"
+                height="50"
+                viewBox="0 0 2 50"
+                fill="none"
+                className={styles.main_achievement_separator}
+              >
+                <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+              </svg>
+            )}
             <div className={styles.main_achievement_item}>
               <span className={styles.main_achievement_tag}>승인율</span>
               <span className={styles.main_achievement_number}>98%</span>
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="2"
-              viewBox="0 0 50 2"
-              fill="none"
-              className={styles.main_achievement_separator}
-            >
-              <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
-            </svg>
+            {isMobile ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="2"
+                viewBox="0 0 50 2"
+                fill="none"
+                className={styles.main_achievement_separator}
+              >
+                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2"
+                height="50"
+                viewBox="0 0 2 50"
+                fill="none"
+                className={styles.main_achievement_separator}
+              >
+                <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+              </svg>
+            )}
             <div className={styles.main_achievement_item}>
               <span className={styles.main_achievement_tag}>평균 지원액</span>
               <span className={styles.main_achievement_number}>9.2억</span>
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="50"
-              height="2"
-              viewBox="0 0 50 2"
-              fill="none"
-              className={styles.main_achievement_separator}
-            >
-              <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
-            </svg>
+            {isMobile ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="2"
+                viewBox="0 0 50 2"
+                fill="none"
+                className={styles.main_achievement_separator}
+              >
+                <path d="M0 1L50 1" stroke="#919191" strokeWidth="2" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2"
+                height="50"
+                viewBox="0 0 2 50"
+                fill="none"
+                className={styles.main_achievement_separator}
+              >
+                <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+              </svg>
+            )}
             <div className={styles.main_achievement_item}>
               <span className={styles.main_achievement_tag}>컨설팅 경력</span>
               <span className={styles.main_achievement_number}>15년</span>
