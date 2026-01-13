@@ -299,6 +299,9 @@
     font-weight: 400;
     line-height: 120%; /* 19.2px */
   }
+  .SuccessCases-module__j9sBjq__swiper .swiper-pagination {
+    margin-top: 16px !important;
+  }
 }
 
 @media (max-width: 768px) {
