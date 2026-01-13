@@ -10,6 +10,7 @@ import CompanyShowcase from "./components/CompanyShowcase";
 import AchievementSection from "./components/AchievementSection";
 import Footer from "./components/Footer";
 import FloatingButton from "./components/FloatingButton";
+import MobileFloatingBanner from "./components/MobileFloatingBanner";
 import { ConsultationProvider } from "./components/ConsultationContext";
 import styles from "./page.module.css";
 
@@ -170,6 +171,7 @@ export default function Home() {
       <AchievementSection />
       <Footer />
       <FloatingButton />
+      <MobileFloatingBanner />
     </ConsultationProvider>
   );
 }

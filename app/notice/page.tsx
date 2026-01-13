@@ -7,6 +7,7 @@ import {
   useConsultation,
 } from "../components/ConsultationContext";
 import FloatingButton from "../components/FloatingButton";
+import MobileFloatingBanner from "../components/MobileFloatingBanner";
 import styles from "./notice.module.css";
 
 function NoticeContent() {
@@ -156,6 +157,7 @@ function NoticeContent() {
       </main>
       <Footer />
       <FloatingButton />
+      <MobileFloatingBanner />
     </>
   );
 }

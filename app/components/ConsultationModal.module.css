@@ -4,12 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 0.5) 100%
-    ),
-    url("/images/main/banner.jpg") lightgray 50% / cover no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +48,6 @@
 }
 
 .modalHeader {
-  background-color: var(--Blue-300, #4c85ff);
   border-radius: 10px 10px 0 0;
   padding: var(--unit-4, 12px) var(--unit-6, 20px);
   display: flex;
@@ -65,7 +59,7 @@
 .title {
   font-size: 24px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1e1e1e;
   margin: 0;
   text-align: center;
   font-family: Pretendard;
@@ -109,6 +103,14 @@
   color: #999;
 }
 
+.errorMessage {
+  color: #dc3545;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 4px;
+  font-family: Pretendard;
+}
+
 .checkboxGroup {
   display: flex;
   align-items: center;
@@ -127,7 +129,22 @@
   font-weight: 400;
   color: #333;
   cursor: pointer;
+  font-family: Pretendard;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.privacyLink {
   text-decoration: underline;
+  cursor: pointer;
+  color: #333;
+}
+
+.consentText {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
   font-family: Pretendard;
 }
 
@@ -169,13 +186,302 @@
   color: #0f5132;
 }
 
-@media (max-width: 768px) {
+/* 모바일 (375px - 1023px) */
+@media (min-width: 375px) and (max-width: 1023px) {
   .modal {
-    padding: 24px;
     max-width: 90%;
+    width: 90%;
+    padding: 0;
+  }
+
+  .modalHeader {
+    padding: var(--unit-4, 12px) var(--unit-5, 16px);
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .form {
+    padding: var(--unit-8, 32px) var(--unit-5, 16px);
+    gap: var(--unit-6, 20px);
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  .input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .checkboxLabel {
+    font-size: 14px;
+  }
+
+  .submitButton {
+    padding: var(--unit-4, 12px) var(--unit-5, 16px);
+    font-size: 16px;
+  }
+
+  .closeButton {
+    top: 10px;
+    right: 16px;
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* 태블릿 (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .modal {
+    max-width: 500px;
+    width: 90%;
+  }
+
+  .modalHeader {
+    padding: var(--unit-5, 16px) var(--unit-6, 20px);
   }
 
   .title {
     font-size: 24px;
+  }
+
+  .form {
+    padding: var(--unit-10, 48px) var(--unit-8, 32px);
+    gap: var(--unit-7, 24px);
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .input {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .checkboxLabel {
+    font-size: 16px;
+  }
+
+  .submitButton {
+    padding: var(--unit-5, 16px) var(--unit-6, 20px);
+    font-size: 18px;
+  }
+}
+
+/* 데스크탑 (1280px - 1919px) */
+@media (min-width: 1280px) and (max-width: 1919px) {
+  .modal {
+    max-width: 500px !important;
+    width: 500px !important;
+  }
+
+  .modalHeader {
+    padding: var(--unit-5, 16px) var(--unit-6, 20px);
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .form {
+    padding: var(--unit-10, 48px) var(--unit-8, 32px);
+    gap: var(--unit-7, 24px);
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .input {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .checkboxLabel {
+    font-size: 16px;
+  }
+
+  .submitButton {
+    padding: var(--unit-5, 16px) var(--unit-6, 20px);
+    font-size: 18px;
+  }
+}
+
+/* FHD 이상 (1920px+) */
+@media (min-width: 1920px) {
+  .modal {
+    max-width: 500px !important;
+    width: 500px !important;
+  }
+
+  .modalHeader {
+    padding: var(--unit-5, 16px) var(--unit-6, 20px);
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .form {
+    padding: var(--unit-10, 48px) var(--unit-8, 32px);
+    gap: var(--unit-7, 24px);
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .input {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .checkboxLabel {
+    font-size: 16px;
+  }
+
+  .submitButton {
+    padding: var(--unit-5, 16px) var(--unit-6, 20px);
+    font-size: 18px;
+  }
+}
+
+/* 개인정보처리방침 팝업 스타일 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
+
+  margin: 0;
+  padding: 0;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 50px 60px;
+  width: 90%;
+  max-width: 800px;
+  min-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+
+  margin: 0;
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.modalCloseButton:hover {
+  color: #000;
+}
+
+.modalTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 32px 0;
+  text-align: center;
+  font-family: Pretendard;
+  letter-spacing: -0.5px;
+}
+
+.modalBody {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #1a1a1a;
+  font-family: Pretendard;
+}
+
+.modalBody p {
+  margin: 0 0 20px 0;
+}
+
+.modalBody strong {
+  color: #000;
+  font-weight: 600;
+}
+
+.modalBody p:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin: 32px 0 16px 0;
+  font-family: Pretendard;
+  letter-spacing: -0.3px;
+}
+
+.sectionTitle:first-child {
+  margin-top: 0;
+}
+
+.numberedList {
+  margin: 0 0 24px 0;
+}
+
+.numberedList li {
+  margin-bottom: 12px;
+  line-height: 1.8;
+  color: #1a1a1a;
+}
+
+.numberedList li:last-child {
+  margin-bottom: 0;
+}
+
+/* 개인정보처리방침 팝업 반응형 */
+@media (max-width: 768px) {
+  .modalContent {
+    padding: 24px;
+    width: 90%;
+    max-width: 90%;
+    min-width: auto;
+  }
+
+  .modalTitle {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .modalBody {
+    font-size: 15px;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+    margin: 24px 0 12px 0;
   }
 }

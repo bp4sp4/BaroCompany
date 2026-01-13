@@ -2,14 +2,19 @@
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { ConsultationProvider } from "../components/ConsultationContext";
+import {
+  ConsultationProvider,
+  useConsultation,
+} from "../components/ConsultationContext";
 import FloatingButton from "../components/FloatingButton";
+import MobileFloatingBanner from "../components/MobileFloatingBanner";
 import Image from "next/image";
 import styles from "./ented.module.css";
 
-export default function EntedPage() {
+function EntedContent() {
+  const { openModal } = useConsultation();
   return (
-    <ConsultationProvider>
+    <>
       <Header />
       <main className={styles.main}>
         <section className={styles.banner}>
@@ -535,7 +540,7 @@ export default function EntedPage() {
               한평생 바로 기업과 함께 성공적인 창업을 <br /> 준비하고 실현하세요
             </p>
           </div>
-          <button className={styles.cta_button}>
+          <button className={styles.cta_button} onClick={openModal}>
             지금 바로 상담하기
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -555,6 +560,15 @@ export default function EntedPage() {
       </main>
       <Footer />
       <FloatingButton />
+      <MobileFloatingBanner />
+    </>
+  );
+}
+
+export default function EntedPage() {
+  return (
+    <ConsultationProvider>
+      <EntedContent />
     </ConsultationProvider>
   );
 }
