@@ -146,7 +146,7 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: var(--unit-8, 32px) !important;
+    gap: var(--unit-4, 12px) !important;
     align-self: stretch !important;
     width: 100% !important;
   }
@@ -247,10 +247,21 @@
     height: 80px !important;
   }
 
+  .investment_process_title {
+    font-size: 28px !important;
+  }
+  .investment_process_subtitle {
+    font-size: 16px !important;
+  }
+
+  .investment_process_subtitle br {
+    display: block !important;
+  }
+
   .investment_process_text_wrapper {
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-start !important;
+    align-items: center !important;
     gap: var(--unit-3, 8px) !important;
     flex: 1 0 0 !important;
   }
@@ -418,7 +429,7 @@
     color: var(--Grayscale-100, #f2f2f2) !important;
     text-align: center !important;
     font-family: Pretendard !important;
-    font-size: 16px !important;
+    font-size: 15px !important;
     font-style: normal !important;
     font-weight: 400 !important;
     line-height: 140% !important;
@@ -578,6 +589,10 @@
     display: none !important;
   }
 
+  .investment_process_subtitle br {
+    display: none !important;
+  }
+
   .investment_process_card_icon {
     margin-bottom: 0 !important;
     flex-shrink: 0 !important;
@@ -667,6 +682,10 @@
     align-items: center !important;
     gap: var(--unit-10, 48px) !important;
     align-self: stretch !important;
+  }
+
+  .investment_process_card_image {
+    height: 100px !important;
   }
 }
 
@@ -789,6 +808,10 @@
 
   .investment_process_card_description br {
     display: block !important;
+  }
+
+  .investment_process_subtitle br {
+    display: none !important;
   }
 }
 

@@ -700,10 +700,12 @@ function BizSupportContent() {
         <section className={styles.cta_section}>
           <div className={styles.cta_text_wrapper}>
             <h2 className={styles.cta_title}>
-              기업 성장의 파트너가 되겠습니다
+              기업 성장의
+              <br /> 파트너가 되겠습니다
             </h2>
             <p className={styles.cta_description}>
-              한평생 바로 기업과 함께 지속적인 성장과 성공을 이루세요
+              한평생 바로 기업과 함께
+              <br /> 지속적인 성장과 성공을 이루세요
             </p>
           </div>
           <button className={styles.cta_button} onClick={openModal}>

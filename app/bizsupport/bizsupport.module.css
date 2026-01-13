@@ -474,6 +474,10 @@
     aspect-ratio: 1/1 !important;
   }
 
+  .cta_title br {
+    display: block !important;
+  }
+
   .cta_description br {
     display: block !important;
   }
@@ -486,13 +490,15 @@
     flex-direction: row !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
-    align-items: stretch !important;
+    align-items: center !important;
     gap: var(--unit-4, 12px) !important;
     align-self: stretch !important;
+    width: 100% !important;
   }
 
   .service_card {
     display: flex !important;
+    max-width: 426px !important;
     padding: var(--unit-7, 24px) !important;
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -500,8 +506,7 @@
     border-radius: 10px !important;
     border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
     background: var(--white, #fff) !important;
-    flex: 1 1 calc(50% - 6px) !important;
-    min-width: 280px !important;
+    width: 100% !important;
   }
 
   .features_section {
@@ -672,32 +677,6 @@
     transform: rotate(90deg) !important;
   }
 
-  .cta_description br {
-    display: none !important;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1279px) {
-  .banner {
-    display: flex;
-    height: 700px;
-    padding: 306px 80px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    align-self: stretch;
-  }
-
-  .banner_image_wrapper {
-    background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.7) 100%
-      ),
-      url("/images/bizsupport/bizsupport_banner.jpg") lightgray 50% / cover
-        no-repeat;
-  }
-
   .services_section {
     display: flex !important;
     padding: var(--unit-14, 120px) 80px !important;
@@ -710,228 +689,46 @@
 
   .services_cards_wrapper {
     display: inline-grid !important;
-    width: 100% !important;
     row-gap: 12px !important;
     column-gap: 12px !important;
     align-self: stretch !important;
     grid-template-rows: repeat(2, fit-content(100%)) !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
   }
 
   .service_card {
     display: flex !important;
-    width: 100% !important;
     height: 213px !important;
+    width: 100% !important;
     padding: var(--unit-7, 24px) !important;
     flex-direction: column !important;
     justify-content: space-between !important;
     align-items: flex-start !important;
-    aspect-ratio: 2/1 !important;
     justify-self: stretch !important;
     border-radius: 10px !important;
     border: 1px solid var(--Grayscale-200, #e4e4e4) !important;
     background: var(--white, #fff) !important;
   }
 
-  .stages_section {
-    display: flex !important;
-    padding: var(--unit-14, 120px) 80px !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: var(--unit-8, 32px) !important;
-    align-self: stretch !important;
+  .services_title {
+    font-size: 36px !important;
   }
 
-  .stages_cards_wrapper {
-    display: flex !important;
-    align-items: center !important;
-    gap: var(--unit-4, 12px) !important;
-    align-self: stretch !important;
+  .services_subtitle {
+    font-size: 18px !important;
   }
 
-  .stage_card {
-    display: flex !important;
-    height: 324px !important;
-    padding: var(--unit-6, 20px) !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    align-items: flex-start !important;
-    flex: 1 0 0 !important;
-  }
-
-  .features_section {
-    display: flex !important;
-    padding: var(--unit-14, 120px) 80px !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: var(--unit-8, 32px) !important;
-    align-self: stretch !important;
-  }
-
-  .features_cards_wrapper {
-    display: flex !important;
-    align-items: center !important;
-    gap: var(--unit-4, 12px) !important;
-    align-self: stretch !important;
-  }
-
-  .feature_card {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-end !important;
-    align-items: center !important;
-    gap: var(--unit-4, 12px) !important;
-    flex: 1 0 0 !important;
-  }
-
-  .investment_process_section {
-    display: flex !important;
-    padding: var(--unit-15, 160px) 80px !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: var(--unit-8, 32px) !important;
-    align-self: stretch !important;
-    background: var(--Blue-50, #e5edff) !important;
-  }
-
-  .investment_process_cards_container {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: var(--unit-8, 32px) !important;
-    width: 100% !important;
-  }
-
-  .investment_process_card {
-    display: flex !important;
-    width: 538px !important;
-    height: 140px !important;
-    padding: var(--unit-6, 20px) var(--unit-10, 48px) !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    align-self: center !important;
-    flex-direction: row !important;
-    gap: var(--unit-8, 32px) !important;
-  }
-
-  .investment_process_text_wrapper {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: var(--unit-4, 12px) !important;
-    flex: 1 0 0 !important;
-  }
-
-  .investment_process_title_row {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: var(--unit-4, 12px) !important;
-    width: 100% !important;
-  }
-
-  .investment_process_step_badge {
-    margin-bottom: 0 !important;
-    flex-shrink: 0 !important;
-  }
-
-  .investment_process_card_title {
-    margin: 0 !important;
-    text-align: left !important;
-    flex: 1 !important;
-  }
-
-  .investment_process_card_description {
-    margin: 0 !important;
-    text-align: left !important;
-    width: 100% !important;
-  }
-
-  .investment_process_card_description br {
+  .cta_title br {
     display: none !important;
   }
 
-  .investment_process_card_icon {
-    margin-bottom: 0 !important;
-    flex-shrink: 0 !important;
-  }
-
-  .investment_process_arrow {
-    transform: rotate(90deg) !important;
-  }
-
-  .additional_services_section {
-    display: flex !important;
-    padding: var(--unit-14, 120px) 80px !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: var(--unit-8, 32px) !important;
-    align-self: stretch !important;
-  }
-
-  .cta_section {
-    display: flex !important;
-    padding: var(--unit-14, 120px) var(--unit-5, 16px) !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: var(--unit-10, 48px) !important;
-    align-self: stretch !important;
-    background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.5) 0%,
-        rgba(0, 0, 0, 0.5) 100%
-      ),
-      url("/images/bizsupport/bizsupport_footer_banner.jpg") lightgray 50% /
-        cover no-repeat !important;
-  }
-
-  .cta_title {
-    color: var(--white, #fff) !important;
-    font-family: Pretendard !important;
-    font-size: 28px !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    line-height: 120% !important;
-  }
-
-  .cta_description {
-    color: var(--Grayscale-100, #f2f2f2) !important;
-    text-align: center !important;
-    font-family: Pretendard !important;
-    font-size: 16px !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    line-height: 140% !important;
-  }
-
-  .cta_button {
-    font-size: 18px !important;
-    display: flex !important;
-    padding: var(--unit-4, 12px) var(--unit-6, 20px) !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: var(--unit-2, 4px) !important;
-    border-radius: 26.5px !important;
-    background: var(--Blue-300, #4c85ff) !important;
-    width: fit-content !important;
-    min-width: auto !important;
-    max-width: 100% !important;
-  }
-
-  .cta_button_arrow {
-    width: 24px !important;
-    height: 24px !important;
-    aspect-ratio: 1/1 !important;
-  }
-
   .cta_description br {
-    display: block !important;
+    display: none !important;
+  }
+
+  .investment_process_card_image {
+    width: 100px !important;
   }
 }
 
@@ -1107,6 +904,14 @@
   .investment_process_card_description br {
     display: block !important;
   }
+
+  .cta_title br {
+    display: none !important;
+  }
+
+  .cta_description br {
+    display: none !important;
+  }
 }
 
 /* Services Section */
@@ -1281,7 +1086,7 @@
   align-items: center;
   gap: var(--unit-4, 12px);
   justify-content: center;
-  flex-wrap: wrap;
+
   width: 100%;
 }
 
@@ -1459,7 +1264,7 @@
   align-content: center;
   gap: var(--unit-4, 12px);
   align-self: stretch;
-  flex-wrap: wrap;
+
   justify-content: center;
 }
 

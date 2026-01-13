@@ -284,6 +284,11 @@
       url("/images/portfolio/portfolio_footer_banner.jpg") lightgray 50% / cover
         no-repeat !important;
   }
+
+  .portfolio_achievements_wrapper {
+    gap: var(--unit-10, 48px) !important;
+  }
+
   .portfolio_achievements_title {
     font-size: 28px !important;
   }
@@ -793,7 +798,7 @@
 .success_case_year_wrapper {
   display: flex;
   align-items: center;
-  gap: var(--unit-4, 12px);
+  gap: var(--unit-3, 8px);
 }
 
 .success_case_company_name {
@@ -857,13 +862,14 @@
   align-items: center;
   border-radius: 30px;
   background: var(--Blue-50, #e5edff);
-  color: var(--Blue-600, #0049e5);
-  /* Label 1 */
+  color: var(--Grayscale-600, #656565);
+
+  /* Title 3 */
   font-family: Pretendard;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  line-height: 120%; /* 21.6px */
   white-space: nowrap;
 }
 
@@ -986,6 +992,25 @@
     align-items: center;
     gap: var(--unit-10, 48px);
     align-self: stretch;
+  }
+
+  .success_case_company_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--unit-4, 12px);
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  .success_case_company_name {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .success_case_year_wrapper {
+    flex-shrink: 0;
+    flex-basis: auto;
   }
 }
 

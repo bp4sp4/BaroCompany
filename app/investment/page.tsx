@@ -146,7 +146,8 @@ function FundraisingContent() {
               투자 유치 프로세스
             </h2>
             <p className={styles.investment_process_subtitle}>
-              체계적인 5단계 프로세스로 성공적인 투자 유치를 지원합니다
+              체계적인 5단계 프로세스로
+              <br /> 성공적인 투자 유치를 지원합니다
             </p>
           </div>
           <div className={styles.investment_process_cards_container}>

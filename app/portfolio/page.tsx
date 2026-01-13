@@ -633,7 +633,7 @@ function PortfolioContent() {
                     수출 시작
                   </p>
                   <p className={styles.portfolio_feature_description}>
-                    국제 파트너쉽
+                    국제 파트너십
                   </p>
                   <p className={styles.portfolio_feature_description}>
                     다국적 운영
