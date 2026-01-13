@@ -258,7 +258,7 @@
 
   .slide {
     display: flex !important;
-    width: auto !important;
+
     flex-shrink: 0 !important;
   }
 
