@@ -53,7 +53,7 @@ export default function GrowthSection() {
           <h2 className={styles.title}>대표님의 빠른 성장을 돕습니다</h2>
         </div>
         <div className={styles.cardList}>
-          {cards.map((card) => (
+          {cards.map((card, index) => (
             <div key={card.id} className={styles.card}>
               <div className={styles.cardImageWrapper}>
                 <Image
@@ -62,6 +62,8 @@ export default function GrowthSection() {
                   width={496}
                   height={300}
                   className={styles.cardImage}
+                  priority={index < 2}
+                  loading={index < 2 ? "eager" : "lazy"}
                   onError={(e) => {
                     // 이미지가 없을 경우 placeholder 표시
                     const target = e.target as HTMLImageElement;

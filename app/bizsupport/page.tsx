@@ -318,6 +318,8 @@ function BizSupportContent() {
                     alt="전문 컨설턴트"
                     fill
                     className={styles.feature_card_image_img}
+                    priority
+                    loading="eager"
                   />
                 </div>
                 <div className={styles.feature_card_content}>
@@ -334,6 +336,8 @@ function BizSupportContent() {
                     alt="데이터 기반"
                     fill
                     className={styles.feature_card_image_img}
+                    priority
+                    loading="eager"
                   />
                 </div>
                 <div className={styles.feature_card_content}>
@@ -410,6 +414,8 @@ function BizSupportContent() {
                   width={120}
                   height={120}
                   className={styles.investment_process_card_image}
+                  priority
+                  loading="eager"
                 />
               </div>
             </div>
@@ -450,6 +456,8 @@ function BizSupportContent() {
                   width={120}
                   height={120}
                   className={styles.investment_process_card_image}
+                  priority
+                  loading="eager"
                 />
               </div>
             </div>

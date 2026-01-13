@@ -227,6 +227,8 @@ function PolicyFundsContent() {
                   alt="높은 승인율"
                   fill
                   className={styles.feature_card_image_img}
+                  priority
+                  loading="eager"
                 />
               </div>
               <h3 className={styles.feature_card_title}>높은 승인율</h3>
@@ -242,6 +244,8 @@ function PolicyFundsContent() {
                   alt="빠른 처리"
                   fill
                   className={styles.feature_card_image_img}
+                  priority
+                  loading="eager"
                 />
               </div>
               <h3 className={styles.feature_card_title}>빠른 처리</h3>
@@ -525,6 +529,8 @@ function PolicyFundsContent() {
                   width={120}
                   height={120}
                   className={styles.process_card_image}
+                  priority
+                  loading="eager"
                 />
               </div>
             </div>
@@ -561,6 +567,8 @@ function PolicyFundsContent() {
                   width={120}
                   height={120}
                   className={styles.process_card_image}
+                  priority
+                  loading="eager"
                 />
               </div>
             </div>

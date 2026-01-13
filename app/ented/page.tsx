@@ -204,6 +204,8 @@ function EntedContent() {
                     width={306}
                     height={150}
                     className={styles.curriculum_card_image_img}
+                    priority
+                    loading="eager"
                   />
                 </div>
                 <div className={styles.curriculum_card_top}>
@@ -247,6 +249,8 @@ function EntedContent() {
                     width={306}
                     height={150}
                     className={styles.curriculum_card_image_img}
+                    priority
+                    loading="eager"
                   />
                 </div>
                 <div className={styles.curriculum_card_top}>
@@ -366,6 +370,8 @@ function EntedContent() {
                     alt="전문 강사진"
                     fill
                     className={styles.feature_card_image_img}
+                    priority
+                    loading="eager"
                   />
                 </div>
                 <h3 className={styles.feature_card_title}>전문 강사진</h3>
@@ -382,6 +388,8 @@ function EntedContent() {
                     alt="실전 중심"
                     fill
                     className={styles.feature_card_image_img}
+                    priority
+                    loading="eager"
                   />
                 </div>
                 <h3 className={styles.feature_card_title}>실전 중심</h3>

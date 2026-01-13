@@ -174,6 +174,8 @@ function FundraisingContent() {
                   width={120}
                   height={120}
                   className={styles.investment_process_card_image}
+                  priority
+                  loading="eager"
                 />
               </div>
             </div>
@@ -216,6 +218,8 @@ function FundraisingContent() {
                   width={120}
                   height={120}
                   className={styles.investment_process_card_image}
+                  priority
+                  loading="eager"
                 />
               </div>
             </div>
@@ -362,6 +366,8 @@ function FundraisingContent() {
                   alt="전문가 팀"
                   fill
                   className={styles.investment_feature_card_image_img}
+                  priority
+                  loading="eager"
                 />
               </div>
               <h3 className={styles.investment_feature_card_title}>
@@ -378,6 +384,8 @@ function FundraisingContent() {
                   alt="네트워크"
                   fill
                   className={styles.investment_feature_card_image_img}
+                  priority
+                  loading="eager"
                 />
               </div>
               <h3 className={styles.investment_feature_card_title}>네트워크</h3>

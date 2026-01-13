@@ -53,6 +53,8 @@ export default function MobileFloatingBanner() {
           width={24}
           height={24}
           className={styles.icon}
+          priority
+          loading="eager"
         />
       </button>
     </>

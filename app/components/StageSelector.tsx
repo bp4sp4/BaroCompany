@@ -57,12 +57,14 @@ export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
     <div ref={containerRef} className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.innerContainer}>
         <div className={styles.introSection}>
-          <img
+          <Image
             src="/images/main/smile.png"
             alt="smile"
             width={48}
             height={48}
             className={styles.emoji}
+            priority
+            loading="eager"
           />
           <div className={styles.textSection}>
             <h2 className={styles.question}>대표님은 어떤 상황이신가요?</h2>

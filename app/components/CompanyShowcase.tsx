@@ -54,7 +54,7 @@ export default function CompanyShowcase() {
         <h2 className={styles.title}>어떤 서비스가 필요하신가요?</h2>
       </div>
       <div className={styles.cardsGrid}>
-        {companies.slice(0, 4).map((company) => (
+        {companies.slice(0, 4).map((company, index) => (
           <div key={company.id} className={styles.card}>
             <div className={styles.imageContainer}>
               {company.image && (
@@ -64,6 +64,8 @@ export default function CompanyShowcase() {
                   width={368}
                   height={368}
                   className={styles.companyImage}
+                  priority={index < 2}
+                  loading={index < 2 ? "eager" : "lazy"}
                   onError={(e) => {
                     // 이미지가 없을 경우 placeholder 표시
                     const target = e.target as HTMLImageElement;

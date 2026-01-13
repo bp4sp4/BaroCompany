@@ -168,6 +168,8 @@ export default function AchievementSection() {
                       width={60}
                       height={60}
                       className={styles.avatarImage}
+                      priority={index < 2}
+                      loading={index < 2 ? "eager" : "lazy"}
                     />
                   </div>
                   <div className={styles.userDetails}>

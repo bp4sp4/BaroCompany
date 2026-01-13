@@ -48,6 +48,7 @@ export default function Home() {
             loop
             muted
             playsInline
+            preload="auto"
           >
             <source src="/images/main/main_video.mp4" type="video/mp4" />
           </video>

@@ -14,6 +14,8 @@ export default function Footer() {
             width={200}
             height={64}
             className={styles.logo}
+            priority
+            loading="eager"
           />
         </div>
 
