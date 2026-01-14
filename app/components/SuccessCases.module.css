@@ -275,6 +275,7 @@
     flex-shrink: 0 !important;
     margin-bottom: 16px !important;
     justify-content: center !important;
+    width: auto !important;
   }
 
   .card {

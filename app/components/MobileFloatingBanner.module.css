@@ -10,7 +10,8 @@
   gap: 8px;
   width: auto;
   height: 42px;
-  padding: 0 12px;
+  padding: var(--unit-4, 12px) var(--unit-6, 20px);
+
   border-radius: 6px;
   border: 1px solid var(--Blue-300, #4c85ff);
   background: var(--white, #fff);

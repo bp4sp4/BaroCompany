@@ -64,7 +64,7 @@ export default function SuccessCases() {
           breakpoints={{
             375: {
               slidesPerView: 1,
-              spaceBetween: 50,
+              spaceBetween: 8,
             },
             480: {
               slidesPerView: 1.2,
