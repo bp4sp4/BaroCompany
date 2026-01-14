@@ -13,6 +13,7 @@ export default function AchievementSection() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const marqueeContainerRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLParagraphElement>(null);
   const achievements = [
     {
@@ -68,30 +69,14 @@ export default function AchievementSection() {
     {
       id: 9,
       quote:
-        "막막했던 서류 작성부터 대면<br/> 상담까지 함께해주어 확장에만<br/> 전념할 수 있었습니다.",
-      name: "한*생 대표님",
-      company: "A 카페",
-    },
-    {
-      id: 10,
-      quote: '"바로기업 덕분에<br/>정부지원사업 어렵지 않았어요"',
-      name: "한*생 대표님",
-      company: "A 카페",
-    },
-    {
-      id: 11,
-      quote: '"잠자고 있던 돈을<br/>찾은 기분입니다."',
+        "막막했던  서류 작성부터 대면<br/> 상담까지 함께해주어 확장에만<br/> 전념할 수 있었습니다.",
       name: "한*생 대표님",
       company: "A 카페",
     },
   ];
 
-  // 무한 반복을 위해 배열을 복제
-  const duplicatedAchievements = [
-    ...achievements,
-    ...achievements,
-    ...achievements,
-  ];
+  // 무한 반복을 위해 원본 배열을 2번 반복 (충분한 버퍼 확보)
+  const duplicatedAchievements = [...achievements, ...achievements];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -169,6 +154,168 @@ export default function AchievementSection() {
     };
   }, []);
 
+  // GSAP를 사용한 무한 루프 애니메이션
+  useEffect(() => {
+    if (!marqueeRef.current) return;
+
+    const marquee = marqueeRef.current;
+    let tween: gsap.core.Tween | null = null;
+
+    const initAnimation = () => {
+      // 모든 이미지가 로드될 때까지 대기
+      const images = marquee.querySelectorAll("img");
+      let loadedImages = 0;
+      const totalImages = images.length;
+
+      const calculateAndAnimate = () => {
+        // DOM이 완전히 렌더링된 후 계산
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            // 첫 번째 세트의 정확한 너비 계산
+            const cards = marquee.querySelectorAll(`.${styles.card}`);
+            const cardsPerSet = cards.length / 2;
+
+            let totalWidth: number;
+
+            if (cards.length > 0 && cardsPerSet > 0) {
+              // 첫 번째 세트의 정확한 너비 계산
+              const firstCard = cards[0] as HTMLElement;
+              const lastCardOfFirstSet = cards[cardsPerSet - 1] as HTMLElement;
+              const secondSetFirstCard = cards[cardsPerSet] as HTMLElement;
+
+              if (firstCard && secondSetFirstCard) {
+                // offsetLeft를 직접 사용 (더 안정적이고 정확함)
+                const firstCardStart = firstCard.offsetLeft;
+                const secondSetStart = secondSetFirstCard.offsetLeft;
+
+                // 정확한 이동 거리: 두 번째 세트 시작 - 첫 번째 카드 시작
+                totalWidth = secondSetStart - firstCardStart;
+
+                // 디버깅 로그
+                console.log(
+                  "First card offsetLeft:",
+                  firstCardStart,
+                  "Second set offsetLeft:",
+                  secondSetStart,
+                  "Total width:",
+                  totalWidth,
+                  "scrollWidth/2:",
+                  marquee.scrollWidth / 2
+                );
+              } else {
+                // 폴백: 전체 너비의 절반
+                totalWidth = marquee.scrollWidth / 2;
+              }
+            } else {
+              // 폴백: 전체 너비의 절반
+              totalWidth = marquee.scrollWidth / 2;
+            }
+
+            // 기존 애니메이션 제거
+            if (tween) {
+              tween.kill();
+            }
+
+            gsap.set(marquee, { x: 0 });
+
+            // 무한 루프 애니메이션
+            // repeat: -1을 사용하되, 정확한 값으로 끊김 방지
+            gsap.set(marquee, { x: 0 });
+
+            tween = gsap.to(marquee, {
+              x: -totalWidth,
+              duration: 5, // 테스트용 빠른 속도 (원래는 40)
+              ease: "none",
+              repeat: -1,
+              // 애니메이션이 끝나기 전에 다음 반복 시작 (끊김 방지)
+              modifiers: {
+                x: (x) => {
+                  // x가 -totalWidth에 도달하면 0으로 리셋
+                  const value = parseFloat(x);
+                  if (value <= -totalWidth) {
+                    return "0px";
+                  }
+                  return x;
+                },
+              },
+            });
+          });
+        });
+      };
+
+      if (totalImages === 0) {
+        // 이미지가 없으면 바로 계산
+        calculateAndAnimate();
+      } else {
+        // 모든 이미지 로드 대기
+        images.forEach((img) => {
+          if (img.complete) {
+            loadedImages++;
+          } else {
+            img.addEventListener("load", () => {
+              loadedImages++;
+              if (loadedImages === totalImages) {
+                calculateAndAnimate();
+              }
+            });
+            img.addEventListener("error", () => {
+              loadedImages++;
+              if (loadedImages === totalImages) {
+                calculateAndAnimate();
+              }
+            });
+          }
+        });
+
+        if (loadedImages === totalImages) {
+          calculateAndAnimate();
+        }
+      }
+    };
+
+    // 초기 설정 - 여러 번 시도
+    const timeoutId1 = setTimeout(initAnimation, 100);
+    const timeoutId2 = setTimeout(initAnimation, 500);
+    const timeoutId3 = setTimeout(initAnimation, 1000);
+
+    // hover 시 멈춤
+    const wrapper = marquee.parentElement;
+    const handleMouseEnter = () => {
+      if (tween) tween.pause();
+    };
+    const handleMouseLeave = () => {
+      if (tween) tween.resume();
+    };
+
+    if (wrapper) {
+      wrapper.addEventListener("mouseenter", handleMouseEnter);
+      wrapper.addEventListener("mouseleave", handleMouseLeave);
+    }
+
+    // 리사이즈 시 재계산
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(initAnimation, 100);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearTimeout(timeoutId1);
+      clearTimeout(timeoutId2);
+      clearTimeout(timeoutId3);
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", handleResize);
+      if (tween) {
+        tween.kill();
+      }
+      if (wrapper) {
+        wrapper.removeEventListener("mouseenter", handleMouseEnter);
+        wrapper.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  }, []);
+
   return (
     <section ref={containerRef} className={styles.container}>
       <div className={styles.header}>
@@ -181,12 +328,12 @@ export default function AchievementSection() {
       </div>
       <div ref={marqueeContainerRef} className={styles.marqueeContainer}>
         <div className={styles.marqueeWrapper}>
-          <div className={`${styles.marquee} ${styles.marqueeLeft}`}>
+          <div
+            ref={marqueeRef}
+            className={`${styles.marquee} ${styles.marqueeLeft}`}
+          >
             {duplicatedAchievements.map((achievement, index) => (
-              <div
-                key={`left-${achievement.id}-${index}`}
-                className={styles.card}
-              >
+              <div key={`marquee-item-${index}`} className={styles.card}>
                 <p
                   className={styles.quote}
                   dangerouslySetInnerHTML={{ __html: achievement.quote }}

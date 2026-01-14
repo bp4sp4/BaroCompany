@@ -39,6 +39,14 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+  /* 부드러운 가독성을 위해 마스크 처리 (선택 사항) */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
 }
 
 .marqueeWrapper:hover .marqueeLeft {
@@ -51,16 +59,14 @@
 
 .marquee {
   display: flex;
-  gap: 16px;
-  width: fit-content;
+  gap: 16px; /* gap 크기가 일정해야 합니다 */
+  width: max-content; /* 컨텐츠 너비만큼 확보 */
 }
 
-.marqueeLeft {
-  animation: scrollLeft 30s linear infinite;
-}
+/* .marqueeLeft - GSAP가 transform을 직접 제어하므로 CSS animation 제거됨 */
 
 .marqueeRight {
-  animation: scrollRight 30s linear infinite;
+  animation: scrollRight 40s linear infinite;
 }
 
 @keyframes scrollLeft {
@@ -68,16 +74,9 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes scrollRight {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
+    transform: translateX(
+      var(--marquee-offset, -50%)
+    ); /* JavaScript로 계산된 정확한 값 사용 */
   }
 }
 
