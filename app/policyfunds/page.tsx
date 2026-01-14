@@ -504,7 +504,7 @@ function PolicyFundsContent() {
           <div className={styles.process_text_wrapper}>
             <h2 className={styles.process_title}>정책자금 신청 프로세스</h2>
             <p className={styles.process_subtitle}>
-              체계적인 5단계로 정책자금 신청을 완벽하게 지원합니다
+              체계적인 5단계로 정책자금 신청을 완벽하게 지원
             </p>
           </div>
           <div className={styles.process_cards_container}>

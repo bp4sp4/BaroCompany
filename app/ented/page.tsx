@@ -374,9 +374,7 @@ function EntedContent() {
                 </div>
                 <h3 className={styles.feature_card_title}>전문 강사진</h3>
                 <p className={styles.feature_card_subtitle}>
-                  실무 경험이 풍부한
-                  <br />
-                  창업 전문가들의 강의
+                  실무 경험이 풍부한 창업 전문가들의 강의
                 </p>
               </div>
               <div className={styles.feature_card}>
@@ -392,8 +390,7 @@ function EntedContent() {
                 </div>
                 <h3 className={styles.feature_card_title}>실전 중심</h3>
                 <p className={styles.feature_card_subtitle}>
-                  이론이 아닌 실제 창업에
-                  <br /> 필요한 내용 중심
+                  이론이 아닌 실제 창업에 필요한 내용 중심
                 </p>
               </div>
               <div className={styles.feature_card}>
@@ -407,8 +404,7 @@ function EntedContent() {
                 </div>
                 <h3 className={styles.feature_card_title}>지속 지원</h3>
                 <p className={styles.feature_card_subtitle}>
-                  교육 후에도 지속적인
-                  <br /> 멘토링 및 컨설팅
+                  교육 후에도 지속적인 멘토링 및 컨설팅
                 </p>
               </div>
               <div className={styles.feature_card}>
@@ -422,8 +418,7 @@ function EntedContent() {
                 </div>
                 <h3 className={styles.feature_card_title}>네트워킹</h3>
                 <p className={styles.feature_card_subtitle}>
-                  동료 창업자들과의
-                  <br /> 네트워크 구축 기회
+                  동료 창업자들과의 네트워크 구축 기회
                 </p>
               </div>
             </div>
