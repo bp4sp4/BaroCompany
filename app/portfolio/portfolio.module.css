@@ -1591,7 +1591,7 @@
 
 @media (min-width: 1280px) {
   .portfolio_floating_banner {
-    width: 1280px;
+    width: 100%;
   }
 
   .portfolio_floating_banner_inner {
@@ -1601,7 +1601,7 @@
 
 @media (min-width: 1920px) {
   .portfolio_floating_banner {
-    width: 1280px;
+    width: 100%;
   }
 
   .portfolio_floating_banner_inner {

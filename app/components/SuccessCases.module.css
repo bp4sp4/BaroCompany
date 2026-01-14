@@ -284,7 +284,6 @@
   .swiper :global(.swiper-slide) {
     display: flex !important;
     justify-content: center !important;
-    width: auto !important;
   }
 
   .slide {

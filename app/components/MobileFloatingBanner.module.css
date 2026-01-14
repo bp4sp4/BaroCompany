@@ -1,9 +1,32 @@
-.consultationBanner {
+.consultationBannerWrapper {
   position: fixed;
   bottom: 20px;
   /* 화면 가로 중앙 정렬 공식 */
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 9998;
+  background: none;
+}
+
+.consultationBannerImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.chatIcon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.consultationBanner {
   display: flex;
   width: 148px; /* 크기 고정 */
   height: 42px;
@@ -22,7 +45,6 @@
   white-space: nowrap;
   box-sizing: border-box;
   transition: transform 0.2s;
-  z-index: 9998;
 }
 
 .kakaoBanner {
@@ -54,6 +76,7 @@
 
 /* 데스크탑에서는 숨김 */
 @media (min-width: 1024px) {
+  .consultationBannerWrapper,
   .consultationBanner,
   .kakaoBanner {
     display: none !important;
@@ -62,6 +85,10 @@
 
 /* 모바일 (375px - 1023px) */
 @media (min-width: 375px) and (max-width: 1023px) {
+  .consultationBannerWrapper {
+    display: flex;
+  }
+
   .consultationBanner,
   .kakaoBanner {
     display: flex;
