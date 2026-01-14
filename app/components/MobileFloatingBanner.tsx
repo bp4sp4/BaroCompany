@@ -35,26 +35,22 @@ export default function MobileFloatingBanner() {
 
   return (
     <>
-      <div className={styles.consultationBannerWrapper}>
-        <button
-          className={styles.consultationBanner}
-          onClick={openModal}
-          aria-label="1:1 전문가 상담"
-        >
-          1:1 전문가 상담
-        </button>
-        <div className={styles.consultationBannerImage}>
-          <Image
-            src="/images/main/talk.svg"
-            alt="상담 아이콘"
-            width={48}
-            height={48}
-            className={styles.chatIcon}
-            priority
-            loading="eager"
-          />
-        </div>
-      </div>
+      <button
+        className={styles.consultationBanner}
+        onClick={openModal}
+        aria-label="1:1 전문가 상담"
+      >
+        <span className={styles.consultationBannerText}>1:1 전문가 상담</span>
+        <Image
+          src="/images/main/banner_comments.png"
+          alt="상담 아이콘"
+          width={48}
+          height={48}
+          className={styles.chatIcon}
+          priority
+          loading="eager"
+        />
+      </button>
       <button
         className={styles.kakaoBanner}
         onClick={handleKakaoClick}

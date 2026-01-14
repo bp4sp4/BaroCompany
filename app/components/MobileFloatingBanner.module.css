@@ -1,4 +1,4 @@
-.consultationBannerWrapper {
+.consultationBanner {
   position: fixed;
   bottom: 20px;
   /* 화면 가로 중앙 정렬 공식 */
@@ -6,45 +6,35 @@
   transform: translateX(-50%);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  z-index: 9998;
-  background: none;
-}
-
-.consultationBannerImage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-}
-
-.chatIcon {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-}
-
-.consultationBanner {
-  display: flex;
-  width: 148px; /* 크기 고정 */
+  width: auto;
   height: 42px;
-  padding: 0;
-  align-items: center;
-  justify-content: center;
+  padding: 0 12px;
   border-radius: 6px;
-  border: 1px solid var(--Blue-400, #2469ff);
+  border: 1px solid var(--Blue-300, #4c85ff);
   background: var(--white, #fff);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  color: var(--Blue-400, #2469ff);
-  font-family: Pretendard;
-  font-size: 18px;
-  font-weight: 600;
-  white-space: nowrap;
   box-sizing: border-box;
   transition: transform 0.2s;
+  z-index: 9998;
+}
+
+.consultationBannerText {
+  color: var(--Blue-300, #4c85ff);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 24px */
+}
+
+.chatIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .kakaoBanner {
@@ -76,7 +66,6 @@
 
 /* 데스크탑에서는 숨김 */
 @media (min-width: 1024px) {
-  .consultationBannerWrapper,
   .consultationBanner,
   .kakaoBanner {
     display: none !important;
@@ -85,10 +74,6 @@
 
 /* 모바일 (375px - 1023px) */
 @media (min-width: 375px) and (max-width: 1023px) {
-  .consultationBannerWrapper {
-    display: flex;
-  }
-
   .consultationBanner,
   .kakaoBanner {
     display: flex;
