@@ -270,22 +270,6 @@
     justify-content: center !important;
   }
 
-  .swiper {
-    width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .swiper :global(.swiper-wrapper) {
-  }
-
-  .swiper :global(.swiper-slide) {
-    display: flex !important;
-    justify-content: center !important;
-  }
-
   .slide {
     display: flex !important;
     flex-shrink: 0 !important;
@@ -345,5 +329,11 @@
   }
   .tag {
     font-size: 12px !important;
+  }
+}
+
+@media (min-width: 480px) {
+  .slide {
+    width: auto !important;
   }
 }

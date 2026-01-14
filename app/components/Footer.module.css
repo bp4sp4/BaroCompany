@@ -113,11 +113,12 @@
 @media (min-width: 375px) and (max-width: 1023px) {
   .footer {
     display: flex !important;
-    padding: 160px 16px !important;
+    padding: var(--unit-13, 96px) 16px !important;
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 8px !important;
     align-self: stretch !important;
+    background: var(--Blue-900, #00184d) !important;
   }
 }
 
