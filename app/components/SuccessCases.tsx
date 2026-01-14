@@ -73,7 +73,7 @@ export default function SuccessCases() {
             },
             1024: {
               slidesPerView: 2.2,
-              spaceBetween: 100,
+              spaceBetween: 10,
               centeredSlides: false,
             },
             1280: {

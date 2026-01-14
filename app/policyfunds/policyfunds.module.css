@@ -481,6 +481,17 @@
   .comparison_subtitle {
     font-size: 16px !important;
   }
+
+  .comparison_card_tag {
+    display: flex;
+    padding: var(--unit-3, 8px) var(--unit-4, 12px) !important;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    background: var(--Blue-50, #e5edff) !important;
+    font-size: 12px !important;
+  }
 }
 
 .comparison_card_subtitle_separator {

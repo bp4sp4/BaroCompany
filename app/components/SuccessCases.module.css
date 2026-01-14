@@ -198,6 +198,8 @@
     height: 706px;
     padding: var(--unit-15, 160px) 10px;
     overflow: visible;
+    max-width: 1280px;
+    margin: 0 auto;
   }
 
   .header {
