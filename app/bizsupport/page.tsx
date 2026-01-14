@@ -37,7 +37,7 @@ function BizSupportContent() {
           <div className={styles.services_wrapper}>
             <div className={styles.services_text_wrapper}>
               <p className={styles.services_subtitle}>
-                기업의 성장 단계에 맞는 맞춤형 경영 컨설팅 서비스
+                맞춤형 경영 컨설팅 서비스
               </p>
               <h2 className={styles.services_title}>경영지원 서비스</h2>
             </div>
@@ -141,11 +141,9 @@ function BizSupportContent() {
           <div className={styles.stages_wrapper}>
             <div className={styles.stages_text_wrapper}>
               <p className={styles.stages_subtitle}>
-                각 성장 단계에 필요한 경영 전략과 지원을 제공합니다
+                각 성장 단계에 필요한 경영 전략
               </p>
-              <h2 className={styles.stages_title}>
-                기업 성장 단계별 맞춤형 지원
-              </h2>
+              <h2 className={styles.stages_title}>기업 성장 단계별 지원</h2>
             </div>
             <div className={styles.stages_cards_wrapper}>
               <div className={styles.stage_card}>
@@ -303,11 +301,9 @@ function BizSupportContent() {
           <div className={styles.features_wrapper}>
             <div className={styles.features_text_wrapper}>
               <p className={styles.features_subtitle}>
-                실전 경험과 데이터 기반의 전문적인 경영 컨설팅
+                실전 경험과 데이터 기반 전문 컨설팅
               </p>
-              <h2 className={styles.features_title}>
-                한평생 바로 기업의 경영지원만의 특징
-              </h2>
+              <h2 className={styles.features_title}>바로기업만의 경영지원</h2>
             </div>
             <div className={styles.features_cards_wrapper}>
               <div className={styles.feature_card}>
@@ -388,7 +384,7 @@ function BizSupportContent() {
               경영지원 프로세스
             </h2>
             <p className={styles.investment_process_subtitle}>
-              체계적인 5단계 프로세스로 최상의 결과를 제공합니다
+              체계적인 5단계 프로세스로 최상의 결과 제공
             </p>
           </div>
           <div className={styles.investment_process_cards_container}>
@@ -589,7 +585,7 @@ function BizSupportContent() {
               경영지원 추가 서비스
             </h2>
             <p className={styles.additional_services_subtitle}>
-              기업 성장에 필요한 다양한 추가 서비스를 제공합니다
+              기업 성장에 필요한 다양한 추가 서비스 제공
             </p>
 
             <div className={styles.additional_services_cards_wrapper}>

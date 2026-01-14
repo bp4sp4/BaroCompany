@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./StageSelector.module.css";
 
 interface StageSelectorProps {
@@ -32,24 +33,28 @@ export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
       title: "예비창업",
       description: "창업을 준비중이에요",
       subtitle: "창업을 준비중이에요",
+      href: "/policyfunds",
     },
     {
       id: 2,
       title: "기초자금",
       description: "자금이 필요해요",
       subtitle: "자금이 필요해요",
+      href: "/policyfunds",
     },
     {
       id: 3,
       title: "경영지원",
       description: "경영 관련 도움이 필요해요",
       subtitle: "경영 관련 도움이 필요해요",
+      href: "/bizsupport",
     },
     {
       id: 4,
       title: "투자유치",
       description: "투자를 받고 싶어요",
       subtitle: "투자를 받고 싶어요",
+      href: "/investment",
     },
   ];
 
@@ -78,7 +83,9 @@ export default function StageSelector({ theme = "dark" }: StageSelectorProps) {
             <div key={button.id} style={{ display: "contents" }}>
               <div className={styles.buttonWrapper}>
                 <div className={styles.speechBubble}>{button.description}</div>
-                <button className={styles.stageButton}>{button.title}</button>
+                <Link href={button.href} className={styles.stageButton}>
+                  {button.title}
+                </Link>
                 {index === 0 && is1024Screen ? (
                   <svg
                     ref={connectorSvgRef}

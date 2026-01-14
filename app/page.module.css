@@ -90,20 +90,28 @@
   .main {
     display: flex !important;
     height: 700px !important;
-    padding: 306px 16px !important;
+    padding: 160px 16px !important;
     justify-content: center !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     gap: 10px !important;
     align-self: stretch !important;
   }
 
-  .banner_image_wrapper {
-    background: linear-gradient(270deg, rgba(0, 0, 0, 0) 29.38%, #000 100%),
-      url("/images/main/main_banner.jpg") lightgray 50% / cover no-repeat !important;
+  .banner_video {
+    display: block !important;
+  }
+
+  .banner_overlay {
+    background: linear-gradient(
+      180deg,
+      #00184d 0%,
+      rgba(0, 24, 77, 0) 60%
+    ) !important;
   }
 
   .heroContent {
     padding: 0 !important;
+    align-items: flex-start !important;
   }
 
   .heroTitle {

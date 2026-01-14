@@ -86,9 +86,9 @@
   .banner {
     display: flex !important;
     height: 700px !important;
-    padding: 306px var(--unit-5, 16px) !important;
+    padding: 160px var(--unit-5, 16px) !important;
     justify-content: center !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     gap: 10px !important;
     align-self: stretch !important;
   }
@@ -99,7 +99,7 @@
         rgba(0, 0, 0, 0.7) 0%,
         rgba(0, 0, 0, 0.7) 100%
       ),
-      url("/images/bizsupport/biz_support_mobile.jpg") lightgray 50% / cover
+      url("/images/bizsupport/bizsupport_banner.jpg") lightgray 50% / cover
         no-repeat !important;
   }
 
@@ -139,7 +139,7 @@
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: var(--unit-4, 12px) !important;
+    gap: var(--unit-8, 32px) !important;
     align-self: stretch !important;
     width: 100% !important;
   }
@@ -185,7 +185,7 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: flex-start !important;
-    gap: var(--unit-4, 12px) !important;
+    gap: var(--unit-8, 32px) !important;
     align-self: stretch !important;
   }
 
@@ -233,7 +233,7 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: flex-start !important;
-    gap: var(--unit-4, 12px) !important;
+    gap: var(--unit-8, 32px) !important;
     align-self: stretch !important;
   }
 
@@ -389,7 +389,7 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: flex-start !important;
-    gap: var(--unit-4, 12px) !important;
+    gap: var(--unit-8, 32px) !important;
     align-self: stretch !important;
   }
 
@@ -1375,7 +1375,7 @@
   color: var(--Grayscale-600, #656565);
   /* Body 1/Normal */
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 21.6px */

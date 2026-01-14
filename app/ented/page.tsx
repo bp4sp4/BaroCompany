@@ -36,7 +36,7 @@ function EntedContent() {
           <div className={styles.programs_wrapper}>
             <div className={styles.programs_header}>
               <p className={styles.programs_subtitle}>
-                다양한 창업 교육 프로그램으로 성공적인 창업을 지원합니다
+                다양한 프로그램으로 성공적인 창업 지원
               </p>
               <h2 className={styles.programs_title}>창업교육 프로그램</h2>
             </div>
@@ -189,7 +189,7 @@ function EntedContent() {
           <div className={styles.curriculum_wrapper}>
             <div className={styles.curriculum_header}>
               <p className={styles.curriculum_subtitle}>
-                체계적인 단계별 교육으로 창업 준비를 완벽하게 하세요
+                체계적인 단계별 교육으로 창업 준비
               </p>
               <h2 className={styles.curriculum_title}>
                 8주 기초 창업 교육 커리큘럼
@@ -356,11 +356,9 @@ function EntedContent() {
           <div className={styles.features_wrapper}>
             <div className={styles.features_text_wrapper}>
               <p className={styles.features_subtitle}>
-                실전 경험이 풍부한 전문가들이 제공하는 체계적이고 실용적인 교육
+                실전 전문가들의 체계적이고 실용적인 교육
               </p>
-              <h2 className={styles.features_title}>
-                한평생 바로 기업의 창업교육만의 특징
-              </h2>
+              <h2 className={styles.features_title}>바로기업만의 창업교육</h2>
             </div>
             <div className={styles.features_cards_wrapper}>
               <div className={styles.feature_card}>
@@ -434,10 +432,7 @@ function EntedContent() {
 
         <section className={styles.support_section}>
           <div className={styles.support_contents_wrapper}>
-            <p className={styles.support_subtitle}>
-              교육 후에도 지속적인 멘토링과 컨설팅으로 성공적인 창업을
-              지원합니다
-            </p>
+            <p className={styles.support_subtitle}>지속적인 멘토링과 컨설팅</p>
             <h2 className={styles.support_title}>창업교육 수강 후 지원</h2>
             <div className={styles.support_cards_wrapper}>
               <div className={styles.support_card}>

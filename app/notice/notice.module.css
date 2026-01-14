@@ -92,9 +92,9 @@
   .banner {
     display: flex !important;
     height: 700px !important;
-    padding: 306px var(--unit-5, 16px) !important;
+    padding: 160px var(--unit-5, 16px) !important;
     justify-content: center !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     gap: 10px !important;
     align-self: stretch !important;
   }
@@ -110,6 +110,7 @@
 
   .banner_content {
     padding: 0 !important;
+    justify-content: flex-start !important;
   }
 
   .banner_title {

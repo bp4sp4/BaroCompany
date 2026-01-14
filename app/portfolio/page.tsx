@@ -494,7 +494,7 @@ function PortfolioContent() {
             <div className={styles.portfolio_achievements_metrics}>
               <div className={styles.portfolio_achievement_item}>
                 <span className={styles.portfolio_achievement_tag}>
-                  정책자금 컨설팅
+                  {isMobile ? "정책자금" : "정책자금 컨설팅"}
                 </span>
                 <span className={styles.portfolio_achievement_number}>
                   180+
@@ -525,7 +525,7 @@ function PortfolioContent() {
               )}
               <div className={styles.portfolio_achievement_item}>
                 <span className={styles.portfolio_achievement_tag}>
-                  투자유치 지원
+                  {isMobile ? "투자유치" : "투자유치 지원"}
                 </span>
                 <span className={styles.portfolio_achievement_number}>
                   120+
@@ -556,7 +556,7 @@ function PortfolioContent() {
               )}
               <div className={styles.portfolio_achievement_item}>
                 <span className={styles.portfolio_achievement_tag}>
-                  경영지원 컨설팅
+                  {isMobile ? "경영지원" : "경영지원 컨설팅"}
                 </span>
                 <span className={styles.portfolio_achievement_number}>
                   150+
