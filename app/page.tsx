@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import FloatingButton from "./components/FloatingButton";
 import MobileFloatingBanner from "./components/MobileFloatingBanner";
 import { ConsultationProvider } from "./components/ConsultationContext";
+import AnimatedNumber from "./components/AnimatedNumber";
 import styles from "./page.module.css";
 
 // 모바일 감지 훅
@@ -90,60 +91,70 @@ export default function Home() {
       <SuccessCases />
 
       <section className={styles.main_achievements_section}>
-        <div className={styles.main_achievements_wrapper}>
-          <div className={styles.main_achievements_metrics}>
-            <div className={styles.main_achievement_item}>
-              <span className={styles.main_achievement_tag}>지원기업</span>
-              <span className={styles.main_achievement_number}>500+</span>
-            </div>
-            {!isMobile && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2"
-                height="50"
-                viewBox="0 0 2 50"
-                fill="none"
-                className={styles.main_achievement_separator}
-              >
-                <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
-              </svg>
-            )}
-            <div className={styles.main_achievement_item}>
-              <span className={styles.main_achievement_tag}>승인율</span>
-              <span className={styles.main_achievement_number}>98%</span>
-            </div>
-            {!isMobile && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2"
-                height="50"
-                viewBox="0 0 2 50"
-                fill="none"
-                className={styles.main_achievement_separator}
-              >
-                <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
-              </svg>
-            )}
-            <div className={styles.main_achievement_item}>
-              <span className={styles.main_achievement_tag}>평균 지원액</span>
-              <span className={styles.main_achievement_number}>9.2억</span>
-            </div>
-            {!isMobile && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2"
-                height="50"
-                viewBox="0 0 2 50"
-                fill="none"
-                className={styles.main_achievement_separator}
-              >
-                <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
-              </svg>
-            )}
-            <div className={styles.main_achievement_item}>
-              <span className={styles.main_achievement_tag}>컨설팅 경력</span>
-              <span className={styles.main_achievement_number}>15년</span>
-            </div>
+        <div className={styles.main_achievements_metrics}>
+          <div className={styles.main_achievement_item}>
+            <span className={styles.main_achievement_tag}>지원기업</span>
+            <AnimatedNumber
+              value="500+"
+              className={styles.main_achievement_number}
+            />
+          </div>
+          {!isMobile && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2"
+              height="50"
+              viewBox="0 0 2 50"
+              fill="none"
+              className={styles.main_achievement_separator}
+            >
+              <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+            </svg>
+          )}
+          <div className={styles.main_achievement_item}>
+            <span className={styles.main_achievement_tag}>승인율</span>
+            <AnimatedNumber
+              value="98%"
+              className={styles.main_achievement_number}
+            />
+          </div>
+          {!isMobile && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2"
+              height="50"
+              viewBox="0 0 2 50"
+              fill="none"
+              className={styles.main_achievement_separator}
+            >
+              <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+            </svg>
+          )}
+          <div className={styles.main_achievement_item}>
+            <span className={styles.main_achievement_tag}>평균 지원액</span>
+            <AnimatedNumber
+              value="9.2억"
+              className={styles.main_achievement_number}
+            />
+          </div>
+          {!isMobile && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2"
+              height="50"
+              viewBox="0 0 2 50"
+              fill="none"
+              className={styles.main_achievement_separator}
+            >
+              <path d="M1 0L0.999998 50" stroke="#919191" strokeWidth="2" />
+            </svg>
+          )}
+          <div className={styles.main_achievement_item}>
+            <span className={styles.main_achievement_tag}>컨설팅 경력</span>
+            <AnimatedNumber
+              value="15년"
+              className={styles.main_achievement_number}
+            />
           </div>
         </div>
       </section>

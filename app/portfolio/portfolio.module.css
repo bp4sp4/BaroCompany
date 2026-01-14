@@ -214,7 +214,7 @@
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: var(--unit-6, 20px) !important;
+    gap: var(--unit-4, 12px) !important;
     align-self: stretch !important;
     flex-direction: row !important;
     width: 100% !important;
@@ -1188,6 +1188,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: 140%; /* 89.6px */
+  display: flex;
 }
 
 .portfolio_achievement_separator {

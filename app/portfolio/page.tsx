@@ -9,6 +9,7 @@ import {
 } from "../components/ConsultationContext";
 import FloatingButton from "../components/FloatingButton";
 import MobileFloatingBanner from "../components/MobileFloatingBanner";
+import AnimatedNumber from "../components/AnimatedNumber";
 import Image from "next/image";
 import styles from "./portfolio.module.css";
 
@@ -496,9 +497,10 @@ function PortfolioContent() {
                 <span className={styles.portfolio_achievement_tag}>
                   {isMobile ? "정책자금" : "정책자금 컨설팅"}
                 </span>
-                <span className={styles.portfolio_achievement_number}>
-                  180+
-                </span>
+                <AnimatedNumber
+                  value="180+"
+                  className={styles.portfolio_achievement_number}
+                />
               </div>
               {isMobile ? (
                 <svg
@@ -527,9 +529,10 @@ function PortfolioContent() {
                 <span className={styles.portfolio_achievement_tag}>
                   {isMobile ? "투자유치" : "투자유치 지원"}
                 </span>
-                <span className={styles.portfolio_achievement_number}>
-                  120+
-                </span>
+                <AnimatedNumber
+                  value="120+"
+                  className={styles.portfolio_achievement_number}
+                />
               </div>
               {isMobile ? (
                 <svg
@@ -558,9 +561,10 @@ function PortfolioContent() {
                 <span className={styles.portfolio_achievement_tag}>
                   {isMobile ? "경영지원" : "경영지원 컨설팅"}
                 </span>
-                <span className={styles.portfolio_achievement_number}>
-                  150+
-                </span>
+                <AnimatedNumber
+                  value="150+"
+                  className={styles.portfolio_achievement_number}
+                />
               </div>
             </div>
           </div>
