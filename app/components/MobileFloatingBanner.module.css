@@ -8,8 +8,8 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: auto;
-  height: 42px;
+  width: max-content;
+  height: 48px;
   padding: var(--unit-4, 12px) var(--unit-6, 20px);
 
   border-radius: 6px;

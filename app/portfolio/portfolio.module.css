@@ -1035,6 +1035,13 @@
     flex-shrink: 0;
     flex-basis: auto;
   }
+
+  .portfolio_achievement_separator {
+    width: 2px;
+    height: 50px;
+    flex-shrink: 0;
+    margin: 0 var(--unit-13, 96px) !important;
+  }
 }
 
 /* 일반 데스크탑 */
@@ -1105,7 +1112,7 @@
   align-items: center;
   gap: 32px;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   margin: 0 auto;
 }
 
@@ -1211,7 +1218,7 @@
   align-items: center;
   gap: var(--unit-8, 32px);
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   margin: 0 auto;
 }
 
@@ -1250,7 +1257,6 @@
   align-items: flex-start;
   gap: var(--unit-4, 12px);
   align-self: stretch;
-
   justify-content: center;
 }
 

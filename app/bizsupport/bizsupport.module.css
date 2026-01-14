@@ -931,7 +931,7 @@
   align-items: center;
   gap: var(--unit-8, 32px);
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   margin: 0 auto;
 }
 
@@ -1045,9 +1045,8 @@
   align-items: center;
   gap: var(--unit-8, 32px);
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   margin: 0 auto;
-  padding: 0 10px;
 }
 
 .stages_text_wrapper {
@@ -1222,9 +1221,8 @@
   align-items: center;
   gap: var(--unit-8, 32px);
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   margin: 0 auto;
-  padding: 0 10px;
 }
 
 .features_text_wrapper {
@@ -1388,8 +1386,8 @@
   justify-content: center;
   gap: var(--unit-4, 12px);
   width: 100%;
-  max-width: 1280px;
-  padding: 0 10px;
+  max-width: 1260px;
+
   box-sizing: border-box;
   flex-wrap: wrap;
 }
@@ -1494,7 +1492,7 @@
 
   align-self: stretch;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   margin: 0 auto;
   padding: 0 10px;
 }

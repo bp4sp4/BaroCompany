@@ -675,9 +675,8 @@
 
   .support_contents_wrapper {
     width: 100% !important;
-    max-width: 1280px !important;
+    max-width: 1260px !important;
     margin: 0 auto !important;
-    padding: 0 10px !important;
   }
 
   .support_card {
@@ -762,9 +761,8 @@
   align-items: flex-start;
   gap: var(--unit-8, 32px);
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   margin: 0 auto;
-  padding: 0 10px;
 }
 
 .programs_header {
@@ -926,7 +924,7 @@
   justify-content: flex-start;
   gap: var(--unit-8, 32px);
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   margin: 0 auto;
 }
 
@@ -967,7 +965,7 @@
   gap: var(--unit-4, 12px);
 
   width: 100%;
-  max-width: 1280px;
+  max-width: 1260px;
   justify-content: center;
   align-items: flex-start;
 }
