@@ -109,6 +109,12 @@ export default function AdminPage() {
   const formatClickSource = (clickSource?: string) => {
     if (!clickSource) return "-";
     
+    // daangn_material_1~6 형식을 당근마켓_소재_1~6으로 변환
+    if (clickSource.startsWith("daangn_material_")) {
+      const materialNumber = clickSource.replace("daangn_material_", "");
+      return `당근마켓_소재_${materialNumber}`;
+    }
+    
     const sourceMap: Record<string, string> = {
       daangn: "당근마켓",
       // 다른 소스 추가 가능
