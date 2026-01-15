@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const baseUrl = "https://www.바로기업.com";
+  const baseUrl = "https://바로기업.com";
   const siteName = "한평생 바로기업";
   const description =
     "창업부터 EXIT까지, 대표님들의 성공적인 경영을 위한 전문 컨설팅";
