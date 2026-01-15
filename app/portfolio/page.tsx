@@ -456,10 +456,10 @@ function PortfolioContent() {
           <div className={styles.portfolio_features_wrapper}>
             <div className={styles.portfolio_features_text_wrapper}>
               <p className={styles.portfolio_features_subtitle}>
-                바로기업과 함께한 기업들의 공통점
+                맞춤형 진단, 검증된 포트폴리오
               </p>
               <h2 className={styles.portfolio_features_title}>
-                포트폴리오 기업의 특징
+                기업 가치 스케일 UP
               </h2>
             </div>
             <div className={styles.portfolio_features_cards}>
