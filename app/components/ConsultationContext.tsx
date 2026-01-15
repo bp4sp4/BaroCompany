@@ -6,6 +6,9 @@ import ConsultationModal from "./ConsultationModal";
 interface ConsultationContextType {
   openModal: () => void;
   closeModal: () => void;
+  showSuccessModal: boolean;
+  openSuccessModal: () => void;
+  closeSuccessModal: () => void;
 }
 
 const ConsultationContext = createContext<ConsultationContextType | undefined>(
@@ -14,12 +17,23 @@ const ConsultationContext = createContext<ConsultationContextType | undefined>(
 
 export function ConsultationProvider({ children }: { children: ReactNode }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const openSuccessModal = () => setShowSuccessModal(true);
+  const closeSuccessModal = () => setShowSuccessModal(false);
 
   return (
-    <ConsultationContext.Provider value={{ openModal, closeModal }}>
+    <ConsultationContext.Provider
+      value={{
+        openModal,
+        closeModal,
+        showSuccessModal,
+        openSuccessModal,
+        closeSuccessModal,
+      }}
+    >
       {children}
       <ConsultationModal isOpen={isModalOpen} onClose={closeModal} />
     </ConsultationContext.Provider>

@@ -189,7 +189,7 @@
   margin: 0;
 }
 
-.name {
+.company {
   color: var(--Grayscale-900, #010101);
 
   /* Title 3 */
@@ -199,7 +199,7 @@
   font-weight: 600;
   line-height: 120%; /* 21.6px */
 }
-.company {
+.name {
   color: var(--Grayscale-600, #656565);
 
   /* Button/2 */

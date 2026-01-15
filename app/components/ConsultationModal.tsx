@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "./ConsultationModal.module.css";
 import { getStoredClickSource } from "../utils/clickSource";
+import { useConsultation } from "./ConsultationContext";
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ export default function ConsultationModal({
   isOpen,
   onClose,
 }: ConsultationModalProps) {
+  const { openSuccessModal } = useConsultation();
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -76,14 +78,12 @@ export default function ConsultationModal({
       });
 
       if (response.ok) {
-        setSubmitMessage("입력되었습니다");
-        // 제출 후 모달 닫기
-        setTimeout(() => {
-          onClose();
-          setFormData({ name: "", contact: "" });
-          setIsAgreed(false);
-          setSubmitMessage("");
-        }, 1500);
+        // 제출 성공 시 모달 닫고 성공 팝업 표시
+        onClose();
+        setFormData({ name: "", contact: "" });
+        setIsAgreed(false);
+        setSubmitMessage("");
+        openSuccessModal();
       } else {
         const error = await response.json();
         setSubmitMessage(error.error || "상담 신청 중 오류가 발생했습니다.");

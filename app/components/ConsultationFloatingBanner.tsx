@@ -1,10 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./ConsultationFloatingBanner.module.css";
 import { getStoredClickSource } from "../utils/clickSource";
+import { useConsultation } from "./ConsultationContext";
 
 export default function ConsultationFloatingBanner() {
+  const { showSuccessModal: contextShowSuccessModal, closeSuccessModal } =
+    useConsultation();
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -14,6 +17,13 @@ export default function ConsultationFloatingBanner() {
   const [contactError, setContactError] = useState("");
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  // Context의 showSuccessModal 상태를 동기화
+  useEffect(() => {
+    if (contextShowSuccessModal) {
+      setShowSuccessModal(true);
+    }
+  }, [contextShowSuccessModal]);
 
   const formatPhoneNumber = (value: string) => {
     const numbers = value.replace(/[^\d]/g, "");
@@ -211,7 +221,10 @@ export default function ConsultationFloatingBanner() {
       {showSuccessModal && (
         <div
           className={styles.modalOverlay}
-          onClick={() => setShowSuccessModal(false)}
+          onClick={() => {
+            setShowSuccessModal(false);
+            closeSuccessModal();
+          }}
         >
           <div
             className={styles.successModalContent}
@@ -219,7 +232,10 @@ export default function ConsultationFloatingBanner() {
           >
             <button
               className={styles.modalCloseButton}
-              onClick={() => setShowSuccessModal(false)}
+              onClick={() => {
+                setShowSuccessModal(false);
+                closeSuccessModal();
+              }}
             >
               ×
             </button>
@@ -234,7 +250,10 @@ export default function ConsultationFloatingBanner() {
             </p>
             <button
               className={styles.confirmButton}
-              onClick={() => setShowSuccessModal(false)}
+              onClick={() => {
+                setShowSuccessModal(false);
+                closeSuccessModal();
+              }}
             >
               확인
             </button>
