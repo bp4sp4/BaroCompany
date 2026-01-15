@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import styles from "./FloatingButton.module.css";
+import { getStoredClickSource } from "../utils/clickSource";
 
 export default function FloatingButton() {
   const pathname = usePathname();
@@ -60,12 +61,18 @@ export default function FloatingButton() {
     }
 
     try {
+      // click_source 가져오기
+      const clickSource = getStoredClickSource();
+      
       const response = await fetch("/api/consultations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          click_source: clickSource || undefined,
+        }),
       });
 
       if (response.ok) {
@@ -153,7 +160,7 @@ export default function FloatingButton() {
     <>
       <div className={styles.floatingForm}>
         <div className={styles.formHeader}>
-          <h2 className={styles.title}>정책자금상담</h2>
+          <h2 className={styles.title}>상담신청</h2>
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
@@ -223,7 +230,7 @@ export default function FloatingButton() {
               !validatePhoneNumber(formData.contact)
             }
           >
-            {isSubmitting ? "제출 중..." : "상담신청"}
+            {isSubmitting ? "제출 중..." : "신청하기"}
           </button>
         </form>
       </div>

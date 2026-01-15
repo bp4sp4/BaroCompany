@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 import FloatingButton from "./components/FloatingButton";
 import MobileFloatingBanner from "./components/MobileFloatingBanner";
 import { ConsultationProvider } from "./components/ConsultationContext";
-import AnimatedNumber from "./components/AnimatedNumber";
+// import AnimatedNumber from "./components/AnimatedNumber";
 import styles from "./page.module.css";
 
 // 모바일 감지 훅
@@ -90,7 +90,7 @@ export default function Home() {
 
       <SuccessCases />
 
-      <section className={styles.main_achievements_section}>
+      {/* <section className={styles.main_achievements_section}>
         <div className={styles.main_achievements_metrics}>
           <div className={styles.main_achievement_item}>
             <span className={styles.main_achievement_tag}>지원기업</span>
@@ -157,7 +157,7 @@ export default function Home() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       <GrowthSection />
 

@@ -28,8 +28,11 @@ export default function AdminPage() {
 
   const checkAuth = async () => {
     try {
-      const { data: { session }, error } = await supabase.auth.getSession();
-      
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
       if (error || !session) {
         router.push("/admin/login");
         return;
@@ -60,7 +63,9 @@ export default function AdminPage() {
             return a.is_completed ? 1 : -1;
           }
           // 같은 상태면 created_at 내림차순 (최신순)
-          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+          return (
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          );
         });
         setConsultations(sorted);
       }
@@ -108,19 +113,20 @@ export default function AdminPage() {
 
   const formatClickSource = (clickSource?: string) => {
     if (!clickSource) return "-";
-    
+
     // daangn_material_1~6 형식을 당근마켓_소재_1~6으로 변환
     if (clickSource.startsWith("daangn_material_")) {
       const materialNumber = clickSource.replace("daangn_material_", "");
       return `당근마켓_소재_${materialNumber}`;
     }
-    
+
     const sourceMap: Record<string, string> = {
       daangn: "당근마켓",
+      instagram: "인스타그램",
       // 다른 소스 추가 가능
     };
-    
-    return sourceMap[clickSource] || clickSource;
+
+    return sourceMap[clickSource.toLowerCase()] || clickSource;
   };
 
   // 페이지네이션 계산
@@ -176,7 +182,9 @@ export default function AdminPage() {
               currentConsultations.map((consultation, index) => (
                 <tr
                   key={consultation.id}
-                  className={consultation.is_completed ? styles.completedRow : ""}
+                  className={
+                    consultation.is_completed ? styles.completedRow : ""
+                  }
                 >
                   <td>{startIndex + index + 1}</td>
                   <td>{consultation.name}</td>
@@ -187,7 +195,12 @@ export default function AdminPage() {
                     <input
                       type="checkbox"
                       checked={consultation.is_completed}
-                      onChange={() => toggleCompletion(consultation.id, consultation.is_completed)}
+                      onChange={() =>
+                        toggleCompletion(
+                          consultation.id,
+                          consultation.is_completed
+                        )
+                      }
                       className={styles.checkbox}
                     />
                   </td>
@@ -211,7 +224,9 @@ export default function AdminPage() {
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <button
               key={page}
-              className={`${styles.pageButton} ${currentPage === page ? styles.activePage : ""}`}
+              className={`${styles.pageButton} ${
+                currentPage === page ? styles.activePage : ""
+              }`}
               onClick={() => goToPage(page)}
             >
               {page}

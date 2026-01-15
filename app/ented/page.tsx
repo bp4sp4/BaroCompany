@@ -8,6 +8,7 @@ import {
 } from "../components/ConsultationContext";
 import FloatingButton from "../components/FloatingButton";
 import MobileFloatingBanner from "../components/MobileFloatingBanner";
+import ConsultationFloatingBanner from "../components/ConsultationFloatingBanner";
 import Image from "next/image";
 import styles from "./ented.module.css";
 
@@ -496,7 +497,7 @@ function EntedContent() {
                   <p className={styles.support_card_bottom_item}>
                     서류 작성 지원
                   </p>
-                  <p className={styles.support_card_bottom_item}>신청 대행</p>
+                  <p className={styles.support_card_bottom_item}>신청 안내</p>
                   <p className={styles.support_card_bottom_item}>사후 관리</p>
                 </div>
               </div>
@@ -559,6 +560,7 @@ function EntedContent() {
       <Footer />
       <FloatingButton />
       <MobileFloatingBanner />
+      <ConsultationFloatingBanner />
     </>
   );
 }

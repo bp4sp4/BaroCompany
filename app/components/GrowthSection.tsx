@@ -8,7 +8,7 @@ export default function GrowthSection() {
     {
       id: 1,
       title: "정책 자금 종합 컨설팅",
-      subtitle: "복잡한 서류와 사업계획서 대행, 승인까지",
+      subtitle: "복잡한 서류와 사업계획서, 승인까지",
       image: "/images/main/growth/growth001.png",
     },
     {
@@ -25,7 +25,7 @@ export default function GrowthSection() {
     },
     {
       id: 4,
-      title: "비즈 인증",
+      title: "메인비즈 · 이노비즈 인증",
       subtitle: "정부 지원 사업 우대 및 금융 혜택을 위한",
       image: "/images/main/growth/growth004.png",
     },

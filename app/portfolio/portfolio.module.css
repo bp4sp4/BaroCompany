@@ -1211,6 +1211,7 @@
   align-items: center;
   gap: var(--unit-8, 32px);
   align-self: stretch;
+  background: var(--Grayscale-100, #f2f2f2);
 }
 
 .portfolio_features_wrapper {

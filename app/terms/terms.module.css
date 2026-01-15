@@ -1,0 +1,262 @@
+.main {
+  min-height: 100vh;
+  background-color: var(--Grayscale-50, #fafafa);
+  padding: var(--unit-14, 120px) 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--unit-5, 16px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--unit-10, 48px);
+  flex-wrap: wrap;
+  gap: var(--unit-6, 20px);
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--Grayscale-900, #010101);
+  margin: 0;
+  font-family: Pretendard;
+}
+
+.dateSelector {
+  display: flex;
+  align-items: center;
+  gap: var(--unit-3, 8px);
+}
+
+.dateLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--Grayscale-700, #666);
+  font-family: Pretendard;
+}
+
+.dateSelect {
+  padding: var(--unit-3, 8px) var(--unit-4, 12px);
+  border: 1px solid var(--Grayscale-300, #d0d0d0);
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 16px;
+  font-family: Pretendard;
+  color: var(--Grayscale-900, #010101);
+  cursor: pointer;
+}
+
+.dateSelect:focus {
+  outline: none;
+  border-color: var(--Blue-400, #2469ff);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--unit-6, 20px);
+  margin-bottom: var(--unit-10, 48px);
+  border-bottom: 2px solid var(--Grayscale-200, #e5e5e5);
+}
+
+.tab {
+  padding: var(--unit-5, 16px) var(--unit-6, 20px);
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--Grayscale-600, #999);
+  cursor: pointer;
+  font-family: Pretendard;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tab:hover {
+  color: var(--Grayscale-900, #010101);
+}
+
+.tab.activeTab {
+  color: var(--Blue-400, #2469ff);
+}
+
+.tab.activeTab::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--Blue-400, #2469ff);
+}
+
+.content {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: var(--unit-10, 48px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contentTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--Grayscale-900, #010101);
+  margin: 0 0 var(--unit-8, 32px) 0;
+  font-family: Pretendard;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--unit-2, 4px);
+}
+
+.accordionItem {
+  border: 1px solid var(--Grayscale-200, #e5e5e5);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.accordionItem:hover {
+  border-color: var(--Grayscale-300, #d0d0d0);
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--unit-6, 20px) var(--unit-7, 24px);
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.accordionHeader:hover {
+  background-color: var(--Grayscale-50, #fafafa);
+}
+
+.accordionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--Grayscale-900, #010101);
+  font-family: Pretendard;
+}
+
+.accordionIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  color: var(--Grayscale-600, #999);
+}
+
+.accordionIcon.expanded {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  padding: 0 var(--unit-7, 24px) var(--unit-6, 20px) var(--unit-7, 24px);
+  background: #ffffff;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+.accordionText {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--Grayscale-700, #666);
+  font-family: Pretendard;
+  white-space: pre-line;
+}
+
+.accordionText p {
+  margin: var(--unit-4, 12px) 0;
+}
+
+.accordionText ul,
+.accordionText ol {
+  margin: var(--unit-4, 12px) 0;
+  padding-left: var(--unit-7, 24px);
+}
+
+.accordionText li {
+  margin: var(--unit-2, 4px) 0;
+}
+
+/* 모바일 스타일 */
+@media (max-width: 1023px) {
+  .main {
+    padding: var(--unit-10, 48px) 0;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: var(--unit-8, 32px);
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .dateSelector {
+    width: 100%;
+  }
+
+  .dateSelect {
+    flex: 1;
+  }
+
+  .tabs {
+    gap: var(--unit-4, 12px);
+    margin-bottom: var(--unit-8, 32px);
+  }
+
+  .tab {
+    padding: var(--unit-4, 12px) var(--unit-5, 16px);
+    font-size: 16px;
+  }
+
+  .content {
+    padding: var(--unit-7, 24px) var(--unit-5, 16px);
+  }
+
+  .contentTitle {
+    font-size: 24px;
+    margin-bottom: var(--unit-6, 20px);
+  }
+
+  .accordionHeader {
+    padding: var(--unit-5, 16px) var(--unit-6, 20px);
+  }
+
+  .accordionTitle {
+    font-size: 16px;
+  }
+
+  .accordionContent {
+    padding: 0 var(--unit-6, 20px) var(--unit-5, 16px) var(--unit-6, 20px);
+  }
+
+  .accordionText {
+    font-size: 14px;
+  }
+}

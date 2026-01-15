@@ -83,45 +83,95 @@
 }
 
 .card {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 24px;
   display: flex;
+  width: 300px;
+  height: 361px;
+  padding: 24px;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  align-items: flex-start;
   flex-shrink: 0;
-  width: 300px;
-  height: 200px;
+  border-radius: 10px;
+  background: var(--white, #fff);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.quoteContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--unit-3, 8px);
+  align-self: stretch;
+}
+
+.contentTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--unit-3, 8px);
+  align-self: stretch;
+}
+
+.approvalBadge {
+  display: flex;
+  padding: var(--unit-3, 8px) var(--unit-4, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  background: var(--Blue-50, #e5edff);
+  color: var(--Blue-600, #0049e5);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  width: fit-content;
 }
 
 .quote {
-  font-size: 20px;
-  color: #000;
+  color: var(--Grayscale-900, #010101);
+  text-align: justify;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
   margin: 0;
-  font-weight: 500;
-  /* flex: 1 제거하여 인용구가 필요한 만큼만 공간 차지 */
 }
 
 .userInfo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: auto; /* 상단 여백을 자동으로 채워서 항상 하단에 위치 */
+  gap: 14px;
 }
 
 .avatar {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-
+  flex: 1 0 0;
+  height: 64px;
   overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--Grayscale-200, #e4e4e4);
+  position: relative;
 }
 
 .avatarImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  aspect-ratio: 1/1;
+}
+
+.avatarOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(2.5px);
+  border-radius: 6px;
+  pointer-events: none;
 }
 
 .userDetails {
@@ -129,17 +179,36 @@
   flex-direction: column;
 }
 
-.name {
-  font-size: 20px;
-  font-weight: 500;
-  color: #010101;
+.category {
+  color: var(--Grayscale-900, #010101);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 21.6px */
+  margin: 0;
 }
 
-.company {
+.name {
+  color: var(--Grayscale-900, #010101);
+
+  /* Title 3 */
+  font-family: Pretendard;
   font-size: 18px;
-  font-weight: 500;
-  color: #656565;
-  margin: 0;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 21.6px */
+}
+.company {
+  color: var(--Grayscale-600, #656565);
+
+  /* Button/2 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 16px */
+  margin-top: 9px;
 }
 
 .cta {
@@ -176,7 +245,8 @@
   }
 
   .card {
-    min-width: 280px;
+    width: 300px;
+    height: 361px;
   }
 }
 

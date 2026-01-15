@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./ConsultationModal.module.css";
+import { getStoredClickSource } from "../utils/clickSource";
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -60,12 +61,18 @@ export default function ConsultationModal({
     }
 
     try {
+      // click_source 가져오기
+      const clickSource = getStoredClickSource();
+      
       const response = await fetch("/api/consultations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          click_source: clickSource || undefined,
+        }),
       });
 
       if (response.ok) {

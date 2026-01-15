@@ -8,6 +8,7 @@ import {
 } from "../components/ConsultationContext";
 import FloatingButton from "../components/FloatingButton";
 import MobileFloatingBanner from "../components/MobileFloatingBanner";
+import ConsultationFloatingBanner from "../components/ConsultationFloatingBanner";
 import styles from "./notice.module.css";
 
 function NoticeContent() {
@@ -55,8 +56,8 @@ function NoticeContent() {
                     </p>
                     <p className={styles.notice_item_title}></p>
                     <div className={styles.notice_item_description}>
-                      → 100% 자금조달이 가능하다고 말하는 것은
-                      불법입니다. 바름은 허위 과장 계약을 하지 않으며 자금조달
+                      → 100% 자금조달이 가능하다고 말하는 것은 불법입니다.
+                      한평생 바로기업은 허위 과장 계약을 하지 않으며 자금조달
                       실패시 100% 환불을 진행합니다 (계약서 명시)
                     </div>
                   </div>
@@ -72,8 +73,8 @@ function NoticeContent() {
                     </p>
                     <p className={styles.notice_item_title}></p>
                     <div className={styles.notice_item_description}>
-                      → 허위로 사업계획서 작성하지 않습니다. 바름은 실제 진행한
-                      사항에 대한 사실기반의 컨설팅만을 진행합니다.
+                      → 허위로 사업계획서 작성하지 않습니다. 한평생 바로기업은
+                      실제 진행한 사항에 대한 사실기반의 컨설팅만을 진행합니다.
                     </div>
                   </div>
                 </div>
@@ -88,9 +89,9 @@ function NoticeContent() {
                     </p>
 
                     <div className={styles.notice_item_description}>
-                      → 요건 미흡, 평가탈락 기업은 진행자체가 불가합니다. 바름은
-                      지원자격을 투명하게 공개하며 부합하지 않을 시 억지 계약을
-                      진행하지 않습니다.
+                      → 요건 미흡, 평가탈락 기업은 진행자체가 불가합니다. 한평생
+                      바로기업은 지원자격을 투명하게 공개하며 부합하지 않을 시
+                      억지 계약을 진행하지 않습니다.
                     </div>
                   </div>
                 </div>
@@ -106,8 +107,9 @@ function NoticeContent() {
                     </p>
 
                     <div className={styles.notice_item_description}>
-                      → 정부기관 인적 네트워크에 대한 발언하지 않습니다. 바름은
-                      바름의 노하우와 경험을 통한 정식컨설팅만 진행합니다.
+                      → 정부기관 인적 네트워크에 대한 발언하지 않습니다. 한평생
+                      바로기업은 한평생 바로의 노하우와 경험을 통한 정식컨설팅만
+                      진행합니다.
                     </div>
                   </div>
                 </div>
@@ -157,6 +159,7 @@ function NoticeContent() {
       <Footer />
       <FloatingButton />
       <MobileFloatingBanner />
+      <ConsultationFloatingBanner />
     </>
   );
 }

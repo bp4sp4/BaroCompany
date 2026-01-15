@@ -6,10 +6,9 @@ export default function RecruitmentBanner() {
       <div className={styles.banner}>
         <p className={styles.subtitle}>바로기업 신규 기업 모집중!</p>
         <h2 className={styles.title}>
-          기술력에 자신있다면,
+          START UP, 시작부터 성장까지
           <br />
-          바로기업에서 그 시작을
-          <br className={styles.br} /> 함께하세요!
+          바로기업에서 그 시작을 함께하세요!
         </h2>
       </div>
     </section>

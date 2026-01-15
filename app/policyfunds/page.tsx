@@ -8,6 +8,7 @@ import {
 } from "../components/ConsultationContext";
 import FloatingButton from "../components/FloatingButton";
 import MobileFloatingBanner from "../components/MobileFloatingBanner";
+import ConsultationFloatingBanner from "../components/ConsultationFloatingBanner";
 import Image from "next/image";
 import styles from "./policyfunds.module.css";
 
@@ -22,8 +23,8 @@ function PolicyFundsContent() {
           <div className={styles.banner_overlay} />
           <div className={styles.banner_content}>
             <h1 className={styles.banner_title}>
-              기업의 성장을 위한
-              <br /> 기업 자금 확보
+              대표님의 성장을 위한
+              <br /> 정책 자금 확보
             </h1>
             <p className={styles.banner_subtitle}>
               한평생 바로 기업의 전문 컨설턴트가
@@ -254,12 +255,12 @@ function PolicyFundsContent() {
               <div className={styles.feature_card_image}>
                 <Image
                   src="/images/policyfunds/policy_reason03.jpg"
-                  alt="안전한 컨설팅"
+                  alt="정확한 컨설팅"
                   fill
                   className={styles.feature_card_image_img}
                 />
               </div>
-              <h3 className={styles.feature_card_title}>안전한 컨설팅</h3>
+              <h3 className={styles.feature_card_title}>정확한 컨설팅</h3>
               <p className={styles.feature_card_subtitle}>
                 정부 지원 정책에 대한 최신 정보를 바탕으로
                 <br /> 법적 문제 없이 안전하게 진행합니다.
@@ -588,11 +589,11 @@ function PolicyFundsContent() {
               <div className={styles.process_text_wrapper}>
                 <div className={styles.process_title_row}>
                   <div className={styles.process_step_badge}>STEP 3</div>
-                  <h3 className={styles.process_card_title}>신청 대행</h3>
+                  <h3 className={styles.process_card_title}>신청 안내</h3>
                 </div>
                 <p className={styles.process_card_description}>
                   정책자금 신청서
-                  <br /> 제출 및 대행
+                  <br /> 제출 및 보안
                 </p>
               </div>
               <div className={styles.process_card_icon}>
@@ -711,6 +712,7 @@ function PolicyFundsContent() {
       <Footer />
       <FloatingButton />
       <MobileFloatingBanner />
+      <ConsultationFloatingBanner />
     </>
   );
 }

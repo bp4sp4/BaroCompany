@@ -1,0 +1,591 @@
+.banner {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .banner {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    width: 100%;
+    padding: var(--unit-4, 12px) 10px;
+    justify-content: center;
+    align-items: center;
+    background: var(--Blue-900, #00184d);
+    backdrop-filter: blur(5px);
+    z-index: 9990;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .banner {
+    display: flex;
+    width: 1024px;
+    padding: var(--unit-4, 12px) 10px;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--Blue-900, #00184d);
+    backdrop-filter: blur(5px);
+    box-sizing: border-box;
+  }
+
+  .banner_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 0;
+  }
+
+  .banner_left {
+    display: flex;
+    align-items: center;
+    gap: var(--unit-3, 8px);
+    flex-shrink: 0;
+  }
+
+  .banner_icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+  }
+
+  .banner_title {
+    color: var(--Grayscale-50, #fafafa);
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    white-space: nowrap;
+  }
+
+  .banner_form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--unit-6, 20px);
+    flex: 1 0 0;
+  }
+
+  .banner_input_group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--unit-2, 4px);
+    flex-shrink: 0;
+  }
+
+  .banner_label {
+    color: var(--Grayscale-50, #fafafa);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    white-space: nowrap;
+  }
+
+  .banner_input {
+    width: 140px;
+    padding: var(--unit-3, 8px) var(--unit-3, 8px);
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid var(--Grayscale-300, #d0d0d0);
+    background: #ffffff;
+    color: var(--Grayscale-900, #010101);
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  .banner_input::placeholder {
+    color: var(--Grayscale-400, #b3b3b3);
+  }
+
+  .banner_input:focus {
+    outline: none;
+    border-color: var(--Blue-400, #2469ff);
+  }
+
+  .banner_checkbox_group {
+    display: flex;
+    align-items: center;
+    gap: var(--unit-2, 4px);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .banner_checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--Grayscale-300, #d0d0d0);
+    background: var(--Blue-300, #ffffff);
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .banner_checkbox:checked {
+    background: var(--Blue-300, #4c85ff);
+    border-color: var(--Blue-300, #4c85ff);
+  }
+
+  .banner_checkbox:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .banner_checkbox_label {
+    color: #ffffff;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .banner_privacy_link {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .banner_button {
+    display: flex;
+    padding: var(--unit-4, 12px) var(--unit-5, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--unit-2, 4px);
+    border-radius: 26.5px;
+    background: var(--Blue-300, #4c85ff);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 120%;
+    transition: transform 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .banner_button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .banner_button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    background: var(--Blue-400, #2469ff);
+  }
+
+  .banner_button:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 1280px) {
+  .banner {
+    width: 100%;
+    display: flex;
+    padding: var(--unit-4, 12px) 10px;
+    justify-content: center;
+    align-items: center;
+    background: var(--Blue-900, #00184d);
+    backdrop-filter: blur(5px);
+    box-sizing: border-box;
+  }
+
+  .banner_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 0;
+    width: 1260px;
+    max-width: 1260px;
+  }
+
+  .banner_left {
+    display: flex;
+    align-items: center;
+    gap: var(--unit-3, 8px);
+    flex-shrink: 0;
+  }
+
+  .banner_icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+  }
+
+  .banner_title {
+    color: var(--Grayscale-50, #fafafa);
+    font-family: Pretendard;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    white-space: nowrap;
+  }
+
+  .banner_form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--unit-6, 20px);
+    flex: 1 0 0;
+  }
+
+  .banner_input_group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--unit-3, 8px);
+    flex-shrink: 0;
+  }
+
+  .banner_label {
+    color: var(--Grayscale-50, #fafafa);
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    white-space: nowrap;
+  }
+
+  .banner_input {
+    width: 180px;
+    padding: var(--unit-3, 8px) var(--unit-4, 12px);
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid var(--Grayscale-300, #d0d0d0);
+    background: #ffffff;
+    color: var(--Grayscale-900, #010101);
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  .banner_input::placeholder {
+    color: var(--Grayscale-400, #b3b3b3);
+  }
+
+  .banner_input:focus {
+    outline: none;
+    border-color: var(--Blue-400, #2469ff);
+  }
+
+  .banner_checkbox_group {
+    display: flex;
+    align-items: center;
+    gap: var(--unit-2, 4px);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .banner_checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--Grayscale-300, #d0d0d0);
+    background: var(--Blue-300, #ffffff);
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .banner_checkbox:checked {
+    background: var(--Blue-300, #4c85ff);
+    border-color: var(--Blue-300, #4c85ff);
+  }
+
+  .banner_checkbox:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .banner_checkbox_label {
+    color: #ffffff;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .banner_privacy_link {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .banner_button {
+    display: flex;
+    padding: var(--unit-4, 12px) var(--unit-6, 20px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--unit-2, 4px);
+    border-radius: 26.5px;
+    background: var(--Blue-300, #4c85ff);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 120%;
+    transition: transform 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .banner_button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .banner_button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    background: var(--Blue-400, #2469ff);
+  }
+
+  .banner_button:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 1920px) {
+  .banner {
+    width: 100%;
+  }
+
+  .banner_inner {
+    width: 1260px;
+  }
+}
+
+/* 성공 팝업 스타일 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+  margin: 0;
+  padding: 0;
+}
+
+.successModalContent {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 50px 60px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.modalCloseButton:hover {
+  color: #000;
+}
+
+.checkIcon {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.successTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  text-align: center;
+  font-family: Pretendard;
+  letter-spacing: -0.5px;
+}
+
+.successMessage {
+  font-size: 18px;
+  font-weight: 400;
+  color: #666;
+  text-align: center;
+  margin: 0;
+  font-family: Pretendard;
+  line-height: 1.6;
+}
+
+.confirmButton {
+  padding: 16px 40px;
+  background: var(--Blue-300, #4c85ff);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: Pretendard;
+  transition: background 0.2s;
+}
+
+.confirmButton:hover {
+  background: var(--Blue-400, #2469ff);
+}
+
+/* 개인정보처리방침 팝업 스타일 */
+.privacyModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+  margin: 0;
+  padding: 0;
+}
+
+.privacyModalContent {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 50px 60px;
+  width: 90%;
+  max-width: 1200px;
+  min-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+.privacyModalCloseButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.privacyModalCloseButton:hover {
+  color: #000;
+}
+
+.privacyContent {
+  font-family: Pretendard;
+}
+
+.privacyContent h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 24px 0;
+}
+
+.privacyContent h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  margin: 24px 0 12px 0;
+}
+
+.privacyText {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.privacyText p {
+  margin: 12px 0;
+}
+
+.privacyText ul {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.privacyText li {
+  margin: 8px 0;
+}

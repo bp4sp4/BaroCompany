@@ -24,12 +24,12 @@ export default function Footer() {
           서울시 도봉구 창동 마들로13길 61 씨드큐브 905호
         </p>
         <div className={styles.links}>
-          <a href="#" className={styles.link}>
+          <a href="/terms" className={styles.link}>
             이용약관
           </a>
-          <span className={styles.separator}>|</span>
-          <a href="#" className={styles.link}>
-            개인정보취급방침
+          <span className={styles.separator}>&nbsp;|&nbsp;</span>
+          <a href="/terms" className={styles.link}>
+            개인정보처리방침
           </a>
         </div>
         <p className={styles.copyright}>

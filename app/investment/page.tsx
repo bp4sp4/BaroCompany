@@ -8,6 +8,7 @@ import {
 } from "../components/ConsultationContext";
 import FloatingButton from "../components/FloatingButton";
 import MobileFloatingBanner from "../components/MobileFloatingBanner";
+import ConsultationFloatingBanner from "../components/ConsultationFloatingBanner";
 import Image from "next/image";
 import styles from "./fundraising.module.css";
 
@@ -604,6 +605,7 @@ function FundraisingContent() {
       <Footer />
       <FloatingButton />
       <MobileFloatingBanner />
+      <ConsultationFloatingBanner />
     </>
   );
 }

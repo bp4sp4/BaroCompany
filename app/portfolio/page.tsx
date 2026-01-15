@@ -9,6 +9,7 @@ import {
 } from "../components/ConsultationContext";
 import FloatingButton from "../components/FloatingButton";
 import MobileFloatingBanner from "../components/MobileFloatingBanner";
+import ConsultationFloatingBanner from "../components/ConsultationFloatingBanner";
 import AnimatedNumber from "../components/AnimatedNumber";
 import Image from "next/image";
 import styles from "./portfolio.module.css";
@@ -35,124 +36,6 @@ const useIsMobile = () => {
 function PortfolioContent() {
   const isMobile = useIsMobile();
   const { openModal } = useConsultation();
-  const [formData, setFormData] = useState({
-    name: "",
-    contact: "",
-  });
-  const [isAgreed, setIsAgreed] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [contactError, setContactError] = useState("");
-  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
-
-  const formatPhoneNumber = (value: string) => {
-    const numbers = value.replace(/[^\d]/g, "");
-    if (numbers.length <= 3) {
-      return numbers;
-    } else if (numbers.length <= 7) {
-      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
-    } else {
-      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(
-        7,
-        11
-      )}`;
-    }
-  };
-
-  const validatePhoneNumber = (phone: string): boolean => {
-    const numbers = phone.replace(/[^\d]/g, "");
-    return numbers.startsWith("010") && numbers.length === 11;
-  };
-
-  const handleBannerSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setContactError("");
-
-    if (!validatePhoneNumber(formData.contact)) {
-      setContactError("전화번호가 잘못 입력되었습니다");
-      setIsSubmitting(false);
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/consultations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setFormData({ name: "", contact: "" });
-        setIsAgreed(false);
-        alert("입력되었습니다");
-      } else {
-        const error = await response.json();
-        alert(error.error || "상담 신청 중 오류가 발생했습니다.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("상담 신청 중 오류가 발생했습니다.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    if (name === "contact") {
-      const formatted = formatPhoneNumber(value);
-      setFormData((prev) => ({
-        ...prev,
-        [name]: formatted,
-      }));
-      setContactError("");
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
-  };
-
-  // 개인정보처리방침 팝업이 열려있을 때 배경 스크롤 막기
-  useEffect(() => {
-    if (showPrivacyModal) {
-      // 현재 스크롤 위치 저장
-      const scrollY = window.scrollY;
-
-      // body와 html에 스크롤 막기
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      // 스크롤 복원
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.documentElement.style.overflow = "";
-
-      // 스크롤 위치 복원
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0") * -1);
-      }
-    }
-
-    // cleanup 함수: 컴포넌트 언마운트 시 원래대로 복원
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.documentElement.style.overflow = "";
-    };
-  }, [showPrivacyModal]);
 
   return (
     <>
@@ -482,7 +365,7 @@ function PortfolioContent() {
             </div>
           </div>
         </section>
-        <section className={styles.portfolio_achievements_section}>
+        {/* <section className={styles.portfolio_achievements_section}>
           <div className={styles.portfolio_achievements_wrapper}>
             <div className={styles.portfolio_achievements_header}>
               <h2 className={styles.portfolio_achievements_title}>
@@ -568,7 +451,7 @@ function PortfolioContent() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         <section className={styles.portfolio_features_section}>
           <div className={styles.portfolio_features_wrapper}>
             <div className={styles.portfolio_features_text_wrapper}>
@@ -796,190 +679,7 @@ function PortfolioContent() {
       <Footer />
       <FloatingButton />
       <MobileFloatingBanner />
-      {!isMobile && (
-        <div className={styles.portfolio_floating_banner}>
-          <div className={styles.portfolio_floating_banner_inner}>
-            <div className={styles.portfolio_floating_banner_left}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="42"
-                height="42"
-                viewBox="0 0 42 42"
-                fill="none"
-                className={styles.portfolio_floating_banner_icon}
-              >
-                <mask
-                  id="portfolio-bolt-mask"
-                  style={{ maskType: "luminance" }}
-                  maskUnits="userSpaceOnUse"
-                  x="8"
-                  y="1"
-                  width="26"
-                  height="40"
-                >
-                  <path
-                    d="M8.75 1.74994H33.25V40.2499H8.75V1.74994Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M20.1242 24.1499H17.7267C15.2609 24.1499 14.0289 24.1499 13.5127 23.3414C12.9964 22.5347 13.5144 21.4164 14.5504 19.1799L19.3297 8.85494C19.9859 7.44094 20.3132 6.73394 20.6562 6.80744C20.9992 6.88444 20.9992 7.66494 20.9992 9.22245V16.9749C20.9992 17.3879 20.9992 17.5944 21.1269 17.7222C21.2547 17.8499 21.4612 17.8499 21.8742 17.8499H24.2717C26.7374 17.8499 27.9694 17.8499 28.4857 18.6584C29.0019 19.4652 28.4839 20.5834 27.4479 22.8199L22.6687 33.1449C22.0124 34.5589 21.6852 35.2659 21.3422 35.1924C20.9992 35.1137 20.9992 34.3349 20.9992 32.7774V25.0249C20.9992 24.6119 20.9992 24.4054 20.8714 24.2777C20.7437 24.1499 20.5372 24.1499 20.1242 24.1499Z"
-                    fill="black"
-                  />
-                </mask>
-                <g mask="url(#portfolio-bolt-mask)">
-                  <path
-                    d="M20.1242 24.1499H17.7267C15.2609 24.1499 14.0289 24.1499 13.5127 23.3414C12.9964 22.5347 13.5144 21.4164 14.5504 19.1799L19.3297 8.85494C19.9859 7.44094 20.3132 6.73394 20.6562 6.80744C20.9992 6.88444 20.9992 7.66494 20.9992 9.22244V16.9749C20.9992 17.3879 20.9992 17.5944 21.1269 17.7222C21.2547 17.8499 21.4612 17.8499 21.8742 17.8499H24.2717C26.7374 17.8499 27.9694 17.8499 28.4857 18.6584C29.0019 19.4652 28.4839 20.5834 27.4479 22.8199L22.6687 33.1449C22.0124 34.5589 21.6852 35.2659 21.3422 35.1924C20.9992 35.1137 20.9992 34.3349 20.9992 32.7774V25.0249C20.9992 24.6119 20.9992 24.4054 20.8714 24.2777C20.7437 24.1499 20.5372 24.1499 20.1242 24.1499Z"
-                    stroke="white"
-                    strokeWidth="8.66667"
-                  />
-                </g>
-              </svg>
-              <span className={styles.portfolio_floating_banner_title}>
-                컨설팅 신청하기
-              </span>
-            </div>
-            <form
-              className={styles.portfolio_floating_banner_form}
-              onSubmit={handleBannerSubmit}
-            >
-              <div className={styles.portfolio_floating_banner_input_group}>
-                <label
-                  htmlFor="banner-name"
-                  className={styles.portfolio_floating_banner_label}
-                >
-                  이름
-                </label>
-                <input
-                  id="banner-name"
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="이름 혹은 회사명"
-                  className={styles.portfolio_floating_banner_input}
-                />
-              </div>
-              <div className={styles.portfolio_floating_banner_input_group}>
-                <label
-                  htmlFor="banner-contact"
-                  className={styles.portfolio_floating_banner_label}
-                >
-                  연락처
-                </label>
-                <input
-                  id="banner-contact"
-                  type="text"
-                  name="contact"
-                  value={formData.contact}
-                  onChange={handleChange}
-                  placeholder="-제외 입력"
-                  className={styles.portfolio_floating_banner_input}
-                />
-              </div>
-              <div className={styles.portfolio_floating_banner_checkbox_group}>
-                <label
-                  htmlFor="banner-privacy"
-                  className={styles.portfolio_floating_banner_checkbox_label}
-                >
-                  <span
-                    className={styles.portfolio_floating_banner_privacy_link}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowPrivacyModal(true);
-                    }}
-                  >
-                    개인정보처리방침
-                  </span>
-                  동의
-                </label>
-                <input
-                  id="banner-privacy"
-                  type="checkbox"
-                  checked={isAgreed}
-                  onChange={(e) => setIsAgreed(e.target.checked)}
-                  className={styles.portfolio_floating_banner_checkbox}
-                />
-              </div>
-              <button
-                type="submit"
-                className={styles.portfolio_floating_banner_button}
-                disabled={
-                  !formData.name.trim() ||
-                  !formData.contact.trim() ||
-                  !isAgreed ||
-                  !validatePhoneNumber(formData.contact) ||
-                  isSubmitting
-                }
-              >
-                상담 신청
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* 개인정보처리방침 팝업 */}
-      {showPrivacyModal && (
-        <div
-          className={styles.portfolio_privacy_modal_overlay}
-          onClick={() => setShowPrivacyModal(false)}
-        >
-          <div
-            className={styles.portfolio_privacy_modal_content}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className={styles.portfolio_privacy_modal_close_button}
-              onClick={() => setShowPrivacyModal(false)}
-            >
-              ×
-            </button>
-            <h3 className={styles.portfolio_privacy_modal_title}>
-              개인정보처리방침
-            </h3>
-            <div className={styles.portfolio_privacy_modal_body}>
-              <h4 className={styles.portfolio_privacy_modal_section_title}>
-                1. 개인정보 수집 및 이용 목적
-              </h4>
-              <ol className={styles.portfolio_privacy_modal_numbered_list}>
-                <li>상담 진행, 정책자금 컨설팅, 문의사항 응대, 민원해결</li>
-                <li>
-                  광고성 정보 수신에 대하여 별도의 동의를 한 회원에 한하여
-                  "한평생 바로기업"과 각 제휴사의 새로운 서비스, 이벤트, 최신
-                  정보의 안내 등 회원의 취향에 맞는 최적의 정보 제공
-                </li>
-              </ol>
-
-              <h4 className={styles.portfolio_privacy_modal_section_title}>
-                2. 수집 및 이용하는 개인정보 항목
-              </h4>
-              <p>
-                <strong>(필수)</strong> 이름(회사명), 휴대전화번호
-              </p>
-              <p>
-                <strong>(선택)</strong> 제출된 상담 문의 내용 또는 첨부파일에
-                기재된 개인정보
-              </p>
-
-              <h4 className={styles.portfolio_privacy_modal_section_title}>
-                3. 보유 및 이용 기간
-              </h4>
-              <p>
-                법령이 정하는 경우를 제외하고는 수집일로부터 1년 또는 동의 철회
-                시까지 보유 및 이용합니다.
-              </p>
-
-              <h4 className={styles.portfolio_privacy_modal_section_title}>
-                4. 동의 거부 권리
-              </h4>
-              <p>
-                신청자는 동의를 거부할 권리가 있습니다. 단, 동의를 거부하는 경우
-                상담 서비스 이용이 제한됩니다.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+      <ConsultationFloatingBanner />
     </>
   );
 }

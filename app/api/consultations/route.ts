@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { name, contact } = body;
+    const { name, contact, click_source } = body;
 
     // 유효성 검사
     if (!name || !contact) {
@@ -64,6 +64,7 @@ export async function POST(request: NextRequest) {
         {
           name,
           contact,
+          click_source: click_source || null,
         },
       ])
       .select()

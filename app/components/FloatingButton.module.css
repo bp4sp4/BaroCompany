@@ -163,7 +163,8 @@
 
 .submitButton {
   display: flex;
-  padding: var(--unit-5, 16px) var(--unit-6, 20px);
+  padding: var(--unit-4, 12px) var(--unit-6, 20px);
+
   justify-content: center;
   align-items: center;
   width: 100%;
