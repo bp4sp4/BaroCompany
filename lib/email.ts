@@ -19,9 +19,10 @@ interface ConsultationEmailData {
 
 export async function sendConsultationEmail(data: ConsultationEmailData) {
   try {
-    // 받는 사람 이메일 (환경 변수에서 가져오거나 직접 설정)
     const recipientEmail =
       process.env.CONSULTATION_EMAIL || process.env.NAVER_EMAIL;
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://바로기업.com";
+    const logoUrl = `${baseUrl}/images/main/logo_black.png`;
 
     if (!recipientEmail) {
       console.error("Recipient email not configured");
@@ -36,45 +37,83 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
     const mailOptions = {
       from: `"한평생 바로기업" <${process.env.NAVER_EMAIL}>`,
       to: recipientEmail,
-      subject: `[상담 신청] ${data.name}님의 상담 신청`,
+      subject: `[상담 접수] ${data.name}님`,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #2469ff;">새로운 상담 신청이 접수되었습니다</h2>
-          
-          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #333;">상담 신청 정보</h3>
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 10px; font-weight: bold; color: #666; width: 120px;">이름(회사명)</td>
-                <td style="padding: 10px; color: #333;">${data.name}</td>
-              </tr>
-              <tr>
-                <td style="padding: 10px; font-weight: bold; color: #666;">연락처</td>
-                <td style="padding: 10px; color: #333;">${data.contact}</td>
-              </tr>
-              ${
-                data.click_source
-                  ? `
-              <tr>
-                <td style="padding: 10px; font-weight: bold; color: #666;">유입 경로</td>
-                <td style="padding: 10px; color: #333;">${data.click_source}</td>
-              </tr>
-              `
-                  : ""
-              }
-              <tr>
-                <td style="padding: 10px; font-weight: bold; color: #666;">신청 시간</td>
-                <td style="padding: 10px; color: #333;">${new Date().toLocaleString(
-                  "ko-KR"
-                )}</td>
-              </tr>
-            </table>
+        <!DOCTYPE html>
+        <html lang="ko">
+        <head>
+          <meta charset="UTF-8">
+          <style>
+            @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+            body { font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; }
+          </style>
+        </head>
+        <body style="margin: 0; padding: 0; background-color: #ffffff; color: #191f28;">
+          <div style="max-width: 600px; margin: 0 auto; padding: 60px 24px;">
+            <div style="margin-bottom: 48px;">
+              <img src="${logoUrl}" alt="한평생 바로기업" style="height: 32px; width: auto;" />
+            </div>
+
+            <div style="margin-bottom: 40px;">
+              <h1 style="font-size: 28px; font-weight: 700; line-height: 1.4; margin: 0; color: #191f28;">
+                새로운 상담 신청이<br />도착했어요
+              </h1>
+            </div>
+
+            <div style="background-color: #f9fafb; border-radius: 20px; padding: 32px;">
+              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding-bottom: 20px; font-size: 15px; color: #4e5968; width: 100px;">성함/기업명</td>
+                  <td style="padding-bottom: 20px; font-size: 17px; font-weight: 600; color: #191f28; text-align: right;">${
+                    data.name
+                  }</td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom: 20px; font-size: 15px; color: #4e5968;">연락처</td>
+                  <td style="padding-bottom: 20px; font-size: 17px; font-weight: 600; color: #3182f6; text-align: right;">
+                    <a href="tel:${data.contact.replace(
+                      /-/g,
+                      ""
+                    )}" style="color: #3182f6; text-decoration: none;">${
+        data.contact
+      }</a>
+                  </td>
+                </tr>
+                ${
+                  data.click_source
+                    ? `
+                <tr>
+                  <td style="padding-bottom: 20px; font-size: 15px; color: #4e5968;">유입 경로</td>
+                  <td style="padding-bottom: 20px; font-size: 17px; font-weight: 600; color: #191f28; text-align: right;">${data.click_source}</td>
+                </tr>
+                `
+                    : ""
+                }
+                <tr style="border-top: 1px solid #ebedf0;">
+                  <td style="padding-top: 20px; font-size: 14px; color: #8b95a1;">신청 시각</td>
+                  <td style="padding-top: 20px; font-size: 14px; color: #8b95a1; text-align: right;">${new Date().toLocaleString(
+                    "ko-KR"
+                  )}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div style="margin-top: 40px;">
+              <a href="tel:${data.contact.replace(/-/g, "")}" 
+                 style="display: inline-block; background-color: #3182f6; color: #ffffff; padding: 16px 32px; border-radius: 12px; font-size: 16px; font-weight: 600; text-decoration: none; width: calc(100% - 64px); text-align: center;">
+                지금 바로 전화하기
+              </a>
+            </div>
+
+            <div style="margin-top: 60px; padding-top: 32px; border-top: 1px solid #f2f4f6; text-align: left;">
+              <p style="margin: 0; font-size: 13px; color: #8b95a1; line-height: 1.6;">
+                본 메일은 한평생 바로기업 웹사이트를 통해 수신되었습니다.<br />
+                서울시 도봉구 창동 마들로13길 61 씨드큐브 905호 | 02-2135-6221
+              </p>
+            </div>
           </div>
-          
-          <p style="color: #666; font-size: 14px;">
-            위 고객님께 빠르게 연락을 드려주세요.
-          </p>
-        </div>
+        </body>
+        </html>
       `,
       text: `
 새로운 상담 신청이 접수되었습니다.

@@ -43,13 +43,15 @@
   bottom: 20px;
   right: 20px;
   display: flex;
-  width: 48px; /* 크기 고정 */
-  height: 48px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
-
-  background: #fee500;
+  width: var(--unit-10, 48px);
+  height: 48px;
+  aspect-ratio: 1/1;
+  border-radius: var(--unit-3, 8px);
+  border: 1px solid var(--Blue-100, #b2caff);
+  background: var(--Blue-400, #2469ff);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
   cursor: pointer;
   padding: 0;
@@ -59,10 +61,10 @@
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
-  object-fit: contain;
+  aspect-ratio: 1/1;
 }
 
 /* 데스크탑에서는 숨김 */
