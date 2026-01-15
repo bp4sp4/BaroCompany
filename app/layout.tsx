@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "한평생 바로기업",
   description: "한평생 바로기업",
   verification: {
+    google: "852osWNQj4Nc948PauZNVRQO1EMBjk63cS-yjRnBbtk",
     other: {
       "naver-site-verification": "5eb6ac15f9b961c9071b707656aee55668db1ba7",
     },
