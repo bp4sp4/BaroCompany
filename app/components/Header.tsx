@@ -41,6 +41,10 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
     const { openModal } = useConsultation();
     const pathname = usePathname();
     const isMobile = useIsMobile();
+    
+    // policy 페이지에서는 항상 검은색 로고 사용 (policyfunds는 제외)
+    const isPolicyPage = pathname?.startsWith("/policy") && !pathname?.startsWith("/policyfunds");
+    const shouldShowBlackLogo = isScrolled || isPolicyPage;
 
     useEffect(() => {
       const handleScroll = () => {
@@ -60,25 +64,28 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
       };
     }, []);
 
+    // policy 페이지에서는 항상 scrolled 스타일 적용
+    const shouldUseScrolledStyle = isScrolled || isPolicyPage;
+    
     return (
       <header
         ref={ref}
-        className={`${styles.header} ${isScrolled ? styles.scrolled : ""} ${
+        className={`${styles.header} ${shouldUseScrolledStyle ? styles.scrolled : ""} ${
           pathname === "/" ? styles.homepage : ""
-        } ${isMobileMenuOpen ? styles.menuOpen : ""}`}
+        } ${isPolicyPage ? styles.policyPage : ""} ${isMobileMenuOpen ? styles.menuOpen : ""}`}
       >
         <div className={styles.container}>
           <div className={styles.logoSection}>
             <Link href="/">
               <img
                 src={`${
-                  isScrolled
+                  shouldShowBlackLogo
                     ? "/images/main/logo_black.png"
                     : "/images/main/logo_white.png"
                 }?v=${LOGO_VERSION}`}
                 alt="한평생 바로기업"
                 width={240}
-                height={isScrolled ? 55 : 77}
+                height={shouldShowBlackLogo ? 55 : 77}
                 className={styles.logo}
               />
             </Link>
@@ -98,7 +105,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
               >
                 <path
                   d="M18 16.5L27 7.5L28.5 9L19.5 18L28.5 27L27 28.5L18 19.5L9 28.5L7.5 27L16.5 18L7.5 9L9 7.5L18 16.5Z"
-                  fill={isScrolled ? "black" : "white"}
+                  fill={shouldShowBlackLogo ? "black" : "white"}
                 />
               </svg>
             ) : (
@@ -111,7 +118,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
               >
                 <path
                   d="M28.5 24C29.3284 24 30 24.6716 30 25.5C30 26.3284 29.3284 27 28.5 27H7.5C6.67157 27 6 26.3284 6 25.5C6 24.6716 6.67157 24 7.5 24H28.5ZM28.5 16.5C29.3284 16.5 30 17.1716 30 18C30 18.8284 29.3284 19.5 28.5 19.5H7.5C6.67157 19.5 6 18.8284 6 18C6 17.1716 6.67157 16.5 7.5 16.5H28.5ZM28.5 9C29.3284 9 30 9.67157 30 10.5C30 11.3284 29.3284 12 28.5 12H7.5C6.67157 12 6 11.3284 6 10.5C6 9.67157 6.67157 9 7.5 9H28.5Z"
-                  fill={isScrolled ? "black" : "white"}
+                  fill={shouldShowBlackLogo ? "black" : "white"}
                 />
               </svg>
             )}
@@ -125,6 +132,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
                     ? styles.active
                     : ""
                 }`}
+                style={isPolicyPage ? { color: "#000000" } : undefined}
               >
                 포트폴리오
               </Link>
@@ -135,6 +143,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
                     ? styles.active
                     : ""
                 }`}
+                style={isPolicyPage ? { color: "#000000" } : undefined}
               >
                 투자유치
               </Link>
@@ -145,6 +154,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
                     ? styles.active
                     : ""
                 }`}
+                style={isPolicyPage ? { color: "#000000" } : undefined}
               >
                 정책자금
               </Link>
@@ -153,6 +163,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
                 className={`${styles.navLink} ${
                   pathname !== "/" && pathname === "/ented" ? styles.active : ""
                 }`}
+                style={isPolicyPage ? { color: "#000000" } : undefined}
               >
                 창업교육
               </Link>
@@ -163,6 +174,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
                     ? styles.active
                     : ""
                 }`}
+                style={isPolicyPage ? { color: "#000000" } : undefined}
               >
                 경영지원
               </Link>
@@ -173,6 +185,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
                     ? styles.active
                     : ""
                 }`}
+                style={isPolicyPage ? { color: "#000000" } : undefined}
               >
                 주의사항
               </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -24,13 +25,13 @@ export default function Footer() {
           서울시 도봉구 창동 마들로13길 61 씨드큐브 905호
         </p>
         <div className={styles.links}>
-          <a href="/terms" className={styles.link}>
+          <Link href="/policy?tab=terms" className={styles.link}>
             이용약관
-          </a>
+          </Link>
           <span className={styles.separator}>&nbsp;|&nbsp;</span>
-          <a href="/terms" className={styles.link}>
+          <Link href="/policy?tab=privacy" className={styles.link}>
             개인정보처리방침
-          </a>
+          </Link>
         </div>
         <p className={styles.copyright}>
           2026 © Eduvisors (KORHRD Partners). All rights reserved.
