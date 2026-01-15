@@ -75,8 +75,12 @@ export default function AchievementSection() {
     },
   ];
 
-  // 무한 반복을 위해 원본 배열을 2번 반복 (충분한 버퍼 확보)
-  const duplicatedAchievements = [...achievements, ...achievements];
+  // 무한 반복을 위해 원본 배열을 3번 반복 (더 많은 버퍼로 끊김 방지)
+  const duplicatedAchievements = [
+    ...achievements,
+    ...achievements,
+    ...achievements,
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -154,149 +158,49 @@ export default function AchievementSection() {
     };
   }, []);
 
-  // GSAP를 사용한 무한 루프 애니메이션
+  // CSS 애니메이션을 위한 정확한 너비 계산
   useEffect(() => {
     if (!marqueeRef.current) return;
 
     const marquee = marqueeRef.current;
-    let tween: gsap.core.Tween | null = null;
 
-    const initAnimation = () => {
-      // 모든 이미지가 로드될 때까지 대기
-      const images = marquee.querySelectorAll("img");
-      let loadedImages = 0;
-      const totalImages = images.length;
-
-      const calculateAndAnimate = () => {
-        // DOM이 완전히 렌더링된 후 계산
+    const calculateWidth = () => {
+      // DOM이 완전히 렌더링된 후 계산
+      requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            // 첫 번째 세트의 정확한 너비 계산
-            const cards = marquee.querySelectorAll(`.${styles.card}`);
-            const cardsPerSet = cards.length / 2;
+          const cards = marquee.querySelectorAll(`.${styles.card}`);
+          const cardsPerSet = cards.length / 3; // 3번 복제했으므로
 
-            let totalWidth: number;
+          if (cards.length > 0 && cardsPerSet > 0) {
+            const firstCard = cards[0] as HTMLElement;
+            const secondSetFirstCard = cards[cardsPerSet] as HTMLElement;
 
-            if (cards.length > 0 && cardsPerSet > 0) {
-              // 첫 번째 세트의 정확한 너비 계산
-              const firstCard = cards[0] as HTMLElement;
-              const lastCardOfFirstSet = cards[cardsPerSet - 1] as HTMLElement;
-              const secondSetFirstCard = cards[cardsPerSet] as HTMLElement;
+            if (firstCard && secondSetFirstCard) {
+              // offsetLeft를 사용한 정확한 계산
+              const firstCardStart = firstCard.offsetLeft;
+              const secondSetStart = secondSetFirstCard.offsetLeft;
+              const totalWidth = secondSetStart - firstCardStart;
 
-              if (firstCard && secondSetFirstCard) {
-                // offsetLeft를 직접 사용 (더 안정적이고 정확함)
-                const firstCardStart = firstCard.offsetLeft;
-                const secondSetStart = secondSetFirstCard.offsetLeft;
+              // CSS 변수로 설정
+              marquee.style.setProperty("--marquee-offset", `-${totalWidth}px`);
 
-                // 정확한 이동 거리: 두 번째 세트 시작 - 첫 번째 카드 시작
-                totalWidth = secondSetStart - firstCardStart;
-
-                // 디버깅 로그
-                console.log(
-                  "First card offsetLeft:",
-                  firstCardStart,
-                  "Second set offsetLeft:",
-                  secondSetStart,
-                  "Total width:",
-                  totalWidth,
-                  "scrollWidth/2:",
-                  marquee.scrollWidth / 2
-                );
-              } else {
-                // 폴백: 전체 너비의 절반
-                totalWidth = marquee.scrollWidth / 2;
-              }
-            } else {
-              // 폴백: 전체 너비의 절반
-              totalWidth = marquee.scrollWidth / 2;
+              console.log("Calculated offset:", totalWidth, "px");
             }
-
-            // 기존 애니메이션 제거
-            if (tween) {
-              tween.kill();
-            }
-
-            gsap.set(marquee, { x: 0 });
-
-            // 무한 루프 애니메이션
-            // repeat: -1을 사용하되, 정확한 값으로 끊김 방지
-            gsap.set(marquee, { x: 0 });
-
-            tween = gsap.to(marquee, {
-              x: -totalWidth,
-              duration: 5, // 테스트용 빠른 속도 (원래는 40)
-              ease: "none",
-              repeat: -1,
-              // 애니메이션이 끝나기 전에 다음 반복 시작 (끊김 방지)
-              modifiers: {
-                x: (x) => {
-                  // x가 -totalWidth에 도달하면 0으로 리셋
-                  const value = parseFloat(x);
-                  if (value <= -totalWidth) {
-                    return "0px";
-                  }
-                  return x;
-                },
-              },
-            });
-          });
-        });
-      };
-
-      if (totalImages === 0) {
-        // 이미지가 없으면 바로 계산
-        calculateAndAnimate();
-      } else {
-        // 모든 이미지 로드 대기
-        images.forEach((img) => {
-          if (img.complete) {
-            loadedImages++;
-          } else {
-            img.addEventListener("load", () => {
-              loadedImages++;
-              if (loadedImages === totalImages) {
-                calculateAndAnimate();
-              }
-            });
-            img.addEventListener("error", () => {
-              loadedImages++;
-              if (loadedImages === totalImages) {
-                calculateAndAnimate();
-              }
-            });
           }
         });
-
-        if (loadedImages === totalImages) {
-          calculateAndAnimate();
-        }
-      }
+      });
     };
 
-    // 초기 설정 - 여러 번 시도
-    const timeoutId1 = setTimeout(initAnimation, 100);
-    const timeoutId2 = setTimeout(initAnimation, 500);
-    const timeoutId3 = setTimeout(initAnimation, 1000);
-
-    // hover 시 멈춤
-    const wrapper = marquee.parentElement;
-    const handleMouseEnter = () => {
-      if (tween) tween.pause();
-    };
-    const handleMouseLeave = () => {
-      if (tween) tween.resume();
-    };
-
-    if (wrapper) {
-      wrapper.addEventListener("mouseenter", handleMouseEnter);
-      wrapper.addEventListener("mouseleave", handleMouseLeave);
-    }
+    // 초기 계산
+    const timeoutId1 = setTimeout(calculateWidth, 100);
+    const timeoutId2 = setTimeout(calculateWidth, 500);
+    const timeoutId3 = setTimeout(calculateWidth, 1000);
 
     // 리사이즈 시 재계산
     let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(initAnimation, 100);
+      resizeTimeout = setTimeout(calculateWidth, 100);
     };
     window.addEventListener("resize", handleResize);
 
@@ -306,13 +210,6 @@ export default function AchievementSection() {
       clearTimeout(timeoutId3);
       clearTimeout(resizeTimeout);
       window.removeEventListener("resize", handleResize);
-      if (tween) {
-        tween.kill();
-      }
-      if (wrapper) {
-        wrapper.removeEventListener("mouseenter", handleMouseEnter);
-        wrapper.removeEventListener("mouseleave", handleMouseLeave);
-      }
     };
   }, []);
 

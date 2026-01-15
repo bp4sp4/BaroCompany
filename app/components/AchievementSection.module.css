@@ -63,7 +63,9 @@
   width: max-content; /* 컨텐츠 너비만큼 확보 */
 }
 
-/* .marqueeLeft - GSAP가 transform을 직접 제어하므로 CSS animation 제거됨 */
+.marqueeLeft {
+  animation: scrollLeft 40s linear infinite;
+}
 
 .marqueeRight {
   animation: scrollRight 40s linear infinite;
@@ -75,8 +77,8 @@
   }
   100% {
     transform: translateX(
-      var(--marquee-offset, -50%)
-    ); /* JavaScript로 계산된 정확한 값 사용 */
+      var(--marquee-offset, -33.333%)
+    ); /* JavaScript로 계산된 정확한 값 사용, 없으면 -33.333% 사용 */
   }
 }
 
@@ -97,15 +99,15 @@
   font-size: 20px;
   color: #000;
   margin: 0;
-
   font-weight: 500;
-  flex: 1;
+  /* flex: 1 제거하여 인용구가 필요한 만큼만 공간 차지 */
 }
 
 .userInfo {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-top: auto; /* 상단 여백을 자동으로 채워서 항상 하단에 위치 */
 }
 
 .avatar {
@@ -131,7 +133,6 @@
   font-size: 20px;
   font-weight: 500;
   color: #010101;
-  margin-bottom: 8px;
 }
 
 .company {
