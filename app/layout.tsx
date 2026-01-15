@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "한평생 바로기업 | 정책자금 신청부터 기업성장 지원까지!",
     description: "한평생 바로기업",
-    url: "https://barocompany.com",
+    url: "https://www.바로기업.com",
     siteName: "한평생 바로기업",
     images: [
       {
