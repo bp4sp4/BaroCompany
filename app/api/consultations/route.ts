@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/server";
+import { sendConsultationEmail } from "@/lib/email";
 
 // GET: 상담 신청 목록 조회
 export async function GET() {
@@ -76,6 +77,18 @@ export async function POST(request: NextRequest) {
         { error: "Failed to save consultation" },
         { status: 500 }
       );
+    }
+
+    // 이메일 알림 전송 (비동기, 실패해도 상담 신청은 성공 처리)
+    if (process.env.NAVER_EMAIL && process.env.NAVER_APP_PASSWORD) {
+      sendConsultationEmail({
+        name,
+        contact,
+        click_source: click_source || null,
+      }).catch((emailError) => {
+        console.error("Failed to send email notification:", emailError);
+        // 이메일 실패는 로그만 남기고 사용자에게는 에러를 반환하지 않음
+      });
     }
 
     return NextResponse.json(
