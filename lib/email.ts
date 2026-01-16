@@ -59,26 +59,9 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
       return { success: false, error: "NAVER_APP_PASSWORD not configured" };
     }
 
-    // SMTP 연결 확인 (타임아웃 방지를 위해 선택적, 실패해도 메일 전송 시도)
-    console.log("[EMAIL] SMTP 연결 확인 중...");
-    try {
-      // 타임아웃 설정 (5초)
-      const verifyPromise = transporter.verify();
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("SMTP verify timeout")), 5000)
-      );
-      await Promise.race([verifyPromise, timeoutPromise]);
-      console.log("[EMAIL] ✅ SMTP 서버 연결 성공 - 메일 전송 준비 완료");
-    } catch (verifyError) {
-      console.warn("[EMAIL] ⚠️ SMTP 연결 확인 실패 (메일 전송은 계속 시도):");
-      console.warn("[EMAIL] verify 에러 타입:", verifyError?.constructor?.name);
-      console.warn(
-        "[EMAIL] verify 에러 메시지:",
-        verifyError instanceof Error ? verifyError.message : String(verifyError)
-      );
-      console.warn("[EMAIL] verify 에러 코드:", (verifyError as any)?.code);
-      // verify 실패해도 메일 전송은 계속 시도 (일부 환경에서는 verify가 실패해도 전송이 가능함)
-    }
+    // SMTP 연결 확인 건너뛰기 (Serverless 환경에서 verify가 불안정할 수 있음)
+    // verify 없이 바로 sendMail 시도 (nodemailer가 자동으로 연결 처리)
+    console.log("[EMAIL] SMTP 연결 확인 건너뛰고 바로 메일 전송 시도...");
 
     const emailHtml = `
       <!DOCTYPE html>
