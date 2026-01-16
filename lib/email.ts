@@ -167,7 +167,9 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     console.log("[EMAIL] - subject:", mailData.subject);
 
     // 메일 전송 (간단하게 await 사용)
+    console.log("[EMAIL] transporter.sendMail() 호출 직전");
     const info = await transporter.sendMail(mailData);
+    console.log("[EMAIL] transporter.sendMail() 호출 완료");
     
     console.log("[EMAIL] ✅ 메일 전송 성공!");
     console.log("[EMAIL] - messageId:", info.messageId);
@@ -177,7 +179,7 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
 
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.error("[EMAIL] ❌ 메일 전송 실패!");
+    console.error("[EMAIL] ❌ 메일 전송 실패! - catch 블록 진입");
     console.error("[EMAIL] 에러 발생 시각:", new Date().toISOString());
     console.error("[EMAIL] 에러 타입:", error?.constructor?.name);
     console.error(
