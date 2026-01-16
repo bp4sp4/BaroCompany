@@ -19,22 +19,50 @@ interface ConsultationEmailData {
 }
 
 export async function sendConsultationEmail(data: ConsultationEmailData) {
+  console.log("[EMAIL] sendConsultationEmail 함수 시작");
+  console.log(
+    "[EMAIL] 받은 데이터:",
+    JSON.stringify({ ...data, contact: data.contact ? "***" : "" }, null, 2)
+  );
+
   try {
     const recipientEmail =
       process.env.CONSULTATION_EMAIL || process.env.NAVER_EMAIL;
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://바로기업.com";
     const logoUrl = `${baseUrl}/images/main/logo_black.png`;
 
+    console.log("[EMAIL] 설정 확인:");
+    console.log(
+      "[EMAIL] - recipientEmail:",
+      recipientEmail ? `${recipientEmail.substring(0, 3)}***` : "없음"
+    );
+    console.log("[EMAIL] - baseUrl:", baseUrl);
+    console.log("[EMAIL] - logoUrl:", logoUrl);
+
     if (!recipientEmail) {
-      console.error("Recipient email not configured");
+      console.error("[EMAIL] 수신자 이메일이 설정되지 않음");
       return { success: false, error: "Email not configured" };
     }
 
     if (!process.env.NAVER_EMAIL) {
-      console.error("NAVER_EMAIL not configured");
+      console.error("[EMAIL] NAVER_EMAIL 환경 변수가 설정되지 않음");
       return { success: false, error: "NAVER_EMAIL not configured" };
     }
 
+    if (!process.env.NAVER_APP_PASSWORD) {
+      console.error("[EMAIL] NAVER_APP_PASSWORD 환경 변수가 설정되지 않음");
+      return { success: false, error: "NAVER_APP_PASSWORD not configured" };
+    }
+
+    console.log("[EMAIL] SMTP 설정 확인:");
+    const smtpOptions = transporter.options as any;
+    console.log("[EMAIL] - host:", smtpOptions.host);
+    console.log("[EMAIL] - port:", smtpOptions.port);
+    console.log("[EMAIL] - secure:", smtpOptions.secure);
+    console.log("[EMAIL] - requireTLS:", smtpOptions.requireTLS);
+    console.log("[EMAIL] - auth.user 존재:", !!smtpOptions.auth?.user);
+
+    console.log("[EMAIL] 메일 옵션 생성 중...");
     const mailOptions = {
       from: `"한평생 바로기업" <${process.env.NAVER_EMAIL}>`,
       to: recipientEmail,
@@ -126,14 +154,41 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
       `,
     };
 
+    console.log("[EMAIL] 메일 전송 시도 중...");
+    console.log("[EMAIL] - from:", mailOptions.from);
+    console.log("[EMAIL] - to:", mailOptions.to);
+    console.log("[EMAIL] - subject:", mailOptions.subject);
+    
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent:", info.messageId);
+    console.log("[EMAIL] ✅ 메일 전송 성공!");
+    console.log("[EMAIL] - messageId:", info.messageId);
+    console.log("[EMAIL] - response:", info.response);
+    console.log("[EMAIL] - accepted:", info.accepted);
+    console.log("[EMAIL] - rejected:", info.rejected);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("[EMAIL] ❌ 메일 전송 실패!");
+    console.error("[EMAIL] 에러 타입:", error?.constructor?.name);
+    console.error("[EMAIL] 에러 메시지:", error instanceof Error ? error.message : String(error));
+    console.error("[EMAIL] 에러 코드:", (error as any)?.code);
+    console.error("[EMAIL] 에러 command:", (error as any)?.command);
+    console.error("[EMAIL] 에러 response:", (error as any)?.response);
+    console.error("[EMAIL] 에러 responseCode:", (error as any)?.responseCode);
+    console.error("[EMAIL] 에러 스택:", error instanceof Error ? error.stack : "스택 없음");
+    
+    // nodemailer 에러의 경우 추가 정보 출력
+    if ((error as any)?.response) {
+      console.error("[EMAIL] SMTP 응답:", (error as any).response);
+    }
+    if ((error as any)?.responseCode) {
+      console.error("[EMAIL] SMTP 응답 코드:", (error as any).responseCode);
+    }
+    
     return {
       success: false,
       error: error instanceof Error ? error.message : "Unknown error",
+      errorCode: (error as any)?.code,
+      errorResponse: (error as any)?.response,
     };
   }
 }

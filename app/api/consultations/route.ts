@@ -86,15 +86,59 @@ export async function POST(request: NextRequest) {
     }
 
     // 이메일 알림 전송 (비동기, 실패해도 상담 신청은 성공 처리)
+    console.log("[EMAIL] 이메일 전송 시도 시작");
+    console.log("[EMAIL] 환경 변수 확인:");
+    console.log("[EMAIL] - NAVER_EMAIL 존재:", !!process.env.NAVER_EMAIL);
+    console.log(
+      "[EMAIL] - NAVER_EMAIL 값:",
+      process.env.NAVER_EMAIL
+        ? `${process.env.NAVER_EMAIL.substring(0, 3)}***`
+        : "없음"
+    );
+    console.log(
+      "[EMAIL] - NAVER_APP_PASSWORD 존재:",
+      !!process.env.NAVER_APP_PASSWORD
+    );
+    console.log(
+      "[EMAIL] - NAVER_APP_PASSWORD 길이:",
+      process.env.NAVER_APP_PASSWORD ? process.env.NAVER_APP_PASSWORD.length : 0
+    );
+    console.log(
+      "[EMAIL] - CONSULTATION_EMAIL:",
+      process.env.CONSULTATION_EMAIL || "없음 (NAVER_EMAIL 사용)"
+    );
+
     if (process.env.NAVER_EMAIL && process.env.NAVER_APP_PASSWORD) {
+      console.log("[EMAIL] 이메일 전송 함수 호출");
       sendConsultationEmail({
         name,
         contact,
         click_source: click_source || null,
-      }).catch((emailError) => {
-        console.error("Failed to send email notification:", emailError);
-        // 이메일 실패는 로그만 남기고 사용자에게는 에러를 반환하지 않음
-      });
+      })
+        .then((result) => {
+          console.log(
+            "[EMAIL] 이메일 전송 결과:",
+            JSON.stringify(result, null, 2)
+          );
+        })
+        .catch((emailError) => {
+          console.error("[EMAIL] 이메일 전송 실패:");
+          console.error("[EMAIL] 에러 타입:", emailError?.constructor?.name);
+          console.error("[EMAIL] 에러 메시지:", emailError?.message);
+          console.error("[EMAIL] 에러 스택:", emailError?.stack);
+          console.error(
+            "[EMAIL] 전체 에러 객체:",
+            JSON.stringify(
+              emailError,
+              Object.getOwnPropertyNames(emailError),
+              2
+            )
+          );
+        });
+    } else {
+      console.warn(
+        "[EMAIL] 환경 변수가 설정되지 않아 이메일 전송을 건너뜁니다"
+      );
     }
 
     return NextResponse.json(
