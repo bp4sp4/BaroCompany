@@ -200,8 +200,11 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
 신청 시간: ${new Date().toLocaleString("ko-KR")}
     `;
 
+    // 발신자 표시명 설정 (도메인 인증 시 깔끔하게 표시됨)
+    const fromName = process.env.BREVO_FROM_NAME || "한평생 바로기업";
+
     const mailData = {
-      from: fromEmail, // Brevo는 from을 문자열로 사용 (인증된 도메인/이메일)
+      from: fromName ? `"${fromName}" <${fromEmail}>` : fromEmail, // 발신자 이름과 이메일 함께 표시
       to: recipientEmail,
       subject: `[상담 접수] ${data.name}님`,
       text: emailText,
