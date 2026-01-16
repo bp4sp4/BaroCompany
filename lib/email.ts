@@ -154,11 +154,28 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
       `,
     };
 
+    // SMTP 연결 확인 (Serverless 환경에서 await 동작 확인)
+    console.log("[EMAIL] SMTP 연결 확인 중...");
+    try {
+      await transporter.verify();
+      console.log("[EMAIL] ✅ SMTP 서버 연결 성공 - 메일 전송 준비 완료");
+    } catch (verifyError) {
+      console.error("[EMAIL] ❌ SMTP 연결 확인 실패:");
+      console.error("[EMAIL] verify 에러 타입:", verifyError?.constructor?.name);
+      console.error(
+        "[EMAIL] verify 에러 메시지:",
+        verifyError instanceof Error ? verifyError.message : String(verifyError)
+      );
+      console.error("[EMAIL] verify 에러 코드:", (verifyError as any)?.code);
+      console.error("[EMAIL] verify 에러 스택:", verifyError instanceof Error ? verifyError.stack : "스택 없음");
+      throw verifyError; // 연결 실패 시 메일 전송 중단
+    }
+
     console.log("[EMAIL] 메일 전송 시도 중...");
     console.log("[EMAIL] - from:", mailOptions.from);
     console.log("[EMAIL] - to:", mailOptions.to);
     console.log("[EMAIL] - subject:", mailOptions.subject);
-    
+
     const info = await transporter.sendMail(mailOptions);
     console.log("[EMAIL] ✅ 메일 전송 성공!");
     console.log("[EMAIL] - messageId:", info.messageId);
@@ -169,13 +186,19 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
   } catch (error) {
     console.error("[EMAIL] ❌ 메일 전송 실패!");
     console.error("[EMAIL] 에러 타입:", error?.constructor?.name);
-    console.error("[EMAIL] 에러 메시지:", error instanceof Error ? error.message : String(error));
+    console.error(
+      "[EMAIL] 에러 메시지:",
+      error instanceof Error ? error.message : String(error)
+    );
     console.error("[EMAIL] 에러 코드:", (error as any)?.code);
     console.error("[EMAIL] 에러 command:", (error as any)?.command);
     console.error("[EMAIL] 에러 response:", (error as any)?.response);
     console.error("[EMAIL] 에러 responseCode:", (error as any)?.responseCode);
-    console.error("[EMAIL] 에러 스택:", error instanceof Error ? error.stack : "스택 없음");
-    
+    console.error(
+      "[EMAIL] 에러 스택:",
+      error instanceof Error ? error.stack : "스택 없음"
+    );
+
     // nodemailer 에러의 경우 추가 정보 출력
     if ((error as any)?.response) {
       console.error("[EMAIL] SMTP 응답:", (error as any).response);
@@ -183,7 +206,7 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     if ((error as any)?.responseCode) {
       console.error("[EMAIL] SMTP 응답 코드:", (error as any).responseCode);
     }
-    
+
     return {
       success: false,
       error: error instanceof Error ? error.message : "Unknown error",
