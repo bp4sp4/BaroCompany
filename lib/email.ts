@@ -17,8 +17,8 @@ function createTransporter() {
 
   return nodemailer.createTransport({
     host: "smtp-relay.brevo.com",
-    port: 587,
-    secure: false, // TLS 사용
+    port: 465, // SSL 포트 사용 (Vercel 등 클라우드 플랫폼에서 더 안정적)
+    secure: true, // 465 포트 사용 시 true
     auth: {
       user: smtpLogin,
       pass: smtpKey,
@@ -55,10 +55,7 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
       smtpLogin ? `${smtpLogin.substring(0, 3)}***` : "없음"
     );
     console.log("[EMAIL] - BREVO_SMTP_KEY 존재:", !!smtpKey);
-    console.log(
-      "[EMAIL] - BREVO_SMTP_KEY 길이:",
-      smtpKey ? smtpKey.length : 0
-    );
+    console.log("[EMAIL] - BREVO_SMTP_KEY 길이:", smtpKey ? smtpKey.length : 0);
     console.log(
       "[EMAIL] - BREVO_FROM_EMAIL:",
       fromEmail ? `${fromEmail.substring(0, 3)}***` : "없음"
@@ -202,17 +199,19 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     console.log("[EMAIL] - to:", recipientEmail);
     console.log("[EMAIL] - subject:", mailData.subject);
 
-    const info = await new Promise<nodemailer.SentMessageInfo>((resolve, reject) => {
-      transporter.sendMail(mailData, (err, info) => {
-        if (err) {
-          console.error("[EMAIL] sendMail 에러:", err);
-          reject(err);
-        } else {
-          console.log("[EMAIL] sendMail 성공:", info);
-          resolve(info);
-        }
-      });
-    });
+    const info = await new Promise<nodemailer.SentMessageInfo>(
+      (resolve, reject) => {
+        transporter.sendMail(mailData, (err, info) => {
+          if (err) {
+            console.error("[EMAIL] sendMail 에러:", err);
+            reject(err);
+          } else {
+            console.log("[EMAIL] sendMail 성공:", info);
+            resolve(info);
+          }
+        });
+      }
+    );
 
     console.log("[EMAIL] ✅ 메일 전송 성공!");
     console.log("[EMAIL] - messageId:", info.messageId);
