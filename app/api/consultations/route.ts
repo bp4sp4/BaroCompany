@@ -124,31 +124,39 @@ export async function POST(request: NextRequest) {
     // Brevo 환경 변수 확인
     if (process.env.BREVO_SMTP_LOGIN && process.env.BREVO_SMTP_KEY) {
       console.log("[EMAIL] 이메일 전송 함수 호출");
-      sendConsultationEmail({
-        name,
-        contact,
-        click_source: click_source || null,
-      })
-        .then((result) => {
-          console.log(
-            "[EMAIL] 이메일 전송 결과:",
-            JSON.stringify(result, null, 2)
-          );
-        })
-        .catch((emailError) => {
-          console.error("[EMAIL] 이메일 전송 실패:");
-          console.error("[EMAIL] 에러 타입:", emailError?.constructor?.name);
-          console.error("[EMAIL] 에러 메시지:", emailError?.message);
-          console.error("[EMAIL] 에러 스택:", emailError?.stack);
-          console.error(
-            "[EMAIL] 전체 에러 객체:",
-            JSON.stringify(
-              emailError,
-              Object.getOwnPropertyNames(emailError),
-              2
-            )
-          );
+      // await로 기다려서 Serverless 함수가 종료되기 전에 이메일 전송 완료
+      try {
+        const emailResult = await sendConsultationEmail({
+          name,
+          contact,
+          click_source: click_source || null,
         });
+        console.log(
+          "[EMAIL] 이메일 전송 결과:",
+          JSON.stringify(emailResult, null, 2)
+        );
+      } catch (emailError: unknown) {
+        // 이메일 전송 실패해도 상담 신청은 성공 처리
+        console.error("[EMAIL] 이메일 전송 실패:");
+        console.error(
+          "[EMAIL] 에러 타입:",
+          emailError instanceof Error
+            ? emailError.constructor.name
+            : typeof emailError
+        );
+        console.error(
+          "[EMAIL] 에러 메시지:",
+          emailError instanceof Error ? emailError.message : String(emailError)
+        );
+        console.error(
+          "[EMAIL] 에러 스택:",
+          emailError instanceof Error ? emailError.stack : "스택 없음"
+        );
+        console.error(
+          "[EMAIL] 전체 에러 객체:",
+          JSON.stringify(emailError, Object.getOwnPropertyNames(emailError), 2)
+        );
+      }
     } else {
       console.warn(
         "[EMAIL] Brevo 환경 변수가 설정되지 않아 이메일 전송을 건너뜁니다"
