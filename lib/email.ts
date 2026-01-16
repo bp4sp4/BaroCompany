@@ -9,6 +9,10 @@ const transporter = nodemailer.createTransport({
     user: process.env.NAVER_EMAIL,
     pass: process.env.NAVER_APP_PASSWORD,
   },
+  // 타임아웃 설정 (밀리초)
+  connectionTimeout: 10000, // 연결 타임아웃: 10초
+  greetingTimeout: 5000, // 인사 타임아웃: 5초
+  socketTimeout: 10000, // 소켓 타임아웃: 10초
 });
 
 interface ConsultationEmailData {
@@ -170,7 +174,7 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     console.log("[EMAIL] transporter.sendMail() 호출 직전");
     const info = await transporter.sendMail(mailData);
     console.log("[EMAIL] transporter.sendMail() 호출 완료");
-    
+
     console.log("[EMAIL] ✅ 메일 전송 성공!");
     console.log("[EMAIL] - messageId:", info.messageId);
     console.log("[EMAIL] - response:", info.response);
