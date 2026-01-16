@@ -1,37 +1,32 @@
 import nodemailer from "nodemailer";
 
-// Brevo SMTP transporter 생성 함수
+interface ConsultationEmailData {
+  name: string;
+  contact: string;
+  click_source?: string | null;
+}
+
+// Brevo SMTP Transporter 생성
 function createTransporter() {
-  const smtpLogin = process.env.BREVO_SMTP_LOGIN || process.env.BREVO_EMAIL;
-  const smtpKey = process.env.BREVO_SMTP_KEY || process.env.BREVO_APP_PASSWORD;
+  const smtpLogin = process.env.BREVO_SMTP_LOGIN;
+  const smtpKey = process.env.BREVO_SMTP_KEY;
 
   if (!smtpLogin || !smtpKey) {
-    throw new Error("BREVO_SMTP_LOGIN and BREVO_SMTP_KEY must be configured");
+    throw new Error("BREVO_SMTP_LOGIN and BREVO_SMTP_KEY must be set");
   }
 
   return nodemailer.createTransport({
     host: "smtp-relay.brevo.com",
     port: 587,
-    secure: false, // 587은 STARTTLS 사용
+    secure: false, // TLS 사용
     auth: {
-      user: smtpLogin, // SMTP 로그인 (a02c61001@smtp-brevo.com)
-      pass: smtpKey, // SMTP 키
+      user: smtpLogin,
+      pass: smtpKey,
     },
-    // 타임아웃 설정 (밀리초) - Serverless 환경에 맞게 조정
-    connectionTimeout: 10000, // 연결 타임아웃: 10초 (빠른 실패 후 재시도)
-    greetingTimeout: 5000, // 인사 타임아웃: 5초
-    socketTimeout: 10000, // 소켓 타임아웃: 10초
-    // 재시도 설정 - Serverless 환경에서는 풀 사용 안 함
-    pool: false, // 연결 풀 비활성화 (Serverless 환경에서 불안정)
-    debug: true, // 디버그 모드 활성화
-    logger: true, // 로거 활성화
-  } as any);
-}
-
-interface ConsultationEmailData {
-  name: string;
-  contact: string;
-  click_source?: string | null;
+    connectionTimeout: 10000, // 10초
+    greetingTimeout: 10000, // 10초
+    socketTimeout: 10000, // 10초
+  });
 }
 
 export async function sendConsultationEmail(data: ConsultationEmailData) {
@@ -42,79 +37,70 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
   );
 
   try {
-    // SMTP 인증용 로그인 (변경 불가)
-    const smtpLogin = process.env.BREVO_SMTP_LOGIN || process.env.BREVO_EMAIL;
+    // Brevo 설정 확인
+    const smtpLogin = process.env.BREVO_SMTP_LOGIN;
+    const smtpKey = process.env.BREVO_SMTP_KEY;
+    const fromEmail = process.env.BREVO_FROM_EMAIL || smtpLogin;
+    const fromName = process.env.BREVO_FROM_NAME || "한평생 바로기업";
 
     // 수신자 이메일: CONSULTATION_EMAIL이 있으면 사용, 없으면 기본값
     const recipientEmail = process.env.CONSULTATION_EMAIL || "bp4sp4@naver.com";
-
-    // 발신자 이메일: BREVO_FROM_EMAIL (인증된 이메일) 필수
-    // Brevo에서는 from 필드가 인증된 발신자 이메일이어야 함
-    // SMTP 로그인(a02c61001@smtp-brevo.com)은 인증용이지 발신자로 사용 불가
-    const fromEmail = process.env.BREVO_FROM_EMAIL;
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://바로기업.com";
     const logoUrl = `${baseUrl}/images/main/logo_black.png`;
 
     console.log("[EMAIL] 설정 확인:");
+    console.log("[EMAIL] - BREVO_SMTP_LOGIN 존재:", !!smtpLogin);
     console.log(
-      "[EMAIL] - smtpLogin (인증용):",
+      "[EMAIL] - BREVO_SMTP_LOGIN 값:",
       smtpLogin ? `${smtpLogin.substring(0, 3)}***` : "없음"
+    );
+    console.log("[EMAIL] - BREVO_SMTP_KEY 존재:", !!smtpKey);
+    console.log(
+      "[EMAIL] - BREVO_SMTP_KEY 길이:",
+      smtpKey ? smtpKey.length : 0
+    );
+    console.log(
+      "[EMAIL] - BREVO_FROM_EMAIL:",
+      fromEmail ? `${fromEmail.substring(0, 3)}***` : "없음"
     );
     console.log(
       "[EMAIL] - recipientEmail:",
       recipientEmail ? `${recipientEmail.substring(0, 3)}***` : "없음"
     );
-    console.log(
-      "[EMAIL] - fromEmail (발신자):",
-      fromEmail ? `${fromEmail.substring(0, 3)}***` : "없음"
-    );
     console.log("[EMAIL] - baseUrl:", baseUrl);
     console.log("[EMAIL] - logoUrl:", logoUrl);
+
+    if (!smtpLogin || !smtpKey) {
+      console.error("[EMAIL] Brevo 환경 변수가 설정되지 않음");
+      return {
+        success: false,
+        error: "BREVO_SMTP_LOGIN and BREVO_SMTP_KEY must be set",
+      };
+    }
 
     if (!recipientEmail) {
       console.error("[EMAIL] 수신자 이메일이 설정되지 않음");
       return { success: false, error: "Email not configured" };
     }
 
-    if (!smtpLogin) {
-      console.error(
-        "[EMAIL] BREVO_SMTP_LOGIN 또는 BREVO_EMAIL 환경 변수가 설정되지 않음"
-      );
-      return {
-        success: false,
-        error: "BREVO_SMTP_LOGIN or BREVO_EMAIL not configured",
-      };
-    }
+    // Transporter 생성
+    const transporter = createTransporter();
 
-    if (!process.env.BREVO_SMTP_KEY && !process.env.BREVO_APP_PASSWORD) {
-      console.error(
-        "[EMAIL] BREVO_SMTP_KEY 또는 BREVO_APP_PASSWORD 환경 변수가 설정되지 않음"
-      );
-      return {
-        success: false,
-        error: "BREVO_SMTP_KEY or BREVO_APP_PASSWORD not configured",
-      };
-    }
+    // SMTP 연결 확인
+    console.log("[EMAIL] SMTP 연결 확인 중...");
+    await new Promise<void>((resolve, reject) => {
+      transporter.verify(function (error) {
+        if (error) {
+          console.error("[EMAIL] SMTP 연결 확인 실패:", error);
+          reject(error);
+        } else {
+          console.log("[EMAIL] SMTP 연결 확인 성공");
+          resolve();
+        }
+      });
+    });
 
-    if (!fromEmail) {
-      console.error("[EMAIL] BREVO_FROM_EMAIL 환경 변수가 설정되지 않음");
-      console.error(
-        "[EMAIL] Brevo에서는 from 필드가 인증된 발신자 이메일이어야 합니다."
-      );
-      console.error(
-        "[EMAIL] Brevo 대시보드에서 발신자 이메일을 인증한 후 BREVO_FROM_EMAIL에 설정하세요."
-      );
-      return {
-        success: false,
-        error:
-          "BREVO_FROM_EMAIL not configured. Please set a verified sender email in Brevo.",
-      };
-    }
-
-    // SMTP 연결 확인 건너뛰기 (Serverless 환경에서 verify가 불안정할 수 있음)
-    // verify 없이 바로 sendMail 시도 (nodemailer가 자동으로 연결 처리)
-    console.log("[EMAIL] SMTP 연결 확인 건너뛰고 바로 메일 전송 시도...");
-
+    // 기존 HTML 템플릿 그대로 사용
     const emailHtml = `
       <!DOCTYPE html>
       <html lang="ko">
@@ -202,91 +188,37 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
 신청 시간: ${new Date().toLocaleString("ko-KR")}
     `;
 
-    // 발신자 표시명 설정 (도메인 인증 시 깔끔하게 표시됨)
-    const fromName = process.env.BREVO_FROM_NAME || "한평생 바로기업";
-
+    // 이메일 전송
     const mailData = {
-      from: fromName ? `"${fromName}" <${fromEmail}>` : fromEmail, // 발신자 이름과 이메일 함께 표시
+      from: fromName ? `${fromName} <${fromEmail}>` : fromEmail,
       to: recipientEmail,
       subject: `[상담 접수] ${data.name}님`,
-      text: emailText,
       html: emailHtml,
+      text: emailText,
     };
 
-    console.log("[EMAIL] 메일 전송 시도 중...");
+    console.log("[EMAIL] Brevo 전송 시도 중...");
     console.log("[EMAIL] - from:", mailData.from);
-    console.log("[EMAIL] - to:", mailData.to);
+    console.log("[EMAIL] - to:", recipientEmail);
     console.log("[EMAIL] - subject:", mailData.subject);
 
-    // 메일 전송 (타임아웃 설정 포함)
-    console.log("[EMAIL] transporter 생성 중...");
-    const transporter = createTransporter();
-    console.log("[EMAIL] transporter 생성 완료");
-
-    console.log("[EMAIL] transporter.sendMail() 호출 직전");
-    console.log("[EMAIL] 현재 시각:", new Date().toISOString());
-    console.log(
-      "[EMAIL] mailData 확인:",
-      JSON.stringify({
-        from: mailData.from,
-        to: mailData.to,
-        subject: mailData.subject,
-        hasHtml: !!mailData.html,
-        hasText: !!mailData.text,
-      })
-    );
-
-    // 메일 전송 (재시도 로직 포함)
-    console.log("[EMAIL] sendMail 호출 중...");
-
-    // 재시도 로직 (최대 5회) - Vercel Serverless 환경 대응
-    let lastError: Error | null = null;
-    const maxRetries = 5; // 재시도 횟수 증가
-    const retryDelay = 2000; // 2초 대기
-
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-      try {
-        if (attempt > 1) {
-          console.log(`[EMAIL] 재시도 ${attempt}/${maxRetries}...`);
-          await new Promise((resolve) =>
-            setTimeout(resolve, retryDelay * attempt)
-          );
+    const info = await new Promise<nodemailer.SentMessageInfo>((resolve, reject) => {
+      transporter.sendMail(mailData, (err, info) => {
+        if (err) {
+          console.error("[EMAIL] sendMail 에러:", err);
+          reject(err);
+        } else {
+          console.log("[EMAIL] sendMail 성공:", info);
+          resolve(info);
         }
+      });
+    });
 
-        const info = await transporter.sendMail(mailData);
-        console.log("[EMAIL] sendMail 완료!");
-        console.log("[EMAIL] 완료 시각:", new Date().toISOString());
+    console.log("[EMAIL] ✅ 메일 전송 성공!");
+    console.log("[EMAIL] - messageId:", info.messageId);
+    console.log("[EMAIL] - response:", info.response);
 
-        console.log("[EMAIL] ✅ 메일 전송 성공!");
-        console.log("[EMAIL] - messageId:", info.messageId);
-        console.log("[EMAIL] - response:", info.response);
-        console.log("[EMAIL] - accepted:", info.accepted);
-        console.log("[EMAIL] - rejected:", info.rejected);
-
-        return { success: true, messageId: info.messageId };
-      } catch (retryError) {
-        lastError = retryError as Error;
-        console.error(
-          `[EMAIL] 시도 ${attempt}/${maxRetries} 실패:`,
-          lastError.message
-        );
-
-        // 타임아웃 에러가 아니거나 마지막 시도인 경우 즉시 실패
-        if (
-          (lastError as any)?.code !== "ETIMEDOUT" &&
-          (lastError as any)?.code !== "ECONNRESET"
-        ) {
-          throw lastError;
-        }
-
-        if (attempt === maxRetries) {
-          throw lastError;
-        }
-      }
-    }
-
-    // 모든 재시도 실패
-    throw lastError || new Error("메일 전송 실패");
+    return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error("[EMAIL] ❌ 메일 전송 실패! - catch 블록 진입");
     console.error("[EMAIL] 에러 발생 시각:", new Date().toISOString());
@@ -295,22 +227,10 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
       "[EMAIL] 에러 메시지:",
       error instanceof Error ? error.message : String(error)
     );
-    console.error("[EMAIL] 에러 코드:", (error as any)?.code);
-    console.error("[EMAIL] 에러 command:", (error as any)?.command);
-    console.error("[EMAIL] 에러 response:", (error as any)?.response);
-    console.error("[EMAIL] 에러 responseCode:", (error as any)?.responseCode);
     console.error(
       "[EMAIL] 에러 스택:",
       error instanceof Error ? error.stack : "스택 없음"
     );
-
-    // nodemailer 에러의 경우 추가 정보 출력
-    if ((error as any)?.response) {
-      console.error("[EMAIL] SMTP 응답:", (error as any).response);
-    }
-    if ((error as any)?.responseCode) {
-      console.error("[EMAIL] SMTP 응답 코드:", (error as any).responseCode);
-    }
 
     // 전체 에러 객체 출력
     try {
@@ -325,8 +245,6 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     return {
       success: false,
       error: error instanceof Error ? error.message : "Unknown error",
-      errorCode: (error as any)?.code,
-      errorResponse: (error as any)?.response,
     };
   }
 }

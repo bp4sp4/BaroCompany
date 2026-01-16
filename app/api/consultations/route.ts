@@ -113,20 +113,16 @@ export async function POST(request: NextRequest) {
       process.env.CONSULTATION_EMAIL || "없음"
     );
     console.log(
-      "[EMAIL] - BREVO_FROM_EMAIL 존재:",
-      !!process.env.BREVO_FROM_EMAIL
+      "[EMAIL] - BREVO_FROM_EMAIL:",
+      process.env.BREVO_FROM_EMAIL || "없음"
     );
     console.log(
-      "[EMAIL] - BREVO_FROM_EMAIL 값:",
-      process.env.BREVO_FROM_EMAIL
-        ? `${process.env.BREVO_FROM_EMAIL.substring(0, 3)}***`
-        : "없음 (필수!)"
+      "[EMAIL] - BREVO_FROM_NAME:",
+      process.env.BREVO_FROM_NAME || "없음"
     );
 
-    if (
-      (process.env.BREVO_SMTP_LOGIN || process.env.BREVO_EMAIL) &&
-      (process.env.BREVO_SMTP_KEY || process.env.BREVO_APP_PASSWORD)
-    ) {
+    // Brevo 환경 변수 확인
+    if (process.env.BREVO_SMTP_LOGIN && process.env.BREVO_SMTP_KEY) {
       console.log("[EMAIL] 이메일 전송 함수 호출");
       sendConsultationEmail({
         name,
@@ -155,7 +151,10 @@ export async function POST(request: NextRequest) {
         });
     } else {
       console.warn(
-        "[EMAIL] 환경 변수가 설정되지 않아 이메일 전송을 건너뜁니다"
+        "[EMAIL] Brevo 환경 변수가 설정되지 않아 이메일 전송을 건너뜁니다"
+      );
+      console.warn(
+        "[EMAIL] 필요한 환경 변수: BREVO_SMTP_LOGIN, BREVO_SMTP_KEY"
       );
     }
 
