@@ -18,16 +18,14 @@ function createTransporter() {
       pass: smtpKey, // SMTP 키
     },
     // 타임아웃 설정 (밀리초) - Serverless 환경에 맞게 조정
-    connectionTimeout: 30000, // 연결 타임아웃: 30초 (Vercel Serverless 대응)
-    greetingTimeout: 10000, // 인사 타임아웃: 10초
-    socketTimeout: 30000, // 소켓 타임아웃: 30초
-    // 재시도 설정
-    pool: true, // 연결 풀 사용
-    maxConnections: 1, // 최대 연결 수
-    maxMessages: 1, // 연결당 최대 메시지 수
+    connectionTimeout: 10000, // 연결 타임아웃: 10초 (빠른 실패 후 재시도)
+    greetingTimeout: 5000, // 인사 타임아웃: 5초
+    socketTimeout: 10000, // 소켓 타임아웃: 10초
+    // 재시도 설정 - Serverless 환경에서는 풀 사용 안 함
+    pool: false, // 연결 풀 비활성화 (Serverless 환경에서 불안정)
     debug: true, // 디버그 모드 활성화
     logger: true, // 로거 활성화
-  });
+  } as any);
 }
 
 interface ConsultationEmailData {
@@ -241,10 +239,10 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     // 메일 전송 (재시도 로직 포함)
     console.log("[EMAIL] sendMail 호출 중...");
 
-    // 재시도 로직 (최대 3회)
+    // 재시도 로직 (최대 5회) - Vercel Serverless 환경 대응
     let lastError: Error | null = null;
-    const maxRetries = 3;
-    const retryDelay = 1000; // 1초
+    const maxRetries = 5; // 재시도 횟수 증가
+    const retryDelay = 2000; // 2초 대기
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {

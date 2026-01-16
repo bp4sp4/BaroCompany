@@ -4,7 +4,8 @@ import { sendConsultationEmail } from "@/lib/email";
 
 // Vercel Serverless 함수 타임아웃 설정 (초 단위)
 // Pro 플랜: 최대 300초, Hobby 플랜: 최대 10초
-export const maxDuration = 60;
+// 이메일 전송 재시도 고려하여 90초로 설정
+export const maxDuration = 90;
 
 // GET: 상담 신청 목록 조회
 export async function GET() {
