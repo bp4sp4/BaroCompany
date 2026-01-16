@@ -37,7 +37,10 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
       "[EMAIL] - recipientEmail:",
       recipientEmail ? `${recipientEmail.substring(0, 3)}***` : "없음"
     );
-    console.log("[EMAIL] - fromEmail:", fromEmail ? `${fromEmail.substring(0, 3)}***` : "없음");
+    console.log(
+      "[EMAIL] - fromEmail:",
+      fromEmail ? `${fromEmail.substring(0, 3)}***` : "없음"
+    );
     console.log("[EMAIL] - baseUrl:", baseUrl);
     console.log("[EMAIL] - logoUrl:", logoUrl);
 
@@ -56,24 +59,25 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
       return { success: false, error: "NAVER_APP_PASSWORD not configured" };
     }
 
-    // SMTP 연결 확인 (callback 생략 시 Promise 반환)
+    // SMTP 연결 확인 (타임아웃 방지를 위해 선택적, 실패해도 메일 전송 시도)
     console.log("[EMAIL] SMTP 연결 확인 중...");
     try {
-      await transporter.verify();
+      // 타임아웃 설정 (5초)
+      const verifyPromise = transporter.verify();
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("SMTP verify timeout")), 5000)
+      );
+      await Promise.race([verifyPromise, timeoutPromise]);
       console.log("[EMAIL] ✅ SMTP 서버 연결 성공 - 메일 전송 준비 완료");
     } catch (verifyError) {
-      console.error("[EMAIL] ❌ SMTP 연결 확인 실패:");
-      console.error("[EMAIL] verify 에러 타입:", verifyError?.constructor?.name);
-      console.error(
+      console.warn("[EMAIL] ⚠️ SMTP 연결 확인 실패 (메일 전송은 계속 시도):");
+      console.warn("[EMAIL] verify 에러 타입:", verifyError?.constructor?.name);
+      console.warn(
         "[EMAIL] verify 에러 메시지:",
         verifyError instanceof Error ? verifyError.message : String(verifyError)
       );
-      console.error("[EMAIL] verify 에러 코드:", (verifyError as any)?.code);
-      console.error(
-        "[EMAIL] verify 에러 스택:",
-        verifyError instanceof Error ? verifyError.stack : "스택 없음"
-      );
-      throw verifyError;
+      console.warn("[EMAIL] verify 에러 코드:", (verifyError as any)?.code);
+      // verify 실패해도 메일 전송은 계속 시도 (일부 환경에서는 verify가 실패해도 전송이 가능함)
     }
 
     const emailHtml = `
@@ -179,8 +183,16 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     console.log("[EMAIL] - to:", mailData.to);
     console.log("[EMAIL] - subject:", mailData.subject);
 
-    // 메일 전송 (callback 생략 시 Promise 반환 - nodemailer v6.4.8+)
-    const info = await transporter.sendMail(mailData);
+    // 메일 전송 (타임아웃 설정 포함)
+    const sendPromise = transporter.sendMail(mailData);
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("SMTP send timeout (30초)")), 30000)
+    );
+    const info = (await Promise.race([
+      sendPromise,
+      timeoutPromise,
+    ])) as nodemailer.SentMessageInfo;
+
     console.log("[EMAIL] ✅ 메일 전송 성공!");
     console.log("[EMAIL] - messageId:", info.messageId);
     console.log("[EMAIL] - response:", info.response);
