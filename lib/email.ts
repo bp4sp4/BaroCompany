@@ -3,11 +3,12 @@ import nodemailer from "nodemailer";
 // 네이버 메일 SMTP 설정
 const transporter = nodemailer.createTransport({
   host: "smtp.naver.com",
-  port: 465,
-  secure: true, // SSL 사용
+  port: 587,
+  secure: false, // 587은 false로 설정
+  requireTLS: true,
   auth: {
-    user: process.env.NAVER_EMAIL, // 네이버 이메일 주소
-    pass: process.env.NAVER_APP_PASSWORD, // 네이버 앱 비밀번호
+    user: process.env.NAVER_EMAIL,
+    pass: process.env.NAVER_APP_PASSWORD,
   },
 });
 

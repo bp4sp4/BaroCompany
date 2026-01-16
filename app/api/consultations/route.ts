@@ -6,7 +6,10 @@ import { sendConsultationEmail } from "@/lib/email";
 export async function GET() {
   try {
     // 환경 변수 확인
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    if (
+      !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+      !process.env.SUPABASE_SERVICE_ROLE_KEY
+    ) {
       return NextResponse.json(
         { error: "Supabase configuration missing" },
         { status: 500 }
@@ -40,7 +43,10 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     // 환경 변수 확인
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    if (
+      !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+      !process.env.SUPABASE_SERVICE_ROLE_KEY
+    ) {
       return NextResponse.json(
         { error: "Supabase configuration missing" },
         { status: 500 }
@@ -108,7 +114,10 @@ export async function POST(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
   try {
     // 환경 변수 확인
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    if (
+      !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+      !process.env.SUPABASE_SERVICE_ROLE_KEY
+    ) {
       return NextResponse.json(
         { error: "Supabase configuration missing" },
         { status: 500 }
@@ -140,7 +149,10 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ message: "Completion status updated successfully", data });
+    return NextResponse.json({
+      message: "Completion status updated successfully",
+      data,
+    });
   } catch (error) {
     console.error("Error updating completion status:", error);
     return NextResponse.json(
@@ -149,5 +161,3 @@ export async function PATCH(request: NextRequest) {
     );
   }
 }
-
-
