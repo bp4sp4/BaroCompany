@@ -1,10 +1,11 @@
 import nodemailer from "nodemailer";
 
-// 네이버 메일 SMTP 설정
+// 네이버 메일 SMTP 설정 (포트 587, TLS 사용)
 const transporter = nodemailer.createTransport({
   host: "smtp.naver.com",
-  port: 465,
-  secure: true, // 465는 true로 설정
+  port: 587,
+  secure: false, // 587은 false
+  requireTLS: true, // TLS 필수
   auth: {
     user: process.env.NAVER_EMAIL,
     pass: process.env.NAVER_APP_PASSWORD,
@@ -12,7 +13,9 @@ const transporter = nodemailer.createTransport({
   // 타임아웃 설정 (밀리초)
   connectionTimeout: 10000, // 연결 타임아웃: 10초
   greetingTimeout: 5000, // 인사 타임아웃: 5초
-  socketTimeout: 10000, // 소켓 타임아웃: 10초
+  socketTimeout: 15000, // 소켓 타임아웃: 15초
+  debug: true, // 디버그 모드 활성화
+  logger: true, // 로거 활성화
 });
 
 interface ConsultationEmailData {
@@ -173,16 +176,29 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     // 메일 전송 (타임아웃 설정 포함)
     console.log("[EMAIL] transporter.sendMail() 호출 직전");
     console.log("[EMAIL] 현재 시각:", new Date().toISOString());
+    console.log(
+      "[EMAIL] mailData 확인:",
+      JSON.stringify({
+        from: mailData.from,
+        to: mailData.to,
+        subject: mailData.subject,
+        hasHtml: !!mailData.html,
+        hasText: !!mailData.text,
+      })
+    );
 
-    // 타임아웃 설정 (20초)
+    // 타임아웃 설정 (15초)
     const sendMailPromise = transporter.sendMail(mailData);
     const timeoutPromise = new Promise<never>((_, reject) => {
       setTimeout(() => {
-        reject(new Error("SMTP sendMail timeout after 20 seconds"));
-      }, 20000);
+        console.error("[EMAIL] ⏱️ 타임아웃 발생! 15초 내에 완료되지 않음");
+        reject(new Error("SMTP sendMail timeout after 15 seconds"));
+      }, 15000);
     });
 
+    console.log("[EMAIL] Promise.race 시작...");
     const info = await Promise.race([sendMailPromise, timeoutPromise]);
+    console.log("[EMAIL] Promise.race 완료!");
     console.log("[EMAIL] transporter.sendMail() 호출 완료");
     console.log("[EMAIL] 완료 시각:", new Date().toISOString());
 
