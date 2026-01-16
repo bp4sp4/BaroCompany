@@ -17,10 +17,14 @@ function createTransporter() {
       user: smtpLogin, // SMTP 로그인 (a02c61001@smtp-brevo.com)
       pass: smtpKey, // SMTP 키
     },
-    // 타임아웃 설정 (밀리초)
-    connectionTimeout: 10000, // 연결 타임아웃: 10초
-    greetingTimeout: 5000, // 인사 타임아웃: 5초
-    socketTimeout: 10000, // 소켓 타임아웃: 10초
+    // 타임아웃 설정 (밀리초) - Serverless 환경에 맞게 조정
+    connectionTimeout: 30000, // 연결 타임아웃: 30초 (Vercel Serverless 대응)
+    greetingTimeout: 10000, // 인사 타임아웃: 10초
+    socketTimeout: 30000, // 소켓 타임아웃: 30초
+    // 재시도 설정
+    pool: true, // 연결 풀 사용
+    maxConnections: 1, // 최대 연결 수
+    maxMessages: 1, // 연결당 최대 메시지 수
     debug: true, // 디버그 모드 활성화
     logger: true, // 로거 활성화
   });
@@ -234,19 +238,57 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
       })
     );
 
-    // 메일 전송 (타임아웃 없이 직접 await - Brevo는 빠르게 응답함)
+    // 메일 전송 (재시도 로직 포함)
     console.log("[EMAIL] sendMail 호출 중...");
-    const info = await transporter.sendMail(mailData);
-    console.log("[EMAIL] sendMail 완료!");
-    console.log("[EMAIL] 완료 시각:", new Date().toISOString());
 
-    console.log("[EMAIL] ✅ 메일 전송 성공!");
-    console.log("[EMAIL] - messageId:", info.messageId);
-    console.log("[EMAIL] - response:", info.response);
-    console.log("[EMAIL] - accepted:", info.accepted);
-    console.log("[EMAIL] - rejected:", info.rejected);
+    // 재시도 로직 (최대 3회)
+    let lastError: Error | null = null;
+    const maxRetries = 3;
+    const retryDelay = 1000; // 1초
 
-    return { success: true, messageId: info.messageId };
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        if (attempt > 1) {
+          console.log(`[EMAIL] 재시도 ${attempt}/${maxRetries}...`);
+          await new Promise((resolve) =>
+            setTimeout(resolve, retryDelay * attempt)
+          );
+        }
+
+        const info = await transporter.sendMail(mailData);
+        console.log("[EMAIL] sendMail 완료!");
+        console.log("[EMAIL] 완료 시각:", new Date().toISOString());
+
+        console.log("[EMAIL] ✅ 메일 전송 성공!");
+        console.log("[EMAIL] - messageId:", info.messageId);
+        console.log("[EMAIL] - response:", info.response);
+        console.log("[EMAIL] - accepted:", info.accepted);
+        console.log("[EMAIL] - rejected:", info.rejected);
+
+        return { success: true, messageId: info.messageId };
+      } catch (retryError) {
+        lastError = retryError as Error;
+        console.error(
+          `[EMAIL] 시도 ${attempt}/${maxRetries} 실패:`,
+          lastError.message
+        );
+
+        // 타임아웃 에러가 아니거나 마지막 시도인 경우 즉시 실패
+        if (
+          (lastError as any)?.code !== "ETIMEDOUT" &&
+          (lastError as any)?.code !== "ECONNRESET"
+        ) {
+          throw lastError;
+        }
+
+        if (attempt === maxRetries) {
+          throw lastError;
+        }
+      }
+    }
+
+    // 모든 재시도 실패
+    throw lastError || new Error("메일 전송 실패");
   } catch (error) {
     console.error("[EMAIL] ❌ 메일 전송 실패! - catch 블록 진입");
     console.error("[EMAIL] 에러 발생 시각:", new Date().toISOString());
