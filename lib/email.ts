@@ -166,15 +166,10 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     console.log("[EMAIL] - to:", mailData.to);
     console.log("[EMAIL] - subject:", mailData.subject);
 
-    // 메일 전송 (타임아웃 설정 포함)
-    const sendPromise = transporter.sendMail(mailData);
-    const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject(new Error("SMTP send timeout (30초)")), 30000)
-    );
-    const info = (await Promise.race([
-      sendPromise,
-      timeoutPromise,
-    ])) as nodemailer.SentMessageInfo;
+    // 메일 전송 (타임아웃 없이 직접 시도 - Serverless 환경에서 더 안정적)
+    console.log("[EMAIL] transporter.sendMail() 호출 시작...");
+    const info = await transporter.sendMail(mailData);
+    console.log("[EMAIL] transporter.sendMail() 완료!");
 
     console.log("[EMAIL] ✅ 메일 전송 성공!");
     console.log("[EMAIL] - messageId:", info.messageId);
@@ -185,16 +180,38 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error("[EMAIL] ❌ 메일 전송 실패!");
+    console.error("[EMAIL] 에러 발생 시각:", new Date().toISOString());
     console.error("[EMAIL] 에러 타입:", error?.constructor?.name);
     console.error(
       "[EMAIL] 에러 메시지:",
       error instanceof Error ? error.message : String(error)
     );
     console.error("[EMAIL] 에러 코드:", (error as any)?.code);
+    console.error("[EMAIL] 에러 command:", (error as any)?.command);
+    console.error("[EMAIL] 에러 response:", (error as any)?.response);
+    console.error("[EMAIL] 에러 responseCode:", (error as any)?.responseCode);
     console.error(
       "[EMAIL] 에러 스택:",
       error instanceof Error ? error.stack : "스택 없음"
     );
+
+    // nodemailer 에러의 경우 추가 정보 출력
+    if ((error as any)?.response) {
+      console.error("[EMAIL] SMTP 응답:", (error as any).response);
+    }
+    if ((error as any)?.responseCode) {
+      console.error("[EMAIL] SMTP 응답 코드:", (error as any).responseCode);
+    }
+
+    // 전체 에러 객체 출력
+    try {
+      console.error(
+        "[EMAIL] 전체 에러 객체:",
+        JSON.stringify(error, Object.getOwnPropertyNames(error), 2)
+      );
+    } catch (e) {
+      console.error("[EMAIL] 에러 객체 직렬화 실패:", e);
+    }
 
     return {
       success: false,
