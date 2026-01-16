@@ -166,11 +166,9 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     console.log("[EMAIL] - to:", mailData.to);
     console.log("[EMAIL] - subject:", mailData.subject);
 
-    // 메일 전송 (타임아웃 없이 직접 시도 - Serverless 환경에서 더 안정적)
-    console.log("[EMAIL] transporter.sendMail() 호출 시작...");
+    // 메일 전송 (간단하게 await 사용)
     const info = await transporter.sendMail(mailData);
-    console.log("[EMAIL] transporter.sendMail() 완료!");
-
+    
     console.log("[EMAIL] ✅ 메일 전송 성공!");
     console.log("[EMAIL] - messageId:", info.messageId);
     console.log("[EMAIL] - response:", info.response);
