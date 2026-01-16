@@ -56,29 +56,25 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
       return { success: false, error: "NAVER_APP_PASSWORD not configured" };
     }
 
-    // SMTP 연결 확인 (Promise로 감싸서 Serverless 환경에서 await 동작 보장)
+    // SMTP 연결 확인 (callback 생략 시 Promise 반환)
     console.log("[EMAIL] SMTP 연결 확인 중...");
-    await new Promise<void>((resolve, reject) => {
-      transporter.verify(function (error, success) {
-        if (error) {
-          console.error("[EMAIL] ❌ SMTP 연결 확인 실패:");
-          console.error("[EMAIL] verify 에러 타입:", error?.constructor?.name);
-          console.error(
-            "[EMAIL] verify 에러 메시지:",
-            error instanceof Error ? error.message : String(error)
-          );
-          console.error("[EMAIL] verify 에러 코드:", (error as any)?.code);
-          console.error(
-            "[EMAIL] verify 에러 스택:",
-            error instanceof Error ? error.stack : "스택 없음"
-          );
-          reject(error);
-        } else {
-          console.log("[EMAIL] ✅ SMTP 서버 연결 성공 - 메일 전송 준비 완료");
-          resolve();
-        }
-      });
-    });
+    try {
+      await transporter.verify();
+      console.log("[EMAIL] ✅ SMTP 서버 연결 성공 - 메일 전송 준비 완료");
+    } catch (verifyError) {
+      console.error("[EMAIL] ❌ SMTP 연결 확인 실패:");
+      console.error("[EMAIL] verify 에러 타입:", verifyError?.constructor?.name);
+      console.error(
+        "[EMAIL] verify 에러 메시지:",
+        verifyError instanceof Error ? verifyError.message : String(verifyError)
+      );
+      console.error("[EMAIL] verify 에러 코드:", (verifyError as any)?.code);
+      console.error(
+        "[EMAIL] verify 에러 스택:",
+        verifyError instanceof Error ? verifyError.stack : "스택 없음"
+      );
+      throw verifyError;
+    }
 
     const emailHtml = `
       <!DOCTYPE html>
@@ -183,44 +179,13 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     console.log("[EMAIL] - to:", mailData.to);
     console.log("[EMAIL] - subject:", mailData.subject);
 
-    // 메일 전송 (Promise로 감싸서 Serverless 환경에서 await 동작 보장)
-    const info = await new Promise<nodemailer.SentMessageInfo>((resolve, reject) => {
-      transporter.sendMail(mailData, (err, info) => {
-        if (err) {
-          console.error("[EMAIL] ❌ 메일 전송 실패!");
-          console.error("[EMAIL] 에러 타입:", err?.constructor?.name);
-          console.error(
-            "[EMAIL] 에러 메시지:",
-            err instanceof Error ? err.message : String(err)
-          );
-          console.error("[EMAIL] 에러 코드:", (err as any)?.code);
-          console.error("[EMAIL] 에러 command:", (err as any)?.command);
-          console.error("[EMAIL] 에러 response:", (err as any)?.response);
-          console.error("[EMAIL] 에러 responseCode:", (err as any)?.responseCode);
-          console.error(
-            "[EMAIL] 에러 스택:",
-            err instanceof Error ? err.stack : "스택 없음"
-          );
-
-          // nodemailer 에러의 경우 추가 정보 출력
-          if ((err as any)?.response) {
-            console.error("[EMAIL] SMTP 응답:", (err as any).response);
-          }
-          if ((err as any)?.responseCode) {
-            console.error("[EMAIL] SMTP 응답 코드:", (err as any).responseCode);
-          }
-
-          reject(err);
-        } else {
-          console.log("[EMAIL] ✅ 메일 전송 성공!");
-          console.log("[EMAIL] - messageId:", info.messageId);
-          console.log("[EMAIL] - response:", info.response);
-          console.log("[EMAIL] - accepted:", info.accepted);
-          console.log("[EMAIL] - rejected:", info.rejected);
-          resolve(info);
-        }
-      });
-    });
+    // 메일 전송 (callback 생략 시 Promise 반환 - nodemailer v6.4.8+)
+    const info = await transporter.sendMail(mailData);
+    console.log("[EMAIL] ✅ 메일 전송 성공!");
+    console.log("[EMAIL] - messageId:", info.messageId);
+    console.log("[EMAIL] - response:", info.response);
+    console.log("[EMAIL] - accepted:", info.accepted);
+    console.log("[EMAIL] - rejected:", info.rejected);
 
     return { success: true, messageId: info.messageId };
   } catch (error) {
