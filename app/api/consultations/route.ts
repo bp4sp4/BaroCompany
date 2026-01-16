@@ -92,27 +92,40 @@ export async function POST(request: NextRequest) {
     // 이메일 알림 전송 (비동기, 실패해도 상담 신청은 성공 처리)
     console.log("[EMAIL] 이메일 전송 시도 시작");
     console.log("[EMAIL] 환경 변수 확인:");
-    console.log("[EMAIL] - NAVER_EMAIL 존재:", !!process.env.NAVER_EMAIL);
     console.log(
-      "[EMAIL] - NAVER_EMAIL 값:",
-      process.env.NAVER_EMAIL
-        ? `${process.env.NAVER_EMAIL.substring(0, 3)}***`
+      "[EMAIL] - BREVO_SMTP_LOGIN 존재:",
+      !!process.env.BREVO_SMTP_LOGIN
+    );
+    console.log(
+      "[EMAIL] - BREVO_SMTP_LOGIN 값:",
+      process.env.BREVO_SMTP_LOGIN
+        ? `${process.env.BREVO_SMTP_LOGIN.substring(0, 3)}***`
         : "없음"
     );
+    console.log("[EMAIL] - BREVO_SMTP_KEY 존재:", !!process.env.BREVO_SMTP_KEY);
     console.log(
-      "[EMAIL] - NAVER_APP_PASSWORD 존재:",
-      !!process.env.NAVER_APP_PASSWORD
-    );
-    console.log(
-      "[EMAIL] - NAVER_APP_PASSWORD 길이:",
-      process.env.NAVER_APP_PASSWORD ? process.env.NAVER_APP_PASSWORD.length : 0
+      "[EMAIL] - BREVO_SMTP_KEY 길이:",
+      process.env.BREVO_SMTP_KEY ? process.env.BREVO_SMTP_KEY.length : 0
     );
     console.log(
       "[EMAIL] - CONSULTATION_EMAIL:",
-      process.env.CONSULTATION_EMAIL || "없음 (NAVER_EMAIL 사용)"
+      process.env.CONSULTATION_EMAIL || "없음"
+    );
+    console.log(
+      "[EMAIL] - BREVO_FROM_EMAIL 존재:",
+      !!process.env.BREVO_FROM_EMAIL
+    );
+    console.log(
+      "[EMAIL] - BREVO_FROM_EMAIL 값:",
+      process.env.BREVO_FROM_EMAIL
+        ? `${process.env.BREVO_FROM_EMAIL.substring(0, 3)}***`
+        : "없음 (필수!)"
     );
 
-    if (process.env.NAVER_EMAIL && process.env.NAVER_APP_PASSWORD) {
+    if (
+      (process.env.BREVO_SMTP_LOGIN || process.env.BREVO_EMAIL) &&
+      (process.env.BREVO_SMTP_KEY || process.env.BREVO_APP_PASSWORD)
+    ) {
       console.log("[EMAIL] 이메일 전송 함수 호출");
       sendConsultationEmail({
         name,

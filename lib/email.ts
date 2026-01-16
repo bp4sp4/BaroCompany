@@ -1,21 +1,30 @@
 import nodemailer from "nodemailer";
 
-// 네이버 메일 SMTP 설정 (포트 465, SSL 사용)
-const transporter = nodemailer.createTransport({
-  host: "smtp.naver.com",
-  port: 465,
-  secure: true, // 465는 SSL 사용
-  auth: {
-    user: process.env.NAVER_EMAIL,
-    pass: process.env.NAVER_APP_PASSWORD,
-  },
-  // 타임아웃 설정 (밀리초)
-  connectionTimeout: 15000, // 연결 타임아웃: 15초
-  greetingTimeout: 10000, // 인사 타임아웃: 10초
-  socketTimeout: 20000, // 소켓 타임아웃: 20초
-  debug: true, // 디버그 모드 활성화
-  logger: true, // 로거 활성화
-});
+// Brevo SMTP transporter 생성 함수
+function createTransporter() {
+  const smtpLogin = process.env.BREVO_SMTP_LOGIN || process.env.BREVO_EMAIL;
+  const smtpKey = process.env.BREVO_SMTP_KEY || process.env.BREVO_APP_PASSWORD;
+
+  if (!smtpLogin || !smtpKey) {
+    throw new Error("BREVO_SMTP_LOGIN and BREVO_SMTP_KEY must be configured");
+  }
+
+  return nodemailer.createTransport({
+    host: "smtp-relay.brevo.com",
+    port: 587,
+    secure: false, // 587은 STARTTLS 사용
+    auth: {
+      user: smtpLogin, // SMTP 로그인 (a02c61001@smtp-brevo.com)
+      pass: smtpKey, // SMTP 키
+    },
+    // 타임아웃 설정 (밀리초)
+    connectionTimeout: 10000, // 연결 타임아웃: 10초
+    greetingTimeout: 5000, // 인사 타임아웃: 5초
+    socketTimeout: 10000, // 소켓 타임아웃: 10초
+    debug: true, // 디버그 모드 활성화
+    logger: true, // 로거 활성화
+  });
+}
 
 interface ConsultationEmailData {
   name: string;
@@ -31,20 +40,30 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
   );
 
   try {
-    // 수신자 이메일: CONSULTATION_EMAIL이 있으면 사용, 없으면 NAVER_EMAIL 사용
-    const recipientEmail =
-      process.env.CONSULTATION_EMAIL || process.env.NAVER_EMAIL;
-    const fromEmail = process.env.NAVER_EMAIL;
+    // SMTP 인증용 로그인 (변경 불가)
+    const smtpLogin = process.env.BREVO_SMTP_LOGIN || process.env.BREVO_EMAIL;
+
+    // 수신자 이메일: CONSULTATION_EMAIL이 있으면 사용, 없으면 기본값
+    const recipientEmail = process.env.CONSULTATION_EMAIL || "bp4sp4@naver.com";
+
+    // 발신자 이메일: BREVO_FROM_EMAIL (인증된 이메일) 필수
+    // Brevo에서는 from 필드가 인증된 발신자 이메일이어야 함
+    // SMTP 로그인(a02c61001@smtp-brevo.com)은 인증용이지 발신자로 사용 불가
+    const fromEmail = process.env.BREVO_FROM_EMAIL;
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://바로기업.com";
     const logoUrl = `${baseUrl}/images/main/logo_black.png`;
 
     console.log("[EMAIL] 설정 확인:");
     console.log(
+      "[EMAIL] - smtpLogin (인증용):",
+      smtpLogin ? `${smtpLogin.substring(0, 3)}***` : "없음"
+    );
+    console.log(
       "[EMAIL] - recipientEmail:",
       recipientEmail ? `${recipientEmail.substring(0, 3)}***` : "없음"
     );
     console.log(
-      "[EMAIL] - fromEmail:",
+      "[EMAIL] - fromEmail (발신자):",
       fromEmail ? `${fromEmail.substring(0, 3)}***` : "없음"
     );
     console.log("[EMAIL] - baseUrl:", baseUrl);
@@ -55,14 +74,39 @@ export async function sendConsultationEmail(data: ConsultationEmailData) {
       return { success: false, error: "Email not configured" };
     }
 
-    if (!process.env.NAVER_EMAIL) {
-      console.error("[EMAIL] NAVER_EMAIL 환경 변수가 설정되지 않음");
-      return { success: false, error: "NAVER_EMAIL not configured" };
+    if (!smtpLogin) {
+      console.error(
+        "[EMAIL] BREVO_SMTP_LOGIN 또는 BREVO_EMAIL 환경 변수가 설정되지 않음"
+      );
+      return {
+        success: false,
+        error: "BREVO_SMTP_LOGIN or BREVO_EMAIL not configured",
+      };
     }
 
-    if (!process.env.NAVER_APP_PASSWORD) {
-      console.error("[EMAIL] NAVER_APP_PASSWORD 환경 변수가 설정되지 않음");
-      return { success: false, error: "NAVER_APP_PASSWORD not configured" };
+    if (!process.env.BREVO_SMTP_KEY && !process.env.BREVO_APP_PASSWORD) {
+      console.error(
+        "[EMAIL] BREVO_SMTP_KEY 또는 BREVO_APP_PASSWORD 환경 변수가 설정되지 않음"
+      );
+      return {
+        success: false,
+        error: "BREVO_SMTP_KEY or BREVO_APP_PASSWORD not configured",
+      };
+    }
+
+    if (!fromEmail) {
+      console.error("[EMAIL] BREVO_FROM_EMAIL 환경 변수가 설정되지 않음");
+      console.error(
+        "[EMAIL] Brevo에서는 from 필드가 인증된 발신자 이메일이어야 합니다."
+      );
+      console.error(
+        "[EMAIL] Brevo 대시보드에서 발신자 이메일을 인증한 후 BREVO_FROM_EMAIL에 설정하세요."
+      );
+      return {
+        success: false,
+        error:
+          "BREVO_FROM_EMAIL not configured. Please set a verified sender email in Brevo.",
+      };
     }
 
     // SMTP 연결 확인 건너뛰기 (Serverless 환경에서 verify가 불안정할 수 있음)
@@ -157,10 +201,7 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     `;
 
     const mailData = {
-      from: {
-        name: "한평생 바로기업",
-        address: fromEmail || "",
-      },
+      from: fromEmail, // Brevo는 from을 문자열로 사용 (인증된 도메인/이메일)
       to: recipientEmail,
       subject: `[상담 접수] ${data.name}님`,
       text: emailText,
@@ -168,11 +209,15 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     };
 
     console.log("[EMAIL] 메일 전송 시도 중...");
-    console.log("[EMAIL] - from:", mailData.from.address);
+    console.log("[EMAIL] - from:", mailData.from);
     console.log("[EMAIL] - to:", mailData.to);
     console.log("[EMAIL] - subject:", mailData.subject);
 
     // 메일 전송 (타임아웃 설정 포함)
+    console.log("[EMAIL] transporter 생성 중...");
+    const transporter = createTransporter();
+    console.log("[EMAIL] transporter 생성 완료");
+
     console.log("[EMAIL] transporter.sendMail() 호출 직전");
     console.log("[EMAIL] 현재 시각:", new Date().toISOString());
     console.log(
@@ -186,25 +231,10 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
       })
     );
 
-    // 타임아웃 설정 (25초)
-    console.log("[EMAIL] sendMail Promise 생성 중...");
-    const sendMailPromise = transporter.sendMail(mailData);
-    console.log("[EMAIL] sendMail Promise 생성 완료");
-
-    const timeoutPromise = new Promise<never>((_, reject) => {
-      setTimeout(() => {
-        console.error("[EMAIL] ⏱️ 타임아웃 발생! 25초 내에 완료되지 않음");
-        console.error("[EMAIL] 타임아웃 시각:", new Date().toISOString());
-        reject(new Error("SMTP sendMail timeout after 25 seconds"));
-      }, 25000);
-    });
-
-    console.log("[EMAIL] Promise.race 시작...");
-    console.log("[EMAIL] Promise.race 시작 시각:", new Date().toISOString());
-    const info = await Promise.race([sendMailPromise, timeoutPromise]);
-    console.log("[EMAIL] Promise.race 결과 받음");
-    console.log("[EMAIL] Promise.race 완료!");
-    console.log("[EMAIL] transporter.sendMail() 호출 완료");
+    // 메일 전송 (타임아웃 없이 직접 await - Brevo는 빠르게 응답함)
+    console.log("[EMAIL] sendMail 호출 중...");
+    const info = await transporter.sendMail(mailData);
+    console.log("[EMAIL] sendMail 완료!");
     console.log("[EMAIL] 완료 시각:", new Date().toISOString());
 
     console.log("[EMAIL] ✅ 메일 전송 성공!");
