@@ -170,10 +170,21 @@ ${data.click_source ? `유입 경로: ${data.click_source}\n` : ""}
     console.log("[EMAIL] - to:", mailData.to);
     console.log("[EMAIL] - subject:", mailData.subject);
 
-    // 메일 전송 (간단하게 await 사용)
+    // 메일 전송 (타임아웃 설정 포함)
     console.log("[EMAIL] transporter.sendMail() 호출 직전");
-    const info = await transporter.sendMail(mailData);
+    console.log("[EMAIL] 현재 시각:", new Date().toISOString());
+
+    // 타임아웃 설정 (20초)
+    const sendMailPromise = transporter.sendMail(mailData);
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      setTimeout(() => {
+        reject(new Error("SMTP sendMail timeout after 20 seconds"));
+      }, 20000);
+    });
+
+    const info = await Promise.race([sendMailPromise, timeoutPromise]);
     console.log("[EMAIL] transporter.sendMail() 호출 완료");
+    console.log("[EMAIL] 완료 시각:", new Date().toISOString());
 
     console.log("[EMAIL] ✅ 메일 전송 성공!");
     console.log("[EMAIL] - messageId:", info.messageId);
