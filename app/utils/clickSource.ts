@@ -36,10 +36,19 @@ export function getClickSource(): string | null {
 
 /**
  * 현재 저장된 click_source를 반환 (URL 파라미터 없이도)
+ * 저장된 값이 없고 홈페이지("/")에서 신청한 경우 "홈페이지" 반환
  */
 export function getStoredClickSource(): string | null {
   if (typeof window === "undefined") return null;
-  return sessionStorage.getItem("click_source");
+  
+  const storedClickSource = sessionStorage.getItem("click_source");
+  
+  // 저장된 click_source가 없고 홈페이지에서 신청한 경우
+  if (!storedClickSource && window.location.pathname === "/") {
+    return "바로기업 홈페이지";
+  }
+  
+  return storedClickSource;
 }
 
 /**

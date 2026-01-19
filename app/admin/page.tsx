@@ -111,8 +111,11 @@ export default function AdminPage() {
     });
   };
 
-  const formatClickSource = (clickSource?: string) => {
-    if (!clickSource) return "-";
+  const formatClickSource = (clickSource?: string | null) => {
+    // null이거나 undefined이거나 빈 문자열인 경우 기본값 반환
+    if (!clickSource || clickSource.trim() === "") {
+      return "바로기업 홈페이지";
+    }
 
     // daangn_material_1~6 형식을 당근마켓_소재_1~6으로 변환
     if (clickSource.startsWith("daangn_material_")) {
@@ -123,10 +126,14 @@ export default function AdminPage() {
     const sourceMap: Record<string, string> = {
       daangn: "당근마켓",
       instagram: "인스타그램",
+      홈페이지: "바로기업 홈페이지",
+      "바로기업 홈페이지": "바로기업 홈페이지",
       // 다른 소스 추가 가능
     };
 
-    return sourceMap[clickSource.toLowerCase()] || clickSource;
+    // 소스맵에 있으면 변환된 값 반환, 없으면 원본 반환
+    const lowerSource = clickSource.toLowerCase();
+    return sourceMap[clickSource] || sourceMap[lowerSource] || clickSource;
   };
 
   // 페이지네이션 계산
