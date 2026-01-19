@@ -18,7 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "한평생 바로기업",
-  description: "한평생 바로기업",
+  description:
+    "창업부터 EXIT까지, 대표님들의 성공적인 경영을 위한 전문 컨설팅. 정책자금 신청, 투자유치, 경영지원, 창업교육까지 한평생 바로기업이 함께합니다.",
   verification: {
     google: "852osWNQj4Nc948PauZNVRQO1EMBjk63cS-yjRnBbtk",
     other: {
@@ -27,7 +28,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "한평생 바로기업 | 정책자금 신청부터 기업성장 지원까지!",
-    description: "한평생 바로기업",
+    description:
+      "창업부터 EXIT까지, 대표님들의 성공적인 경영을 위한 전문 컨설팅. 정책자금 신청, 투자유치, 경영지원, 창업교육까지 한평생 바로기업이 함께합니다.",
     url: "https://www.바로기업.com",
     siteName: "한평생 바로기업",
     images: [
@@ -44,7 +46,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "한평생 바로기업",
-    description: "한평생 바로기업",
+    description:
+      "창업부터 EXIT까지, 대표님들의 성공적인 경영을 위한 전문 컨설팅. 정책자금 신청, 투자유치, 경영지원, 창업교육까지 한평생 바로기업이 함께합니다.",
     images: ["/og-image.png"],
   },
 };
