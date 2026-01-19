@@ -194,18 +194,47 @@ export async function PATCH(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { id, is_completed } = body;
+    const { id, is_completed, notes, status } = body;
 
-    if (!id || typeof is_completed !== "boolean") {
+    if (!id) {
+      return NextResponse.json({ error: "ID is required" }, { status: 400 });
+    }
+
+    // 업데이트할 필드 구성
+    const updateData: {
+      is_completed?: boolean;
+      notes?: string;
+      status?: "pending" | "in_progress" | "completed";
+    } = {};
+
+    if (typeof is_completed === "boolean") {
+      updateData.is_completed = is_completed;
+    }
+
+    if (status !== undefined) {
+      updateData.status = status;
+      // status가 있으면 is_completed도 함께 업데이트
+      if (status === "completed") {
+        updateData.is_completed = true;
+      } else if (status === "pending") {
+        updateData.is_completed = false;
+      }
+    }
+
+    if (notes !== undefined) {
+      updateData.notes = notes;
+    }
+
+    if (Object.keys(updateData).length === 0) {
       return NextResponse.json(
-        { error: "ID and is_completed are required" },
+        { error: "At least one field (is_completed or notes) is required" },
         { status: 400 }
       );
     }
 
     const { data, error } = await supabaseAdmin
       .from("consultations")
-      .update({ is_completed })
+      .update(updateData)
       .eq("id", id)
       .select()
       .single();
