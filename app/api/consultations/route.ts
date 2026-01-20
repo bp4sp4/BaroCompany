@@ -259,3 +259,86 @@ export async function PATCH(request: NextRequest) {
     );
   }
 }
+
+// DELETE: 상담 신청 삭제 (최상위 관리자만 가능)
+export async function DELETE(request: NextRequest) {
+  try {
+    if (
+      !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+      !process.env.SUPABASE_SERVICE_ROLE_KEY
+    ) {
+      return NextResponse.json(
+        { error: "Supabase configuration missing" },
+        { status: 500 }
+      );
+    }
+
+    // Authorization 헤더에서 토큰 추출
+    const authHeader = request.headers.get("authorization");
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return NextResponse.json(
+        { error: "Authorization required" },
+        { status: 401 }
+      );
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+
+    // 사용자 정보 가져오기
+    const {
+      data: { user },
+      error: userError,
+    } = await supabaseAdmin.auth.getUser(token);
+
+    if (userError || !user) {
+      return NextResponse.json(
+        { error: "Invalid token" },
+        { status: 401 }
+      );
+    }
+
+    // 최상위 관리자 권한 확인
+    const { data: adminData, error: adminError } = await supabaseAdmin
+      .from("admins")
+      .select("role")
+      .eq("email", user.email)
+      .single();
+
+    if (adminError || !adminData || adminData.role !== "super_admin") {
+      return NextResponse.json(
+        { error: "Only super admins can delete consultations" },
+        { status: 403 }
+      );
+    }
+
+    const body = await request.json();
+    const { id } = body as { id?: string };
+
+    if (!id) {
+      return NextResponse.json({ error: "ID is required" }, { status: 400 });
+    }
+
+    const { error } = await supabaseAdmin
+      .from("consultations")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      console.error("Error deleting consultation:", error);
+      return NextResponse.json(
+        { error: "Failed to delete consultation" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      message: "Consultation deleted successfully",
+    });
+  } catch (error) {
+    console.error("Error deleting consultation:", error);
+    return NextResponse.json(
+      { error: "Failed to delete consultation" },
+      { status: 500 }
+    );
+  }
+}

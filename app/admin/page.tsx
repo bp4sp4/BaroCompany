@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 import * as XLSX from "xlsx";
@@ -37,6 +37,12 @@ export default function AdminPage() {
   const [selectedConsultation, setSelectedConsultation] =
     useState<Consultation | null>(null);
 
+  // 체크박스 선택 상태
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+
+  // 관리자 역할 상태
+  const [userRole, setUserRole] = useState<"super_admin" | "admin" | null>(null);
+
   useEffect(() => {
     checkAuth();
   }, []);
@@ -51,6 +57,21 @@ export default function AdminPage() {
       if (error || !session) {
         router.push("/admin/login");
         return;
+      }
+
+      // 관리자 역할 확인
+      const roleResponse = await fetch("/api/admin/check-role", {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      });
+
+      if (roleResponse.ok) {
+        const { role } = await roleResponse.json();
+        setUserRole(role || "admin");
+      } else {
+        // 역할 확인 실패 시 기본값으로 admin 설정
+        setUserRole("admin");
       }
 
       setAuthLoading(false);
@@ -147,6 +168,94 @@ export default function AdminPage() {
       }
     } catch (error) {
       console.error("Error updating notes:", error);
+    }
+  };
+
+  // 체크박스 전체 선택/해제
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedIds(new Set(currentConsultations.map((item) => item.id)));
+    } else {
+      setSelectedIds(new Set());
+    }
+  };
+
+  // 개별 체크박스 선택/해제
+  const handleSelectItem = (id: string, checked: boolean) => {
+    const newSelectedIds = new Set(selectedIds);
+    if (checked) {
+      newSelectedIds.add(id);
+    } else {
+      newSelectedIds.delete(id);
+    }
+    setSelectedIds(newSelectedIds);
+  };
+
+  // 선택된 항목들 일괄 삭제
+  const handleDeleteSelected = async () => {
+    if (selectedIds.size === 0) return;
+
+    const count = selectedIds.size;
+    const confirmed = window.confirm(
+      `정말로 선택한 ${count}개의 상담 신청을 삭제하시겠습니까?\n삭제 후에는 되돌릴 수 없습니다.`
+    );
+    if (!confirmed) return;
+
+    try {
+      // 세션에서 토큰 가져오기
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        console.error("No session found");
+        return;
+      }
+
+      // 각 항목을 순차적으로 삭제
+      const deletePromises = Array.from(selectedIds).map((id) =>
+        fetch("/api/consultations", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session.access_token}`,
+          },
+          body: JSON.stringify({ id }),
+        })
+      );
+
+      const results = await Promise.all(deletePromises);
+      const allSuccess = results.every((res) => res.ok);
+
+      if (allSuccess) {
+        // 삭제 성공 시 데이터 새로고침
+        await fetchConsultations();
+        setSelectedIds(new Set());
+        
+        // 데이터 새로고침 후 필터링된 결과를 기다리기 위해 약간의 지연
+        // (useMemo가 업데이트되기를 기다림)
+        setTimeout(() => {
+          const newTotalPages = Math.ceil(filteredConsultations.length / itemsPerPage);
+          if (currentPage > newTotalPages && newTotalPages > 0) {
+            setCurrentPage(newTotalPages);
+          }
+        }, 100);
+      } else {
+        console.error("일부 항목 삭제에 실패했습니다.");
+        // 실패한 항목만 남기고 나머지는 제거
+        const failedIds = new Set<string>();
+        results.forEach((res, index) => {
+          if (!res.ok) {
+            failedIds.add(Array.from(selectedIds)[index]);
+          }
+        });
+        setConsultations((prev) =>
+          prev.filter((item) => !selectedIds.has(item.id) || failedIds.has(item.id))
+        );
+        setSelectedIds(failedIds);
+      }
+    } catch (error) {
+      console.error("Error deleting consultations:", error);
     }
   };
 
@@ -306,12 +415,14 @@ export default function AdminPage() {
 
   const goToPage = (page: number) => {
     setCurrentPage(page);
+    setSelectedIds(new Set()); // 페이지 변경 시 선택 초기화
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // 필터 변경 시 첫 페이지로
+  // 필터 변경 시 첫 페이지로 및 선택 초기화
   useEffect(() => {
     setCurrentPage(1);
+    setSelectedIds(new Set());
   }, [statusFilter, clickSourceFilter, startDate, endDate]);
 
   if (authLoading || loading) {
@@ -424,6 +535,15 @@ export default function AdminPage() {
               >
                 초기화
               </button>
+              {userRole === "super_admin" && (
+                <button
+                  onClick={handleDeleteSelected}
+                  className={styles.deleteSelectedButton}
+                  disabled={selectedIds.size === 0}
+                >
+                  선택 삭제 ({selectedIds.size})
+                </button>
+              )}
             </div>
           </div>
         </section>
@@ -444,6 +564,21 @@ export default function AdminPage() {
           <table className={styles.table}>
             <thead>
               <tr>
+                {userRole === "super_admin" && (
+                  <th style={{ width: "50px" }}>
+                    <input
+                      type="checkbox"
+                      checked={
+                        currentConsultations.length > 0 &&
+                        currentConsultations.every((item) =>
+                          selectedIds.has(item.id)
+                        )
+                      }
+                      onChange={(e) => handleSelectAll(e.target.checked)}
+                      className={styles.checkbox}
+                    />
+                  </th>
+                )}
                 <th>이름</th>
                 <th>연락처</th>
                 <th>유입경로</th>
@@ -455,7 +590,7 @@ export default function AdminPage() {
             <tbody>
               {currentConsultations.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className={styles.empty}>
+                  <td colSpan={userRole === "super_admin" ? 7 : 6} className={styles.empty}>
                     신청 내역이 없습니다.
                   </td>
                 </tr>
@@ -464,10 +599,13 @@ export default function AdminPage() {
                   <ConsultationRow
                     key={consultation.id}
                     consultation={consultation}
+                    isSelected={selectedIds.has(consultation.id)}
+                    onSelect={(checked) => handleSelectItem(consultation.id, checked)}
                     onUpdateStatus={updateStatus}
                     onOpenNotesModal={() => setSelectedConsultation(consultation)}
                     formatClickSource={formatClickSource}
                     formatDate={formatDate}
+                    userRole={userRole}
                   />
                 ))
               )}
@@ -527,12 +665,17 @@ export default function AdminPage() {
 // Consultation Row Component
 function ConsultationRow({
   consultation,
+  isSelected,
+  onSelect,
   onUpdateStatus,
   onOpenNotesModal,
   formatClickSource,
   formatDate,
+  userRole,
 }: {
   consultation: Consultation;
+  isSelected: boolean;
+  onSelect: (checked: boolean) => void;
   onUpdateStatus: (
     id: string,
     status: "pending" | "in_progress" | "completed"
@@ -540,8 +683,26 @@ function ConsultationRow({
   onOpenNotesModal: () => void;
   formatClickSource: (source?: string | null) => string;
   formatDate: (dateString: string) => string;
+  userRole: "super_admin" | "admin" | null;
 }) {
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
+  const [isTextTruncated, setIsTextTruncated] = useState(false);
+  const textRef = useRef<HTMLSpanElement>(null);
+
+  // 텍스트가 잘렸는지 확인
+  useEffect(() => {
+    const checkTruncation = () => {
+      if (textRef.current) {
+        const isTruncated =
+          textRef.current.scrollWidth > textRef.current.clientWidth;
+        setIsTextTruncated(isTruncated);
+      }
+    };
+
+    checkTruncation();
+    window.addEventListener("resize", checkTruncation);
+    return () => window.removeEventListener("resize", checkTruncation);
+  }, [consultation.click_source]);
 
   // 현재 상태 결정 (기존 데이터 호환성)
   const currentStatus: "pending" | "in_progress" | "completed" =
@@ -565,10 +726,36 @@ function ConsultationRow({
       <tr
         className={currentStatus === "completed" ? styles.completedRow : ""}
       >
+        {userRole === "super_admin" && (
+          <td>
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={(e) => onSelect(e.target.checked)}
+              className={styles.checkbox}
+            />
+          </td>
+        )}
         <td style={{ fontWeight: 600 }}>{consultation.name}</td>
         <td style={{ fontWeight: 500 }}>{consultation.contact}</td>
-        <td style={{ fontWeight: 500 }}>
-          {formatClickSource(consultation.click_source)}
+        <td>
+          <div
+            className={`${styles.clickSourceCell} ${
+              isTextTruncated ? styles.tooltip : ""
+            }`}
+            data-tooltip={
+              isTextTruncated
+                ? formatClickSource(consultation.click_source)
+                : undefined
+            }
+          >
+            {isTextTruncated && (
+              <span className={styles.tooltipIcon}>?</span>
+            )}
+            <span ref={textRef} className={styles.tooltipText}>
+              {formatClickSource(consultation.click_source)}
+            </span>
+          </div>
         </td>
         <td style={{ color: "#8b95a1", fontSize: "13px", fontWeight: 500 }}>
           {formatDate(consultation.created_at)}
