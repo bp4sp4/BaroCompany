@@ -198,7 +198,7 @@ function BizSupportContent() {
                 </div>
                 <div className={styles.stage_card_services}>
                   <span className={styles.stage_card_service_item}>
-                    서류 작성 지원
+                    서류 안내 지원
                   </span>
                   <span className={styles.stage_card_service_item}>
                     신청 안내

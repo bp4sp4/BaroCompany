@@ -495,7 +495,7 @@ function EntedContent() {
                 </div>
                 <div className={styles.support_card_bottom}>
                   <p className={styles.support_card_bottom_item}>
-                    서류 작성 지원
+                    서류 안내 지원
                   </p>
                   <p className={styles.support_card_bottom_item}>신청 안내</p>
                   <p className={styles.support_card_bottom_item}>사후 관리</p>

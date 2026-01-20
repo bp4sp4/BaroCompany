@@ -230,7 +230,7 @@ function PolicyFundsContent() {
               </div>
               <h3 className={styles.feature_card_title}>높은 승인율</h3>
               <p className={styles.feature_card_subtitle}>
-                정책자금 신청 경험이 풍부한 전문가가 최적화된 서류 작성으로 높은
+                정책자금 신청 경험이 풍부한 전문가가 최적화된 서류 안내로 높은
                 승인율을 보장합니다.
               </p>
             </div>
@@ -554,7 +554,7 @@ function PolicyFundsContent() {
                   <h3 className={styles.process_card_title}>서류 준비</h3>
                 </div>
                 <p className={styles.process_card_description}>
-                  필요 서류 작성 및<br /> 완벽한 준비
+                  필요 서류 안내 및<br /> 완벽한 준비
                 </p>
               </div>
               <div className={styles.process_card_icon}>
