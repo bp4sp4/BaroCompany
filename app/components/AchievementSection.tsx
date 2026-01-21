@@ -16,6 +16,9 @@ export default function AchievementSection() {
   const marqueeRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLParagraphElement>(null);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
+  const currentTransformRef = useRef<number>(0);
+  const isDraggingRef = useRef<boolean>(false);
   const achievements = [
     {
       id: 1,
@@ -427,7 +430,7 @@ export default function AchievementSection() {
     };
   }, []);
 
-  // 모바일 터치 인터랙션: 탭하면 일시정지, 다른 곳 터치하면 재생, 3초 후 자동 재생
+  // 모바일 터치 인터랙션: 탭하면 일시정지, 스와이프로 드래그 가능, 5초 후 자동 재생
   useEffect(() => {
     const marqueeEl = marqueeRef.current;
     if (!marqueeEl) return;
@@ -445,14 +448,43 @@ export default function AchievementSection() {
       }
     };
 
+    const getCurrentTransform = (): number => {
+      const computedStyle = window.getComputedStyle(marqueeEl);
+      const matrix = computedStyle.transform;
+      if (matrix === "none" || !matrix) return 0;
+      try {
+        const values = matrix.split("(")[1]?.split(")")[0]?.split(",");
+        if (values && values.length >= 6) {
+          return parseFloat(values[4]) || 0;
+        }
+      } catch (e) {
+        console.error("Error parsing transform:", e);
+      }
+      return 0;
+    };
+
     const pause = () => {
       clearPauseTimeout();
-      marqueeEl.style.animationPlayState = "paused";
+      // 현재 transform 값 저장 (애니메이션이 적용된 상태)
+      const current = getCurrentTransform();
+      currentTransformRef.current = current;
+      
+      // 애니메이션을 완전히 비활성화하고 현재 위치를 transform으로 고정
+      marqueeEl.style.animation = "none";
+      if (current !== 0) {
+        marqueeEl.style.transform = `translateX(${current}px)`;
+      }
     };
 
     const resume = () => {
       clearPauseTimeout();
+      // transform/animation 초기화하고 애니메이션 재개
+      marqueeEl.style.transform = "";
+      marqueeEl.style.animation = ""; // CSS 클래스의 애니메이션 다시 활성화
       marqueeEl.style.animationPlayState = "running";
+      currentTransformRef.current = 0;
+      isDraggingRef.current = false;
+      touchStartXRef.current = null;
     };
 
     const scheduleResume = () => {
@@ -466,36 +498,71 @@ export default function AchievementSection() {
       const target = event.target as Node;
       if (marqueeEl.contains(target)) {
         pause();
+        const touch = event.touches[0];
+        if (touch) {
+          touchStartXRef.current = touch.clientX;
+          isDraggingRef.current = true;
+        }
       } else {
         resume();
       }
     };
 
     const handleTouchMove = (event: TouchEvent) => {
+      if (!isDraggingRef.current || touchStartXRef.current === null) return;
+      
       const target = event.target as Node;
       if (marqueeEl.contains(target)) {
-        pause();
+        event.preventDefault(); // 스크롤 방지
+        const touch = event.touches[0];
+        if (touch) {
+          const deltaX = touch.clientX - touchStartXRef.current;
+          const newTransform = currentTransformRef.current + deltaX;
+          
+          // transform 적용 (애니메이션은 이미 paused 상태)
+          marqueeEl.style.transform = `translateX(${newTransform}px)`;
+        }
       }
     };
 
-    const handleTouchEnd = (event: TouchEvent) => {
+    const endDragAndSchedule = () => {
+      if (!isDraggingRef.current) return;
+      const finalTransform = getCurrentTransform();
+      currentTransformRef.current = finalTransform;
+      isDraggingRef.current = false;
+      touchStartXRef.current = null;
+      scheduleResume();
+    };
+
+    const handleTouchEnd = () => endDragAndSchedule();
+    const handleTouchCancel = () => endDragAndSchedule();
+
+    marqueeEl.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
+    });
+    marqueeEl.addEventListener("touchmove", handleTouchMove, { passive: false });
+    marqueeEl.addEventListener("touchend", handleTouchEnd, { passive: true });
+    marqueeEl.addEventListener("touchcancel", handleTouchCancel, { passive: true });
+
+    // 마퀴 외부 터치 시 재생
+    const handleDocumentTouchStart = (event: TouchEvent) => {
       const target = event.target as Node;
-      if (marqueeEl.contains(target)) {
-        scheduleResume();
+      if (!marqueeEl.contains(target)) {
+        resume();
       }
     };
 
-    document.addEventListener("touchstart", handleTouchStart, {
+    document.addEventListener("touchstart", handleDocumentTouchStart, {
       passive: true,
     });
-    document.addEventListener("touchmove", handleTouchMove, { passive: true });
-    document.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       clearPauseTimeout();
-      document.removeEventListener("touchstart", handleTouchStart);
-      document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("touchend", handleTouchEnd);
+      marqueeEl.removeEventListener("touchstart", handleTouchStart);
+      marqueeEl.removeEventListener("touchmove", handleTouchMove);
+      marqueeEl.removeEventListener("touchend", handleTouchEnd);
+      marqueeEl.removeEventListener("touchcancel", handleTouchEnd);
+      document.removeEventListener("touchstart", handleDocumentTouchStart);
     };
   }, []);
 
