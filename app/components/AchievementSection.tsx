@@ -19,6 +19,10 @@ export default function AchievementSection() {
   const touchStartXRef = useRef<number | null>(null);
   const currentTransformRef = useRef<number>(0);
   const isDraggingRef = useRef<boolean>(false);
+  const offsetWidthRef = useRef<number | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastTimestampRef = useRef<number | null>(null);
+  const isAnimatingRef = useRef<boolean>(true);
   const achievements = [
     {
       id: 1,
@@ -400,6 +404,7 @@ export default function AchievementSection() {
 
               // CSS 변수로 설정
               marquee.style.setProperty("--marquee-offset", `-${totalWidth}px`);
+              offsetWidthRef.current = totalWidth;
 
               console.log("Calculated offset:", totalWidth, "px");
             }
@@ -441,6 +446,9 @@ export default function AchievementSection() {
 
     if (!isTouchDevice) return;
 
+    // 초기 상태에서 JS 애니메이션 시작 준비
+    isAnimatingRef.current = false;
+
     const clearPauseTimeout = () => {
       if (pauseTimeoutRef.current) {
         clearTimeout(pauseTimeoutRef.current);
@@ -463,26 +471,56 @@ export default function AchievementSection() {
       return 0;
     };
 
+    const stopAnimationLoop = () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+      lastTimestampRef.current = null;
+      isAnimatingRef.current = false;
+    };
+
+    const startAnimationLoop = () => {
+      if (isAnimatingRef.current) return;
+      isAnimatingRef.current = true;
+      const step = (timestamp: number) => {
+        if (!isAnimatingRef.current) return;
+        if (lastTimestampRef.current === null) {
+          lastTimestampRef.current = timestamp;
+        }
+        const delta = timestamp - lastTimestampRef.current;
+        lastTimestampRef.current = timestamp;
+
+        const offset = offsetWidthRef.current || 0;
+        if (offset !== 0) {
+          const speedPxPerMs = offset / 40000; // 40초 주기
+          let nextPos = currentTransformRef.current - delta * speedPxPerMs;
+          if (nextPos <= -offset) {
+            nextPos += offset;
+          }
+          currentTransformRef.current = nextPos;
+          marqueeEl.style.transform = `translateX(${nextPos}px)`;
+        }
+
+        animationFrameRef.current = requestAnimationFrame(step);
+      };
+      animationFrameRef.current = requestAnimationFrame(step);
+    };
+
     const pause = () => {
       clearPauseTimeout();
-      // 현재 transform 값 저장 (애니메이션이 적용된 상태)
       const current = getCurrentTransform();
       currentTransformRef.current = current;
-      
-      // 애니메이션을 완전히 비활성화하고 현재 위치를 transform으로 고정
       marqueeEl.style.animation = "none";
-      if (current !== 0) {
-        marqueeEl.style.transform = `translateX(${current}px)`;
-      }
+      marqueeEl.style.transform = `translateX(${current}px)`;
+      stopAnimationLoop();
     };
 
     const resume = () => {
       clearPauseTimeout();
-      // transform/animation 초기화하고 애니메이션 재개
-      marqueeEl.style.transform = "";
-      marqueeEl.style.animation = ""; // CSS 클래스의 애니메이션 다시 활성화
-      marqueeEl.style.animationPlayState = "running";
-      currentTransformRef.current = 0;
+      marqueeEl.style.animation = "none";
+      marqueeEl.style.transform = `translateX(${currentTransformRef.current}px)`;
+      startAnimationLoop();
       isDraggingRef.current = false;
       touchStartXRef.current = null;
     };
@@ -556,13 +594,17 @@ export default function AchievementSection() {
       passive: true,
     });
 
+    // 애니메이션 루프 시작
+    startAnimationLoop();
+
     return () => {
       clearPauseTimeout();
       marqueeEl.removeEventListener("touchstart", handleTouchStart);
       marqueeEl.removeEventListener("touchmove", handleTouchMove);
       marqueeEl.removeEventListener("touchend", handleTouchEnd);
-      marqueeEl.removeEventListener("touchcancel", handleTouchEnd);
+      marqueeEl.removeEventListener("touchcancel", handleTouchCancel);
       document.removeEventListener("touchstart", handleDocumentTouchStart);
+      stopAnimationLoop();
     };
   }, []);
 
