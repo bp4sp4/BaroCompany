@@ -7,6 +7,52 @@ import { sendConsultationEmail } from "@/lib/email";
 // 이메일 전송 재시도 고려하여 90초로 설정
 export const maxDuration = 90;
 
+// Slack 알림 전송
+async function sendSlackNotification({
+  name,
+  contact,
+  click_source,
+  landing_page,
+}: {
+  name: string;
+  contact: string;
+  click_source?: string | null;
+  landing_page?: string | null;
+}) {
+  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+  if (!webhookUrl) {
+    console.warn("[SLACK] SLACK_WEBHOOK_URL이 설정되지 않았습니다.");
+    return;
+  }
+
+  const landingInfo = landing_page ? `- 랜딩페이지: ${landing_page}\n` : "";
+  
+  const text = [
+    "*새로운 상담 신청이 접수되었습니다.*",
+    landingInfo,
+    `- 이름/기업명: ${name}`,
+    `- 연락처: ${contact}`,
+    `- 유입경로: ${click_source || "바로기업 홈페이지"}`,
+    `- 신청시각: ${new Date().toLocaleString("ko-KR")}`,
+  ]
+    .filter((line) => line !== "") // 빈 줄 제거
+    .join("\n");
+
+  try {
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+
+    if (!response.ok) {
+      console.error("[SLACK] 알림 전송 실패:", response.status, response.statusText);
+    }
+  } catch (error) {
+    console.error("[SLACK] 알림 전송 중 오류:", error);
+  }
+}
+
 // GET: 상담 신청 목록 조회
 export async function GET() {
   try {
@@ -59,7 +105,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { name, contact, click_source } = body;
+    const { name, contact, click_source, landing_page } = body;
 
     // 유효성 검사
     if (!name || !contact) {
@@ -164,6 +210,18 @@ export async function POST(request: NextRequest) {
       console.warn(
         "[EMAIL] 필요한 환경 변수: BREVO_SMTP_LOGIN, BREVO_SMTP_KEY"
       );
+    }
+
+    // Slack 알림 (완료까지 대기)
+    try {
+      await sendSlackNotification({
+        name,
+        contact,
+        click_source: click_source || null,
+        landing_page: landing_page || null,
+      });
+    } catch (error) {
+      console.error("[SLACK] 알림 전송 실패:", error);
     }
 
     return NextResponse.json(
