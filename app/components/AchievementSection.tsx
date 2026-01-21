@@ -15,6 +15,7 @@ export default function AchievementSection() {
   const marqueeContainerRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLParagraphElement>(null);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const achievements = [
     {
       id: 1,
@@ -423,6 +424,78 @@ export default function AchievementSection() {
       clearTimeout(timeoutId3);
       clearTimeout(resizeTimeout);
       window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // 모바일 터치 인터랙션: 탭하면 일시정지, 다른 곳 터치하면 재생, 3초 후 자동 재생
+  useEffect(() => {
+    const marqueeEl = marqueeRef.current;
+    if (!marqueeEl) return;
+
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+
+    if (!isTouchDevice) return;
+
+    const clearPauseTimeout = () => {
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+        pauseTimeoutRef.current = null;
+      }
+    };
+
+    const pause = () => {
+      clearPauseTimeout();
+      marqueeEl.style.animationPlayState = "paused";
+    };
+
+    const resume = () => {
+      clearPauseTimeout();
+      marqueeEl.style.animationPlayState = "running";
+    };
+
+    const scheduleResume = () => {
+      clearPauseTimeout();
+      pauseTimeoutRef.current = setTimeout(() => {
+        resume();
+      }, 5000);
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      const target = event.target as Node;
+      if (marqueeEl.contains(target)) {
+        pause();
+      } else {
+        resume();
+      }
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      const target = event.target as Node;
+      if (marqueeEl.contains(target)) {
+        pause();
+      }
+    };
+
+    const handleTouchEnd = (event: TouchEvent) => {
+      const target = event.target as Node;
+      if (marqueeEl.contains(target)) {
+        scheduleResume();
+      }
+    };
+
+    document.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    document.addEventListener("touchmove", handleTouchMove, { passive: true });
+    document.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      clearPauseTimeout();
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
