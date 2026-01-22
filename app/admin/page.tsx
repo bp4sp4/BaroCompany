@@ -15,6 +15,9 @@ interface Consultation {
   click_source?: string;
   notes?: string | null;
   status?: "pending" | "in_progress" | "completed" | null;
+  industry?: string | null;
+  revenue?: string | null;
+  debt?: string | null;
 }
 
 type StatusFilter = "all" | "pending" | "in_progress" | "completed";
@@ -358,6 +361,9 @@ export default function AdminPage() {
       번호: index + 1,
       이름: item.name,
       연락처: item.contact,
+      업종: item.industry || "",
+      연간매출액: item.revenue || "",
+      현재부채: item.debt || "",
       유입경로: formatClickSource(item.click_source),
       신청일시: formatDate(item.created_at),
       특이사항: item.notes || "",
@@ -380,6 +386,9 @@ export default function AdminPage() {
       { wch: 8 }, // 번호
       { wch: 15 }, // 이름
       { wch: 15 }, // 연락처
+      { wch: 15 }, // 업종
+      { wch: 15 }, // 연간 매출액
+      { wch: 15 }, // 현재 부채
       { wch: 20 }, // 유입경로
       { wch: 20 }, // 신청일시
       { wch: 30 }, // 특이사항
@@ -581,6 +590,9 @@ export default function AdminPage() {
                 )}
                 <th>이름</th>
                 <th>연락처</th>
+                <th>업종</th>
+                <th>연간 매출액</th>
+                <th>현재 부채</th>
                 <th>유입경로</th>
                 <th>신청일시</th>
                 <th>특이사항</th>
@@ -590,7 +602,7 @@ export default function AdminPage() {
             <tbody>
               {currentConsultations.length === 0 ? (
                 <tr>
-                  <td colSpan={userRole === "super_admin" ? 7 : 6} className={styles.empty}>
+                  <td colSpan={userRole === "super_admin" ? 10 : 9} className={styles.empty}>
                     신청 내역이 없습니다.
                   </td>
                 </tr>
@@ -738,6 +750,15 @@ function ConsultationRow({
         )}
         <td style={{ fontWeight: 600 }}>{consultation.name}</td>
         <td style={{ fontWeight: 500 }}>{consultation.contact}</td>
+        <td style={{ color: "#333d4b", fontSize: "14px" }}>
+          {consultation.industry || "-"}
+        </td>
+        <td style={{ color: "#333d4b", fontSize: "14px" }}>
+          {consultation.revenue || "-"}
+        </td>
+        <td style={{ color: "#333d4b", fontSize: "14px" }}>
+          {consultation.debt || "-"}
+        </td>
         <td>
           <div
             className={`${styles.clickSourceCell} ${
